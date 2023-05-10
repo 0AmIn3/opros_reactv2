@@ -215,8 +215,8 @@ const AnswersV3 = () => {
                 if (nowq < quest.length - 1) {
                   setNowq(nowq + 1);
                 } else if (nowq === quest.length - 1) {
-                  dispatch(changeOpros({ id: 2, arr: quest, opr: "a3" }));
-                  navigate("/pjkjoisdflk24234");
+                  // dispatch(changeOpros({ id: 2, arr: quest, opr: "a3" }));
+                  navigate("/pwer23");
                 }
               }
             } else {

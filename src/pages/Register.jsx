@@ -5,21 +5,20 @@ import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersAPI, postUsersAPI } from "../features/goods/thunk";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   // const [count, setCount] = useState(0);
   const all = useSelector((state) => state.all.data);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(!all.length) {
-			dispatch(getUsersAPI())
-
-		}
-  })
+  useEffect(() => {
+    if (!all.length) {
+      dispatch(getUsersAPI());
+    }
+  });
   // console.log(all);
 
   const {
@@ -30,33 +29,30 @@ const Register = () => {
   } = useForm();
   const onSubmit = (data) => {
     // const randomId = Math.floor(Math.random() * 1000000);
-    let cop = [...all]
-    let obj = {
-      id: uuidv4(),
-      a1: [],
-      a2: [],
-      a3: [],
-      ...data
-    };
-if(cop.filter(item => item.email === data.email).length > 0 ){
- Cookies.set('userid', `${obj.id}`, {
-      expires: Infinity,
-      path: '/',
-    });    
-    window.location.href = './home'
-}else{
-  Cookies.set('userid', `${obj.id}`, {
-    expires: Infinity,
-    path: '/',
-  });    
-   dispatch(postUsersAPI(obj))
-   window.location.href = './home'
-}
-   
-   
+    let cop = [...all];
+    let aa = cop.filter((item) => item.email === data.email);
+    if (aa.length > 0) {
+      Cookies.set("userid", `${aa[0].id}`, {
+        expires: Infinity,
+        path: "/",
+      });
+      window.location.href = "./home";
+    } else {
+      let obj = {
+        id: uuidv4(),
+        a1: [],
+        a2: [],
+        a3: [],
+        ...data,
+      };
+      Cookies.set("userid", `${obj.id}`, {
+        expires: Infinity,
+        path: "/",
+      });
+      dispatch(postUsersAPI(obj));
+      window.location.href = "./home";
+    }
   };
-
-
 
   useEffect(() => {
     return () => {

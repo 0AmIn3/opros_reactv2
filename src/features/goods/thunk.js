@@ -58,3 +58,8 @@ export const postUsersAPI = createAsyncThunk('goods/postUsersAPI', async (data) 
     
     return res.data
 })
+export const pathUsersAPI = createAsyncThunk('goods/pathUsersAPI', async (data) => {
+    const res = await axios.patch('http://localhost:3001/users/'+ data.id ,  data.obj)
+
+    return res.data
+})

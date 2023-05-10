@@ -9,7 +9,7 @@ const Home = () => {
   if(!auth_status) {
     window.location.href = '/'
   }
-
+  console.log(auth_status);
 
   const handleClick = (btn) => {
     const links = document.querySelectorAll(".links");

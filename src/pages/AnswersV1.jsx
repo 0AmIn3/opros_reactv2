@@ -10,7 +10,7 @@ const AnswersV1 = () => {
   const [count, setCount] = useState(0);
   const [nowq, setNowq] = useState(0)
   const quest = useSelector((state) => state.all?.data[0]?.a1);
-
+  
 
 
   let arr = [

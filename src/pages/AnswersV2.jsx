@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeOpros } from "../features/goods/allSlice";
 import { SlArrowRight } from "react-icons/sl";
 import { IoCloseSharp } from "react-icons/io5";
+import Cookies from "js-cookie";
+import { pathUsersAPI } from "../features/goods/thunk";
 
 const AnswersV2 = () => {
   const [count, setCount] = useState(0);
@@ -178,6 +180,7 @@ const AnswersV2 = () => {
   //     setQuest(questUser)
   //   }
   // })
+  const auth_status = Cookies.get('userid')
 
   return (
     <>
@@ -215,7 +218,7 @@ const AnswersV2 = () => {
                 if (nowq < quest.length - 1) {
                   setNowq(nowq + 1);
                 } else if (nowq === quest.length - 1) {
-                  dispatch(changeOpros({ id: 2, arr: quest, opr: "a2" }));
+                  dispatch(pathUsersAPI({id:auth_status , obj : {a2:quest }}))
                   navigate("/pjkjoisdflk24234");
                 }
               }

@@ -1,19 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getUsersAPI, postUsersAPI } from "./thunk";
+import { getUsersAPI, pathUsersAPI, postUsersAPI } from "./thunk";
 // import { deleteGoodAPI, getGoodAPI, pathGoodAPI, postGoodAPI } from "./thunk";
 
 const initialState = {
   data: [],
   filluser: [],
-  a:[],
   status: "idle",
 };
 
 export const allSlice = createSlice({
-
-
-  
   name: "all",
   initialState,
   reducers: {
@@ -43,6 +39,31 @@ export const allSlice = createSlice({
         state.status = "fulfilled";
       })
       .addCase(getUsersAPI.rejected, (state, action) => {
+        state.status = "rejected";
+
+      })
+      .addCase(postUsersAPI.pending, (state, action) => {
+        state.status = "loading";
+
+      })
+      .addCase(postUsersAPI.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.status = "fulfilled";
+      })
+      .addCase(postUsersAPI.rejected, (state, action) => {
+        state.status = "rejected";
+
+      })
+      .addCase(pathUsersAPI.pending, (state, action) => {
+        state.status = "loading";
+
+      })
+      .addCase(pathUsersAPI.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.status = "fulfilled";
+        console.log(state.data);
+      })
+      .addCase(pathUsersAPI.rejected, (state, action) => {
         state.status = "rejected";
 
       })
