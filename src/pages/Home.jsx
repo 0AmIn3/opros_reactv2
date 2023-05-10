@@ -30,11 +30,11 @@ const Home = () => {
       </button>
 
       <div className="links" style={{ display: "none" }}>
-        <Link to={"/answersV1"}>
+        <Link to={"/sdflk24234"}>
           <h3>Answers</h3>
         </Link>
         <br />
-        <Link to={""}>
+        <Link to={"/psdflk24234"}>
           <h3>Results</h3>
         </Link>
         <br />
@@ -66,7 +66,7 @@ const Home = () => {
       </button>
 
       <div className="links" style={{ display: "none" }}>
-        <Link to={"/wer23"}>
+        <Link to={"/wedewdwr23"}>
           <h3>Answers</h3>
         </Link>
         <br />

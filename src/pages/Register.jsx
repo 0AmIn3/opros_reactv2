@@ -3,13 +3,25 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
-import { useDispatch } from "react-redux";
-import { postUsersAPI } from "../features/goods/thunk";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsersAPI, postUsersAPI } from "../features/goods/thunk";
 import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
+  const all = useSelector((state) => state.all.data);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if(!all.length) {
+			dispatch(getUsersAPI())
+
+		}
+  })
+  // console.log(all);
+
   const {
     register,
     handleSubmit,
@@ -18,26 +30,32 @@ const Register = () => {
   } = useForm();
   const onSubmit = (data) => {
     // const randomId = Math.floor(Math.random() * 1000000);
+    let cop = [...all]
     let obj = {
-      userid: uuidv4(),
+      id: uuidv4(),
       a1: [],
       a2: [],
       a3: [],
       ...data
     };
-
-    console.log(obj)
-    
-    dispatch(postUsersAPI(obj))
-    Cookies.set('userid', `${uuidv4()}`, {
+if(cop.filter(item => item.email === data.email).length > 0 ){
+ Cookies.set('userid', `${obj.id}`, {
       expires: Infinity,
       path: '/',
     });    
-  };
-  const auth_status = Cookies.get('userid')
-  if(auth_status) {
     window.location.href = './home'
-  }
+}else{
+  Cookies.set('userid', `${obj.id}`, {
+    expires: Infinity,
+    path: '/',
+  });    
+   dispatch(postUsersAPI(obj))
+   window.location.href = './home'
+}
+   
+   
+  };
+
 
 
   useEffect(() => {
@@ -58,6 +76,8 @@ const Register = () => {
   return (
     <>
       <div className="container"></div>
+      <div className="bgall"></div>
+      <div className="bgopa"></div>
       <div className="reg_box">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Вход</h1>

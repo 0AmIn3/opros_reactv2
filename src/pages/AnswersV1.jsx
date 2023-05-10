@@ -281,7 +281,7 @@ const AnswersV1 = () => {
         <div className="answers relative bg-white">
 
 
-          <Link to={"/"}>
+          <Link to={"/home"}>
             <div className="absolute right-[30px] top-[20px] close_btn">
               <IoCloseSharp />
             </div>

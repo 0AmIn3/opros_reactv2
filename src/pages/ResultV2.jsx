@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoCloseSharp } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 
 const ResultV2 = () => {
@@ -7,13 +8,13 @@ const ResultV2 = () => {
   
     return (
       <>
-        <div className="links link_ans">
-          <Link to={"/"}>Back to home</Link>
-        </div>
-        <div className="answers  bg-white">
-          <div className="q_now">
-         
+   
+        <div className="answers  relative bg-white">
+        <Link to={"/home"}>
+          <div className="absolute right-[30px] top-[20px] close_btn">
+            <IoCloseSharp />
           </div>
+        </Link>
   
   
          

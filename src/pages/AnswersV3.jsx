@@ -5,6 +5,7 @@ import Yarus from "../components/Yarus";
 import { useDispatch, useSelector } from "react-redux";
 import { changeOpros } from "../features/goods/allSlice";
 import { SlArrowRight } from "react-icons/sl";
+import { IoCloseSharp } from "react-icons/io5";
 
 const AnswersV3 = () => {
   const [count, setCount] = useState(0);
@@ -169,7 +170,7 @@ const AnswersV3 = () => {
   ];
   const [quest, setQuest] = useState(questDef);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // useEffect(()=>{
   //   if(questUser.length === 0){
   //     setQuest(questDef)
@@ -180,10 +181,12 @@ const AnswersV3 = () => {
 
   return (
     <>
-      <div className="links link_ans">
-        <Link to={"/"}>Back to home</Link>
-      </div>
-      <div className="answers  bg-white">
+      <div className="answers relative pt-[100px] bg-white">
+        <Link to={"/home"}>
+          <div className="absolute right-[30px] top-[20px] close_btn">
+            <IoCloseSharp />
+          </div>
+        </Link>
         <div className="q_now">
           {/* <span className=" bg-[#C7FFAC]">{nowq + 1} вопрос </span>из
           {quest.length} */}
@@ -191,7 +194,7 @@ const AnswersV3 = () => {
 
         <Yarus
           setQuest={setQuest}
-          opr="a2"
+          opr="a3"
           quest={quest}
           nowq={nowq}
           key={nowq}
@@ -213,7 +216,7 @@ const AnswersV3 = () => {
                   setNowq(nowq + 1);
                 } else if (nowq === quest.length - 1) {
                   dispatch(changeOpros({ id: 2, arr: quest, opr: "a3" }));
-                  navigate('/pwer23')
+                  navigate("/pjkjoisdflk24234");
                 }
               }
             } else {
