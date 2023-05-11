@@ -4,11 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"json-server -p 7777 -w goodsBase.json\"",
     "build": "vite build",
     "preview": "vite preview"
+
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
+    "json-server": "^0.17.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/roboto": "^4.5.8",
