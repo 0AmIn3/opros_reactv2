@@ -6,12 +6,45 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeOpros } from "../features/goods/allSlice";
 import { SlArrowRight } from "react-icons/sl";
 import { IoCloseSharp } from "react-icons/io5";
+import Cookies from "js-cookie";
+import { pathUsersAPI } from "../features/goods/thunk";
 
 const AnswersV3 = () => {
   const [count, setCount] = useState(0);
   const [nowq, setNowq] = useState(0);
   const questUser = useSelector((state) => state.all?.data[0]?.a3);
   const questDef = [
+    {
+      title:
+        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?",
+      succ: false,
+      answers: [
+        {
+          title: "0",
+          ansucc: false,
+        },
+        {
+          title: "1",
+          ansucc: false,
+        },
+        {
+          title: "2",
+          ansucc: false,
+        },
+        {
+          title: "3",
+          ansucc: false,
+        },
+        {
+          title: "4",
+          ansucc: false,
+        },
+        {
+          title: "5",
+          ansucc: false,
+        },
+      ],
+    },
     {
       title:
         "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?",
@@ -178,6 +211,7 @@ const AnswersV3 = () => {
   //     setQuest(questUser)
   //   }
   // })
+  const auth_status = Cookies.get("userid");
 
   return (
     <>
@@ -215,8 +249,13 @@ const AnswersV3 = () => {
                 if (nowq < quest.length - 1) {
                   setNowq(nowq + 1);
                 } else if (nowq === quest.length - 1) {
-                  // dispatch(changeOpros({ id: 2, arr: quest, opr: "a3" }));
-                  navigate("/pwer23");
+                  console.log(quest);
+                  dispatch(
+                    pathUsersAPI({ id: auth_status, obj: { a3: quest } })
+                  );
+                  setTimeout(() => {
+                    window.location.href = "/pwer23";
+                  }, 300);
                 }
               }
             } else {

@@ -22,6 +22,7 @@ const Yarus = ({ quest, nowq, setQuest , opr }) => {
         5: 0,
       };
       console.log(peoples);
+      console.log(al);
       if(peoples > 0){
         for (let i of questUser) {
           for (let a of i[opr][nowq].answers) {
@@ -69,7 +70,7 @@ const Yarus = ({ quest, nowq, setQuest , opr }) => {
         Выберите один из вариантов!
       </p>
       <p className=" mt-7 text-sm opacity-30">
-        0 - Совсе не характерно, 5 - Полностью соответсвует {peoples}
+        0 - Совсе не характерно, 5 - Полностью соответсвует 
       </p>
       <div className=" flex gap-3 mt-5">
         {quest[nowq]?.answers.map((answer, index) => (
@@ -84,7 +85,7 @@ const Yarus = ({ quest, nowq, setQuest , opr }) => {
           />
         ))}
       </div>
-   {<DiogramUp item={quest[nowq]} newobj={newobj} peoples={peoples} setPeoples={setPeoples} nowq = {nowq} opr ={opr} />}
+   {/* {<DiogramUp item={quest[nowq]} newobj={newobj} peoples={peoples} setPeoples={setPeoples} nowq = {nowq} opr ={opr} />} */}
     </div>
   );
 };

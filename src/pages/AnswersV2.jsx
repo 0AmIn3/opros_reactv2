@@ -180,7 +180,7 @@ const AnswersV2 = () => {
   //     setQuest(questUser)
   //   }
   // })
-  const auth_status = Cookies.get('userid')
+  const auth_status = Cookies.get("userid");
 
   return (
     <>
@@ -218,8 +218,13 @@ const AnswersV2 = () => {
                 if (nowq < quest.length - 1) {
                   setNowq(nowq + 1);
                 } else if (nowq === quest.length - 1) {
-                  dispatch(pathUsersAPI({id:auth_status , obj : {a2:quest }}))
-                  navigate("/pjkjoisdflk24234");
+                  console.log(quest);
+                  dispatch(
+                    pathUsersAPI({ id: auth_status, obj: { a2: quest } })
+                  );
+                  setTimeout(() => {
+                    window.location.href = "/pjkjoisdflk24234";
+                  }, 300);
                 }
               }
             } else {

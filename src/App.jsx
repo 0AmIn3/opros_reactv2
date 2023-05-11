@@ -25,7 +25,7 @@ function App() {
         <Route path="/psdflk24234" element={<ResultV1 />} />
         <Route path="/jkjoisdflk24234" element={<AnswersV2 />} />
         <Route path="/pjkjoisdflk24234" element={<ResultV2 />} />
-        <Route path="/wedewdwr23" element={<AnswersV3 />} />
+        <Route path="/wer23" element={<AnswersV3 />} />
         <Route path="/pwer23" element={<ResultV3 />} />
       </Route>
     </Routes>

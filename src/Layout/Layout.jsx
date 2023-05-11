@@ -7,15 +7,11 @@ import { getUsersAPI } from "../features/goods/thunk";
 import Cookies from "js-cookie";
 
 const Layout = () => {
-  // const goods = useSelector((state) => state.goods.data);
   const all = useSelector((state) => state.all.data);
-  // const liked = useSelector((state) => state.liked.data);
 	const dispatch = useDispatch();
   const navigate = useNavigate()
-  // console.log(all);
-
   const auth_status = Cookies.get('userid')
- 
+
 
 
   useEffect(()=>{
