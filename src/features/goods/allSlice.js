@@ -19,20 +19,21 @@ export const allSlice = createSlice({
     },
     changeOpros: (state, action) => {
       const { id, arr, opr } = action.payload;
-      let cop = [...state.data];
-      state.filluser = state.data.filter(
-        (item) => item.userid == id
-      )[0];
+      const cop = [...state.data];
+      console.log(cop);
+
+      state.filluser = cop.filter((item) => item.userid == id)[0];
       let idx = cop.indexOf(state.filluser);
+      console.log(cop.filter((item) => item.userid == id)[0]);
+
       cop[idx][opr] = arr;
       state.data = cop;
     },
-  },  
+  },
   extraReducers(builder) {
     builder
       .addCase(getUsersAPI.pending, (state, action) => {
         state.status = "loading";
-
       })
       .addCase(getUsersAPI.fulfilled, (state, action) => {
         state.data = action.payload;
@@ -40,11 +41,9 @@ export const allSlice = createSlice({
       })
       .addCase(getUsersAPI.rejected, (state, action) => {
         state.status = "rejected";
-
       })
       .addCase(postUsersAPI.pending, (state, action) => {
         state.status = "loading";
-
       })
       .addCase(postUsersAPI.fulfilled, (state, action) => {
         state.data = action.payload;
@@ -52,11 +51,9 @@ export const allSlice = createSlice({
       })
       .addCase(postUsersAPI.rejected, (state, action) => {
         state.status = "rejected";
-
       })
       .addCase(pathUsersAPI.pending, (state, action) => {
         state.status = "loading";
-
       })
       .addCase(pathUsersAPI.fulfilled, (state, action) => {
         state.data = action.payload;
@@ -65,41 +62,7 @@ export const allSlice = createSlice({
       })
       .addCase(pathUsersAPI.rejected, (state, action) => {
         state.status = "rejected";
-
-      })
-      // .addCase(postGoodAPI.pending, (state, action) => {
-      //   state.status = "loading";
-      // })
-      // .addCase(postGoodAPI.fulfilled, (state, action) => {
-      //   state.data = action.payload;
-      //   state.status = "fulfilled";
-      //   // console.log(state.data);
-      // })
-      // .addCase(postGoodAPI.rejected, (state, action) => {
-      //   state.status = "rejected";
-      // })
-      // .addCase(pathGoodAPI.pending, (state, action) => {
-      //   state.status = "loading";
-      // })
-      // .addCase(pathGoodAPI.fulfilled, (state, action) => {
-      //   state.data = action.payload;
-      //   state.status = "fulfilled";
-      //   // console.log(state.data);
-      // })
-      // .addCase(pathGoodAPI.rejected, (state, action) => {
-      //   state.status = "rejected";
-      // })
-      // .addCase(deleteGoodAPI.pending, (state, action) => {
-      //   state.status = "loading";
-      // })
-      // .addCase(deleteGoodAPI.fulfilled, (state, action) => {
-      //   state.data = action.payload;
-      //   state.status = "fulfilled";
-      //   // console.log(state.data);
-      // })
-      // .addCase(deleteGoodAPI.rejected, (state, action) => {
-      //   state.status = "rejected";
-      // });
+      });
   },
 });
 

@@ -220,7 +220,10 @@ const AnswersV2 = () => {
                 } else if (nowq === quest.length - 1) {
                   console.log(quest);
                   dispatch(
-                    pathUsersAPI({ id: auth_status, obj: { a2: quest } })
+                    pathUsersAPI({ id: auth_status, obj: { a2: quest } }) 
+                    // changeOpros({id: auth_status, arr:quest , opr: 'a2' }) 
+
+
                   );
                   setTimeout(() => {
                     window.location.href = "/pjkjoisdflk24234";

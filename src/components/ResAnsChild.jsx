@@ -7,7 +7,7 @@ const ResAnsChild = ({ anses, id, all, skok  }) => {
     function prot_ans(all) {
 
         for (let user of all) {
-            console.log(user);
+            // console.log(user);
             if (user.a1.length > 0) {
                 for (let as of user.a1) {
                     let all_as = 0
@@ -25,7 +25,7 @@ const ResAnsChild = ({ anses, id, all, skok  }) => {
     function prot_otv(all) {
 
         for (let user of all) {
-            console.log(user);
+            // console.log(user);
             if (user.a1.length > 0) {
                 for (let as of user.a1) {
                     let all_as = 0

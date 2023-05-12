@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ResAns from './ResAns';
 
-const ResQues = ({ quest, id, all }) => {
+ const ResQues = ({ quest, id, all }) => {
 
-    console.log(quest);
+    // console.log(quest);
 
     return (
         <div>

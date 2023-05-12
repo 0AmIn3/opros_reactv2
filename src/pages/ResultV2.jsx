@@ -8,7 +8,7 @@ import DiogramUp from "../components/DiogramUp";
 
 const ResultV2 = () => {
   const all = useSelector((state) => state.all.data);
-  const auth_status = Cookies.get("userid");
+  // const auth_status = Cookies.get("userid");
   const [id, setId] = useState(false);
   const [peoples, setPeoples] = useState([]);
   const [user, setUser] = useState();
@@ -183,6 +183,7 @@ const ResultV2 = () => {
   const [quest, setQuest] = useState(questDef);
 
   useEffect(() => {
+    const auth_status = Cookies.get("userid");
     if (!user && !peoples.length > 0) {
       setPeoples([...all.filter((item) => item.a2.length > 0)]);
       setUser(...all.filter((item) => item.id == auth_status));
