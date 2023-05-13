@@ -1,63 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 const ResAnsChild = ({ anses, id, all, skok }) => {
+  
 
+const [lengh, setlengh] = useState();
+let dead = Howlengh()
 
-  //   console.log(id);
-    
-  // console.log(all.filter(item => item.a1.length> 0));
-  function prot_ans(all) {
-
-      for (let user of all) {
-          // console.log(user);
-          if (user.a1.length > 0) {
-              for (let as of user.a1) {
-                  let all_as = 0
-                  console.log(all_as);
-                  for (let ach of as.answers) {
-                      if(ach.ansucc === true) {
-                          all_as++
-                      }
-                  }
-                  return (all_as / skok) * 100
+  function Howlengh(){
+    let al = 0;
+  
+    for (let user of skok) {
+     
+      for (let ans of user.a1[id].answers) {
+        if (ans.ansucc) {
+             
+              if(ans.title == anses.title){
+                al++
               }
-          }
+        }
+       
       }
+    }
+    return al
   }
-useEffect(()=> {
-console.log(  prot_ans(all));
-})
-  // function prot_otv(all) {
 
-  //     for (let user of all) {
-  //         // console.log(user);
-  //         if (user.a1.length > 0) {
-  //             for (let as of user.a1) {
-  //                 let all_as = 0
-  //                 for (let ach of as.answers) {
-  //                     if(ach.ansucc === true) {
-  //                         all_as++
-  //                     }
-  //                 }
-  //                 return all_as
-  //             }
-  //         }
-  //     }
-  // }
+  useEffect(() => {
+ 
 
-
+  });
   return (
     <div className="p-[10px]">
       <hr />
       <p className="mt-[15px]">{anses.title}</p>
       <div className="flex_ans">
         <div className="ans_full">
-          <div className="ans_sel" style={{ width: `${50}%` }}></div>
+          <div className="ans_sel" style={{ width: `${Math.round(dead / skok.length * 100)}%` }}></div>
         </div>
         <div className="ans_info">
-          <p> %</p>
-          <span> отв.</span>
+          <p> {Math.round(dead / skok.length * 100)} %</p>
+          <span> {Howlengh()} отв.</span>
         </div>
       </div>
     </div>

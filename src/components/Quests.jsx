@@ -6,19 +6,7 @@ const Quests = ({ item, id, changeAnswer}) => {
     
    
 
-    if (id === 0) {
-        return (
-            <div>
-                <div className="p-[10px]">
-                    <input type="radio" name="ans" id={id} onChange={() => {
-                        changeAnswer(item)
-                        console.log(item);
-                    }} />
-                    <label htmlFor={id}> {item.title} </label>
-                </div>
-            </div>
-        );
-    } else {
+
         return (
             <div>
                 <hr />
@@ -29,7 +17,7 @@ const Quests = ({ item, id, changeAnswer}) => {
                     <label htmlFor={id}> {item.title} </label>   </div>
             </div>
         );
-    }
+    
 };
 
 Quests.propTypes = {

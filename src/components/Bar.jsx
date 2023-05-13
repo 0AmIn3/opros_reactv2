@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const Bar = ({ color , item , newObjTot , idx }) => {
 
-console.log(newObjTot);
+// console.log(newObjTot);
 
   let line = newObjTot.map((number) => ((number / newObjTot.reduce((a,b) => a + b)) * 100).toFixed(2) )[idx]
   return (

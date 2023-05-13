@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { IoCloseSharp } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUsersAPI } from '../features/goods/thunk';
-import Cookies from 'js-cookie';
-import ResQues from '../components/ResQues';
+import React, { useEffect, useState } from "react";
+import { IoCloseSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsersAPI } from "../features/goods/thunk";
+import Cookies from "js-cookie";
+import ResQues from "../components/ResQues";
+import ResAns from "../components/ResAns";
 
 const ResultV1 = () => {
   const all = useSelector((state) => state.all.data);
   const dispatch = useDispatch();
   const [allusers, setAllusers] = useState([]);
-
+  const myid = Cookies.get("userid");
+  const [id, setId] = useState(false);
   const questDef = [
     {
       title:
@@ -20,12 +22,15 @@ const ResultV1 = () => {
         {
           title:
             "Могу остановить принятие решения, если предоставлю необходимую аргументацию",
+          ansucc: false,
         },
         {
           title: "Могу влиять только на большую часть решений, но не на все",
+          ansucc: false,
         },
         {
           title: "Практически ни на что не могу влиять в нашей организации",
+          ansucc: false,
         },
       ],
     },
@@ -35,13 +40,16 @@ const ResultV1 = () => {
       answers: [
         {
           title: "Сам(-а) выбираю интересующую меня область деятельности",
+          ansucc: false,
         },
         {
           title:
             "Есть свобода смены вида деятельности, но на практике договориться об этом сложно",
+          ansucc: false,
         },
         {
           title: "Могу работать только в рамках оговоренного вида деятельности",
+          ansucc: false,
         },
       ],
     },
@@ -52,14 +60,17 @@ const ResultV1 = () => {
         {
           title:
             "Я свободно управляю временем, выбирая когда я хочу заниматься делами организации и всем остальным, что с ней не связано",
+          ansucc: false,
         },
         {
           title:
             "Я могу управлять временем, но процесс договоренности об этом с коллегами или руководителями не всегда простой",
+          ansucc: false,
         },
         {
           title:
             "Я вынужден(-а) трудится в установленных для меня регламентах времени",
+          ansucc: false,
         },
       ],
     },
@@ -71,14 +82,17 @@ const ResultV1 = () => {
         {
           title:
             "Мне доступны модели получения дохода как у владельцев организации, при условии взятия на себя большей ответственности",
+          ansucc: false,
         },
         {
           title:
             "Мне долгосрочные модели финансовой мотивации, сроком более 1 года",
+          ansucc: false,
         },
         {
           title:
             "Мне доступны только краткосрочные договоренности по финансовой мотивации",
+          ansucc: false,
         },
       ],
     },
@@ -89,13 +103,16 @@ const ResultV1 = () => {
         {
           title:
             "Я ощущаю себя частью большой команды, вне зависимости от своего настроения",
+          ansucc: false,
         },
         {
           title:
             "Периодически я чувствую себя отделенным или чувствую общность только с несколькими участниками проекта",
+          ansucc: false,
         },
         {
           title: "Я чувствую себя часть команды очень редко",
+          ansucc: false,
         },
       ],
     },
@@ -106,14 +123,17 @@ const ResultV1 = () => {
       answers: [
         {
           title: "Да, если предоставлю необходимую для этого аргументацию",
+          ansucc: false,
         },
         {
           title:
             "Есть вопросы, на которые я не могу влиять, но по большей части я могу реализовывать свои идеи и предложения",
+          ansucc: false,
         },
         {
           title:
             "На практике у меня нет инструментов, с помощью которых я мог бы реализовать значимые идеи и предложения по улучшению организации",
+          ansucc: false,
         },
       ],
     },
@@ -124,14 +144,17 @@ const ResultV1 = () => {
         {
           title:
             "Я легко могу получить разъяснение о причинах принятия тех или иных решений, а также необходимую мне информацию",
+          ansucc: false,
         },
         {
           title:
             "Я могу получить доступ ко всей нужной мне информации, но это сложно и требует больших усилий",
+          ansucc: false,
         },
         {
           title:
             "По большей части у меня нет инструментов получения нужной мне информации",
+          ansucc: false,
         },
       ],
     },
@@ -142,14 +165,17 @@ const ResultV1 = () => {
         {
           title:
             "Я чувствую доверие коллегам и не сталкивался с фактами недоверия к себе",
+          ansucc: false,
         },
         {
           title:
             "Изредка я чувствую недоверие к коллегам или были редкие факты недоверия к себе",
+          ansucc: false,
         },
         {
           title:
             "Я чувствую, что в нашей команде отсутствует доверие к друг другу",
+          ansucc: false,
         },
       ],
     },
@@ -161,17 +187,21 @@ const ResultV1 = () => {
         {
           title:
             "Мысль о том, что мы создаем, наполняет меня энергией и желанием действовать",
+          ansucc: false,
         },
         {
           title:
             "Меня заряжает наша миссия, но я чувствую недостаточную связь с реальными делами",
+          ansucc: false,
         },
         {
           title:
             "Наша миссия вызывает у меня некоторый позитивный эмоциональный отклик",
+          ansucc: false,
         },
         {
           title: "У меня нет эмоциональной связи с миссией нашей организации",
+          ansucc: false,
         },
       ],
     },
@@ -183,13 +213,16 @@ const ResultV1 = () => {
         {
           title:
             "Я ежедневно ощущаю движение компании в сторону роста и развития",
+          ansucc: false,
         },
         {
           title:
             "Периодически, я чувствую застой или сильное замедление развития компании",
+          ansucc: false,
         },
         {
           title: "Я чаще чувствую стагнацию, нежели развитие и процветание",
+          ansucc: false,
         },
       ],
     },
@@ -200,14 +233,17 @@ const ResultV1 = () => {
         {
           title:
             "Я чувствую легкость и безопасность в выражении своих негативных и позитивных состояний и вижу такую же естественность у коллег",
+          ansucc: false,
         },
         {
           title:
             "Я чувствую некоторые опасения относительно честного выражения своих эмоций и состояний в коллективе, наблюдаю то же и у коллег",
+          ansucc: false,
         },
         {
           title:
             "В коллективе мы прячем эмоции друг от друга, обсуждая только рабочие вопросы",
+          ansucc: false,
         },
       ],
     },
@@ -217,15 +253,18 @@ const ResultV1 = () => {
       answers: [
         {
           title:
-            "ddddМне доступен простой процесс получения денег на нужные мне расходы и найм новых сотрудников, если я обеспечиваю прозрачность и аргументациюddddddddddddd",
+            "ddddМне доступен простой процесс получения денег на нужные мне расходы и найм новых сотрудников, если я обеспечиваю прозрачность и аргументацию",
+          ansucc: false,
         },
         {
           title:
             "Я могу получить деньги на нужные расходы и нанять новых сотрудников, но это сложно и требует больших усилий",
+          ansucc: false,
         },
         {
           title:
             "На практике, для меня практически невозможно получить деньги на нужные мне расходы или нанять нужных мне сотрудников",
+          ansucc: false,
         },
       ],
     },
@@ -237,13 +276,16 @@ const ResultV1 = () => {
         {
           title:
             "Да, чувствую внимание к себе. Меня благодарят, отмечают успехи и достижения. Я доволен(-а).",
+          ansucc: false,
         },
         {
           title:
             "Меня иногда благодарят и отмечают мои успехи и достижения, но я чувствую нехватку внимания к себе",
+          ansucc: false,
         },
         {
           title: "Практически никогда этого не происходит",
+          ansucc: false,
         },
       ],
     },
@@ -254,67 +296,77 @@ const ResultV1 = () => {
         {
           title:
             "Я могу повлиять на деятельность любого сотрудника, вплоть до увольнения, если предоставлю необходимую аргументацию",
+          ansucc: false,
         },
         {
           title:
             "У меня есть возможность существенно влиять на деятельность коллег в рамках своего круга",
+          ansucc: false,
         },
         {
           title:
             "Практически не имеют возможность влиять на деятельность коллег",
+          ansucc: false,
         },
       ],
     },
   ];
-
+  const [peoples, setPeoples] = useState([]);
+  const [user, setUser] = useState();
 
   function inds(arr) {
-    let qsum = 0
-    let qlen = 0
+    let qsum = 0;
+    let qlen = 0;
 
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i];
-      let iam_q = true
+      let iam_q = true;
       function calcind(myq) {
-
         function kgball(ass, n) {
-          let ans_i = ass.indexOf(n)
+          let ans_i = ass.indexOf(n);
           if (ans_i === 0) {
-            qsum = qsum + 1
+            qsum = qsum + 1;
           } else if (ans_i === 1) {
-            qsum = qsum + 0.5
+            qsum = qsum + 0.5;
             // console.log(qsum);
           } else if (ans_i === 1) {
-            qsum = qsum + 0
+            qsum = qsum + 0;
           }
         }
-
 
         if (myq.length > 0) {
           for (let iq of myq) {
             for (let ans of iq.answers) {
               if (ans.ansucc === true) {
                 if (iam_q === true) {
-                  qlen = qlen + myq.length
-                  iam_q = false
+                  qlen = qlen + myq.length;
+                  iam_q = false;
                 }
-                kgball(iq.answers, ans)
+                kgball(iq.answers, ans);
               }
             }
           }
         }
-
       }
 
-      calcind(item.a1)
+      calcind(item.a1);
     }
 
-    return `${(qsum / qlen) * 100}`
+    return `${(qsum / qlen) * 100}`;
   }
+
+  useEffect(() => {
+    const auth_status = Cookies.get("userid");
+    if (!user && !peoples.length > 0) {
+      setPeoples([...all.filter((item) => item.a1.length > 0)]);
+      setUser(...all.filter((item) => item.id == auth_status));
+    } else {
+      setId(true);
+    }
+  });
 
   return (
     <>
-
       <div className="answers pt-[100px] relative bg-white">
         <Link to={"/home"}>
           <div className="absolute right-[30px] top-[20px] close_btn">
@@ -325,12 +377,9 @@ const ResultV1 = () => {
         <div className="ind_cel">
           <p>Индекс целостности = {Math.round(inds(all))}%</p>
         </div>
-
-        {(() => {
-          const myid = Cookies.get("userid");
-          return <ResQues quest={questDef} id={myid} all={all} />;
-        })()}
-
+        {questDef.map((q, ind) => (
+          <ResAns qus={q} all={peoples} key={ind} index={ind} />
+        ))}
       </div>
     </>
   );
