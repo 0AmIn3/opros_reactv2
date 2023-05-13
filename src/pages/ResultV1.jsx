@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersAPI } from "../features/goods/thunk";
 import Cookies from "js-cookie";
-import ResQues from "../components/ResQues";
 import ResAns from "../components/ResAns";
 
 const ResultV1 = () => {

@@ -21,7 +21,7 @@ const Yarus_v2 = ({ quest, nowq, setQuest }) => {
     return (
 
         <div className="">
-            <div className="flex item-center">
+            <div className="flex item-center ques_flex">
                 <h1 className=" w-[70%] text-2xl font-extrabold">
                     {quest[nowq]?.title}
                 </h1>
