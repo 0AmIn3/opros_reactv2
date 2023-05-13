@@ -11,7 +11,7 @@ useEffect(()=>{
     // console.log(qus);
 })
     return (
-        <div className='mt-[80px] '>
+        <div className='mt-[80px] res_top'>
             <p className='text-[20px] font-bold'>{qus.title}</p>
             <span className='font-bold opacity-50'>Ответили {all.length} человека</span>
 

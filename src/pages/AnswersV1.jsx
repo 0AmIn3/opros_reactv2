@@ -349,9 +349,9 @@ const AnswersV1 = () => {
                       pathUsersAPI({ id: auth_status, obj: { a1: quest } })
                     );
                     // navigate("/psdflk24234");
-                    // setTimeout(() => {
-                    //   window.location.href = "/psdflk24234";
-                    // }, 300);
+                    setTimeout(() => {
+                      window.location.href = "/psdflk24234";
+                    }, 300);
                   }
                 }
               } else {

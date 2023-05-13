@@ -53,7 +53,7 @@ const Yarus = ({ quest, nowq, setQuest , opr }) => {
 
   return (
     <div className="">
-      <div className="flex item-center">
+      <div className="flex item-center ques_flex">
         <h1 className=" w-[70%] text-2xl font-extrabold">
           {quest[nowq]?.title}
         </h1>
@@ -72,7 +72,7 @@ const Yarus = ({ quest, nowq, setQuest , opr }) => {
       <p className=" mt-7 text-sm opacity-30">
         0 - Совсе не характерно, 5 - Полностью соответсвует 
       </p>
-      <div className=" flex gap-3 mt-5">
+      <div className=" flex gap-3 mt-5 start_it">
         {quest[nowq]?.answers.map((answer, index) => (
           <Star
             title={answer}
