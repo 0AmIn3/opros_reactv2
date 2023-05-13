@@ -50,7 +50,10 @@ const Register = () => {
         path: "/",
       });
       dispatch(postUsersAPI(obj));
-      window.location.href = "./home";
+      if (dispatch(postUsersAPI(obj))) {
+        window.location.href = "./home";
+      }
+      
     }
   };
 

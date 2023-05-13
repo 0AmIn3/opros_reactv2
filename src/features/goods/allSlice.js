@@ -58,7 +58,6 @@ export const allSlice = createSlice({
       .addCase(pathUsersAPI.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = "fulfilled";
-        console.log(state.data);
       })
       .addCase(pathUsersAPI.rejected, (state, action) => {
         state.status = "rejected";

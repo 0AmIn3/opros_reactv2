@@ -283,7 +283,7 @@ const ResultV1 = () => {
             qsum = qsum + 1
           } else if (ans_i === 1) {
             qsum = qsum + 0.5
-            console.log(qsum);
+            // console.log(qsum);
           } else if (ans_i === 1) {
             qsum = qsum + 0
           }

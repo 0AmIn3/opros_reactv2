@@ -14,7 +14,6 @@ const ResAns = ({ qus, all, index }) => {
         return skok_chel
     }
 
-  
    
 
     return (

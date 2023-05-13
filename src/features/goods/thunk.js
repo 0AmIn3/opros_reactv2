@@ -9,7 +9,6 @@ export const getUsersAPI = createAsyncThunk('goods/getUsersAPI', async () => {
 
 export const postUsersAPI = createAsyncThunk('goods/postUsersAPI', async (data) => {
     const res = await axios.post('http://localhost:3001/users', data)
-    
     return res.data
 })
 export const pathUsersAPI = createAsyncThunk('goods/pathUsersAPI', async (data) => {
