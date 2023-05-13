@@ -11,6 +11,8 @@ import ResultV3 from "./pages/ResultV3";
 import Register from "./pages/Register";
 import AnswersV3 from "./pages/AnswersV3";
 import ResultV1 from "./pages/ResultV1";
+import Admin from "./pages/Admin";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -28,6 +30,9 @@ function App() {
         <Route path="/wer23" element={<AnswersV3 />} />
         <Route path="/pwer23" element={<ResultV3 />} />
       </Route>
+      <Route path="/nedminRegister" element={<Admin />}/>
+      <Route path="/panel" element={<AdminPanel />} />
+
     </Routes>
   );
 }

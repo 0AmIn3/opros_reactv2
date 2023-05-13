@@ -381,3 +381,13 @@ label {
   height: 100%;
   background-color: #c7ffac;
 }
+input[type="radio"] {
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  /* Windows High Contrast Mode */
+  background-color: red;
+  color: red;
+}
