@@ -3,11 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import QuestMain from "../components/QuestMain";
 import Yarus from "../components/Yarus";
 import { useDispatch, useSelector } from "react-redux";
-import { changeOpros } from "../features/goods/allSlice";
 import { SlArrowRight } from "react-icons/sl";
 import { IoCloseSharp } from "react-icons/io5";
 import Cookies from "js-cookie";
-import { pathUsersAPI } from "../features/goods/thunk";
+import { pathUsersAPI } from "../features/thunk";
 
 const AnswersV3 = () => {
   const [count, setCount] = useState(0);

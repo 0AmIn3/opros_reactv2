@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import QuestMain from "../components/QuestMain";
 import { useDispatch, useSelector } from "react-redux";
-import { getAll } from "../features/goods/allSlice";
+import { getAll } from "../features/allSlice";
 import { IoCloseSharp } from "react-icons/io5";
 import { SlArrowRight } from "react-icons/sl";
 import Yarus_v2 from "../components/Yarus_v2";
 import Cookies from "js-cookie";
-import { pathUsersAPI } from "../features/goods/thunk";
+import { pathUsersAPI } from "../features/thunk";
 
 const AnswersV1 = () => {
   const [count, setCount] = useState(0);

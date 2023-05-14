@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsersAPI } from "../features/goods/thunk";
 import Cookies from "js-cookie";
 import ResAns from "../components/ResAns";
 

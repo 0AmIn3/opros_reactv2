@@ -2,13 +2,18 @@ import Cookies from "js-cookie";
 import React from "react";
 import { useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import AnswersLinks from "../components/AnswersLinks";
 
 const Home = () => {
   const auth_status = Cookies.get("userid");
   if (!auth_status) {
     window.location.href = "/";
   }
+  const answers = useSelector((state) => state.answers.data);
+
+
 
   const handleClick = (btn) => {
     const links = document.querySelectorAll(".links");
@@ -22,7 +27,7 @@ const Home = () => {
             <IoCloseSharp />
           </div>
         </Link>
-      <div className="borders">
+      {/* <div className="borders">
         <button
           className="w-full p-3 bg-[#C7FFAC] rounded-md font-medium outline-none   button"
           data-btn="0"
@@ -75,7 +80,14 @@ const Home = () => {
             <h3>Отчет по диагностике</h3>
           </Link>
         </div>
-      </div>
+      </div> */}
+
+
+      {
+        answers.map((item , idx) => (
+          <AnswersLinks key={idx} idx ={idx}  item={item} handleClick= {handleClick}/>
+        ) )
+      }
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsersAPI, postUsersAPI } from "../features/goods/thunk";
+import { getUsersAPI, postUsersAPI } from "../features/thunk";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 

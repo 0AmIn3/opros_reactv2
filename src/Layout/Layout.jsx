@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getAll } from "../features/goods/allSlice";
-import { getUsersAPI } from "../features/goods/thunk";
+import { getAnswersAPI, getUsersAPI } from "../features/thunk";
 import Cookies from "js-cookie";
 
 const Layout = () => {
   const all = useSelector((state) => state.all.data);
+  const answers = useSelector((state) => state.answers.data);
 	const dispatch = useDispatch();
   const navigate = useNavigate()
   const auth_status = Cookies.get('userid')
@@ -18,6 +18,10 @@ const Layout = () => {
     if(!all.length) {
 			dispatch(getUsersAPI())
 		}
+    if(!answers.length) {
+			dispatch(getAnswersAPI())
+		}
+    console.log(answers);
   })
 
 // console.log(all[0].a1);

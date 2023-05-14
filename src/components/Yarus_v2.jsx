@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Star from "./Star";
 import DiogramUp from "./DiogramUp";
 import { useDispatch, useSelector } from "react-redux";
-import { changeOpros } from "../features/goods/allSlice";
 import Quests from "./Quests";
 
 const Yarus_v2 = ({ quest, nowq, setQuest }) => {
