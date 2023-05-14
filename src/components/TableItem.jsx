@@ -8,24 +8,30 @@ const TableItem = ({ item }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
+
+  const editOpen = () => setOpen(true);
+  const editClose = () => setOpen(false);
+
   return (
-    <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+    <TableRow sx={{ "&:last-child th, &:last-child th": { border: 0 } }}>
       <TableCell align="justify" component="th" scope="row">
-        <div className="flex w-[300px] m-auto">
-          <p className="ml-[10px]">{item?.title}</p>
+        <div className="flex w-[300px]">
+          <p className="ml-[10px]">{item?.name}</p>
         </div>
       </TableCell>
-      <TableCell align="center">
-        <div className="h-[80px] overflow-hidden">
-          <p>Войти</p>
+      <TableCell align="center" sx={{paddingRight: '5%', display: "flex", justifyContent: "end"}}>
+        <div onClick={editOpen} className="h-[50px] ">
+          <div className="login_btn">
+          <p>Изменить</p>
+          </div>
         </div>
       </TableCell>
 
       <ModalCard
         open={open}
         item={item}
-        handleOpen={handleOpen}
-        handleClose={handleClose}
+        editOpen={editOpen}
+        editClose={editClose}
       />
     </TableRow>
   );

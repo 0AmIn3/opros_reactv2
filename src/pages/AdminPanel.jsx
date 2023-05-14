@@ -13,11 +13,12 @@ import { useDispatch, useSelector } from "react-redux";
 import TableItem from "../components/TableItem";
 import AddItem from "../components/AddItem";
 import HedAdmin from "../components/HedAdmin";
+import { getAnswersAPI } from "../features/thunk";
 
 const AdminPanel = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
-  const answers = useSelector((state) => state.all.data);
+  const answers = useSelector((state) => state.answers.data);
 
   const dispatch = useDispatch();
   // const [arr, setArr] = useState(goods);
@@ -31,27 +32,29 @@ const AdminPanel = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const[ser , setSer] = useState('');
-  const[fiil , setFill] = useState('');
+  const [ser, setSer] = useState('');
+  const [fiil, setFill] = useState('');
   useEffect(() => {
-
+    if (!answers.length) {
+      dispatch(getAnswersAPI())
+    }
     console.log(answers);
-  }, [])
+  })
   return (
     <div>
       <HedAdmin />
       <main className="mt-[30px] px-[24px]">
         <div className="flex items-center justify-between mb-[15px]">
           <div className="flex items-center mb-[15px]">
-            
-            
+
+
           </div>
 
           <button
             onClick={handleOpen}
-            className="bg-[#2E3A59] rounded-[20px] text-[#fff] ml-[30px] px-10  py-3"
+            className="bg-black rounded-[10px] text-[#fff] ml-[30px] px-10  py-3"
           >
-            Add
+            Добавить
           </button>
         </div>
 
@@ -63,9 +66,18 @@ const AdminPanel = () => {
             <TableHead>
               <TableRow sx={{ background: "#EFF0F4", display: "flex", justifyContent: "space-between", padding: "0px 100px" }}>
                 <TableCell align="center">Опросники</TableCell>
-                <TableCell align="center">Вход</TableCell>
+                <TableCell align="center"> <div className="h-[20px] mt-[-20px] opacity-0">
+                  <div className="login_btn">
+                    <p>Войти</p>
+                  </div>
+                </div></TableCell>
+
               </TableRow>
+              <TableCell align="center" sx={{ background: "#EFF0F4", textAlign: "end", paddingRight: "50px", border: 0 }}>
+              Вход
+              </TableCell>
             </TableHead>
+
             <TableBody>
               {answers.length > 0 && ser.length === 0
                 ? answers.map((item, inx) => <TableItem key={inx} item={item} />)
