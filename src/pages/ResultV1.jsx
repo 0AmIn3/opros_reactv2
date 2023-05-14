@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import ResAns from "../components/ResAns";
@@ -10,7 +10,6 @@ const ResultV1 = () => {
   const dispatch = useDispatch();
   const [allusers, setAllusers] = useState([]);
   const myid = Cookies.get("userid");
-  const [id, setId] = useState(false);
   const questDef = [
     {
       title:
@@ -312,6 +311,23 @@ const ResultV1 = () => {
   const [peoples, setPeoples] = useState([]);
   const [user, setUser] = useState();
 
+
+  const [Load, setLoad] = useState(false);
+  const id = useParams()
+  const answers = useSelector((state) => state.answers.data);
+  const log = useSelector((state) => state.answers.status);
+  const logAll = useSelector((state) => state.all.status);
+  const qw = answers.filter(item => item.resultid == id.id)
+  const [quest, setQuest] = useState(qw);
+  useEffect(()=>{
+    if(log == 'fulfilled'){
+      setLoad(true)
+ 
+    }
+  })
+
+
+
   function inds(arr) {
     let qsum = 0;
     let qlen = 0;
@@ -355,13 +371,16 @@ const ResultV1 = () => {
 
   useEffect(() => {
     const auth_status = Cookies.get("userid");
-    if (!user && !peoples.length > 0) {
+    if (logAll == 'fulfilled') {
       setPeoples([...all.filter((item) => item.a1.length > 0)]);
       setUser(...all.filter((item) => item.id == auth_status));
+      // setLoad(true);
+      console.log(answers.filter(item => item.resultid == id.id) , id.id);
+
     } else {
-      setId(true);
+          //  setQuest()
     }
-  });
+  }, []);
 
   return (
     <>
@@ -375,9 +394,9 @@ const ResultV1 = () => {
         <div className="ind_cel">
           <p>Индекс целостности = {Math.round(inds(all))}%</p>
         </div>
-        {questDef.map((q, ind) => (
+        {Load ? quest.map((q, ind) => (
           <ResAns qus={q} all={peoples} key={ind} index={ind} />
-        ))}
+        )): null}
       </div>
     </>
   );

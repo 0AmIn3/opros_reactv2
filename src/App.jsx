@@ -23,12 +23,17 @@ function App() {
 
       <Route path="/" element={<Layout />}>
         <Route index path="/home" element={<Home />} />
-        <Route path="/sdflk24234" element={<AnswersV1 />} />
+        <Route  path="/socialpoll/:id" element={<AnswersV1/>} />
+        <Route  path="/socialpollresult/:id" element={<ResultV1 />} />
+
+
+
+        {/* <Route path="/sdflk24234" element={<AnswersV1 />} />
         <Route path="/psdflk24234" element={<ResultV1 />} />
         <Route path="/jkjoisdflk24234" element={<AnswersV2 />} />
         <Route path="/pjkjoisdflk24234" element={<ResultV2 />} />
         <Route path="/wer23" element={<AnswersV3 />} />
-        <Route path="/pwer23" element={<ResultV3 />} />
+        <Route path="/pwer23" element={<ResultV3 />} /> */}
       </Route>
       <Route path="/nedminRegister" element={<Admin />}/>
       <Route path="/panel" element={<AdminPanel />} />
