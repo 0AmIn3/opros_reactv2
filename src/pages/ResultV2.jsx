@@ -2,18 +2,16 @@ import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Bar from "../components/Bar";
 import DiogramUp from "../components/DiogramUp";
 
 const ResultV2 = () => {
   const all = useSelector((state) => state.all.data);
-  // const auth_status = Cookies.get("userid");
-  const [id, setId] = useState(false);
+  const [ids, setIds] = useState(false);
   const [peoples, setPeoples] = useState([]);
   const [user, setUser] = useState();
   const [newObjTot, setObjTot] = useState([]);
-
   const [colors, setColors] = useState([
     "#7f077f",
     "red",
@@ -22,7 +20,6 @@ const ResultV2 = () => {
     "#07b55e",
     "black",
   ]);
-
   const questDef = [
     {
       title:
@@ -180,17 +177,34 @@ const ResultV2 = () => {
       ],
     },
   ];
+  const [Load, setLoad] = useState(false);
+  const [LoadQ, setLoadQ] = useState(false);
+  const id = useParams();
+  const answers = useSelector((state) => state.answers.data);
+  const log = useSelector((state) => state.answers.status);
+  const logAll = useSelector((state) => state.all.status);
+  const qw = answers.filter((item) => item.resultid == id.id);
   const [quest, setQuest] = useState(questDef);
 
-  useEffect(() => {
+  function dwdwa() {
     const auth_status = Cookies.get("userid");
-    if (!user && !peoples.length > 0) {
-      setPeoples([...all.filter((item) => item.a2.length > 0)]);
+    if (logAll == "fulfilled" && log == "fulfilled") {
+      setPeoples(
+        all.filter(
+          (item) =>
+            item[`${answers.filter((item) => item.resultid == id.id)[0].id}`]
+        )
+      );
       setUser(...all.filter((item) => item.id == auth_status));
-    } else {
-      setId(true);
+      setQuest(answers.filter((item) => item.resultid == id.id)[0].DefAnswers);
+
+      setLoad(true);
+      setLoadQ(true);
     }
-  });
+    console.log();
+  }
+
+
 
   return (
     <>
@@ -202,24 +216,32 @@ const ResultV2 = () => {
         </Link>
         <h1>Доминирующие цвета</h1>
         <div className=" mt-3">
-          {id
+          {Load && LoadQ
             ? colors.map((item, idx) => (
-                <Bar item={item} newObjTot= {newObjTot} key={idx} idx={idx} color={colors[idx]} />
+                <Bar
+                  item={item}
+                  newObjTot={newObjTot}
+                  key={idx}
+                  idx={idx}
+                  color={colors[idx]}
+                />
               ))
-            : null}
+            : dwdwa()}
         </div>
 
-        {quest.map((item, idx) => (
-          <DiogramUp
-            item={item}
-            peoples={peoples}
-            setPeoples={setPeoples}
-            nowq={idx}
-            opr="a2"
-            key={idx}
-            setObjTot = {setObjTot}
-          />
-        ))}
+        {Load && LoadQ
+          ? quest.map((item, idx) => (
+              <DiogramUp
+                item={item}
+                peoples={peoples}
+                setPeoples={setPeoples}
+                nowq={idx}
+                opr={answers.filter((item) => item.resultid == id.id)[0].id}
+                key={idx}
+                setObjTot={setObjTot}
+              />
+            ))
+          : dwdwa()}
         {}
       </div>
     </>

@@ -13,6 +13,8 @@ import AnswersV3 from "./pages/AnswersV3";
 import ResultV1 from "./pages/ResultV1";
 import Admin from "./pages/Admin";
 import AdminPanel from "./pages/AdminPanel";
+import AnswersPage from "./pages/AnswersPage";
+import ResultPage from "./pages/ResultPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,8 +25,8 @@ function App() {
 
       <Route path="/" element={<Layout />}>
         <Route index path="/home" element={<Home />} />
-        <Route  path="/socialpoll/:id" element={<AnswersV1/>} />
-        <Route  path="/socialpollresult/:id" element={<ResultV1 />} />
+        <Route  path="/socialpoll/:id" element={<AnswersPage/>} />
+        <Route  path="/socialpollresult/:id" element={<ResultPage />} />
 
 
 

@@ -310,23 +310,26 @@ const ResultV1 = () => {
   ];
   const [peoples, setPeoples] = useState([]);
   const [user, setUser] = useState();
-
-
   const [Load, setLoad] = useState(false);
-  const id = useParams()
+  const [LoadQ, setLoadQ] = useState(false);
+  const id = useParams();
   const answers = useSelector((state) => state.answers.data);
   const log = useSelector((state) => state.answers.status);
   const logAll = useSelector((state) => state.all.status);
-  const qw = answers.filter(item => item.resultid == id.id)
-  const [quest, setQuest] = useState(qw);
-  useEffect(()=>{
-    if(log == 'fulfilled'){
-      setLoad(true)
- 
+  const qw = answers.filter((item) => item.resultid == id.id);
+  const [quest, setQuest] = useState(questDef);
+
+  function dwdwa() {
+    const auth_status = Cookies.get("userid");
+    if (logAll == "fulfilled" && log == "fulfilled") {
+      setPeoples(all.filter((item) => item[`${answers.filter(item => item.resultid == id.id)[0].id}`]));
+      setUser(...all.filter((item) => item.id == auth_status));
+      setQuest(answers.filter((item) => item.resultid == id.id)[0].DefAnswers);
+      console.log();
+      setLoad(true);
+      setLoadQ(true);
     }
-  })
-
-
+  }
 
   function inds(arr) {
     let qsum = 0;
@@ -369,18 +372,7 @@ const ResultV1 = () => {
     return `${(qsum / qlen) * 100}`;
   }
 
-  useEffect(() => {
-    const auth_status = Cookies.get("userid");
-    if (logAll == 'fulfilled') {
-      setPeoples([...all.filter((item) => item.a1.length > 0)]);
-      setUser(...all.filter((item) => item.id == auth_status));
-      // setLoad(true);
-      console.log(answers.filter(item => item.resultid == id.id) , id.id);
-
-    } else {
-          //  setQuest()
-    }
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -394,9 +386,11 @@ const ResultV1 = () => {
         <div className="ind_cel">
           <p>Индекс целостности = {Math.round(inds(all))}%</p>
         </div>
-        {Load ? quest.map((q, ind) => (
-          <ResAns qus={q} all={peoples} key={ind} index={ind} />
-        )): null}
+        {Load && LoadQ
+          ? quest.map((q, ind) => (
+              <ResAns qus={q} all={peoples} idkey={answers.filter(item => item.resultid == id.id)[0].id} key={ind} index={ind} />
+            ))
+          : dwdwa()}
       </div>
     </>
   );

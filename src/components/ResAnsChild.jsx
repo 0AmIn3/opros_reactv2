@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-const ResAnsChild = ({ anses, id, all, skok }) => {
+const ResAnsChild = ({ anses, id, all, idkey , skok }) => {
   
 
 const [lengh, setlengh] = useState();
@@ -12,7 +12,7 @@ let dead = Howlengh()
   
     for (let user of skok) {
      
-      for (let ans of user.a1[id].answers) {
+      for (let ans of user[idkey][id].answers) {
         if (ans.ansucc) {
              
               if(ans.title == anses.title){

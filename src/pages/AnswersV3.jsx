@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import QuestMain from "../components/QuestMain";
 import Yarus from "../components/Yarus";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,6 @@ import { pathUsersAPI } from "../features/thunk";
 const AnswersV3 = () => {
   const [count, setCount] = useState(0);
   const [nowq, setNowq] = useState(0);
-  const questUser = useSelector((state) => state.all?.data[0]?.a3);
   const questDef = [
     {
       title:
@@ -200,9 +199,30 @@ const AnswersV3 = () => {
       ],
     },
   ];
-  const [quest, setQuest] = useState(questDef);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [Load, setLoad] = useState(false);
+  const [LoadQ, setLoadQ] = useState(false);
+  const id = useParams();
+  const answers = useSelector((state) => state.answers.data);
+  const [d, setd] = useState([...questDef]);
+  const log = useSelector((state) => state.answers.status);
+  const logAll = useSelector((state) => state.all.status);
+  const qw = answers.filter((item) => item.id == id.id);
+  const [quest, setQuest] = useState(d);
+
+  function loadal(){
+    if (log == "fulfilled") {
+      // console.log(answers);
+
+      localStorage.setItem(`${id.id}` , JSON.stringify(qw[0].DefAnswers))
+
+     
+      setLoad(true);
+    }
+    if(localStorage.getItem(`${id.id}`)){
+      setQuest(JSON.parse(localStorage.getItem(`${id.id}`)))
+    }
+  }
   // useEffect(()=>{
   //   if(questUser.length === 0){
   //     setQuest(questDef)
@@ -224,14 +244,14 @@ const AnswersV3 = () => {
           {/* <span className=" bg-[#C7FFAC]">{nowq + 1} вопрос </span>из
           {quest.length} */}
         </div>
-
-        <Yarus
+        {Load  ?   <Yarus
           setQuest={setQuest}
-          opr="a3"
+          opr={id.id}
           quest={quest}
           nowq={nowq}
           key={nowq}
-        />
+        /> : loadal()}
+      
 
         <button
           className="next_btn flex items-center"
@@ -248,12 +268,12 @@ const AnswersV3 = () => {
                 if (nowq < quest.length - 1) {
                   setNowq(nowq + 1);
                 } else if (nowq === quest.length - 1) {
-                  console.log(quest);
-                  dispatch(
-                    pathUsersAPI({ id: auth_status, obj: { a3: quest } })
-                  );
+                  let ob = {};
+                  ob[`${id.id}`] = quest;
+                  dispatch(pathUsersAPI({ id: auth_status, obj: ob }));
                   setTimeout(() => {
-                    window.location.href = "/pwer23";
+                    window.location.href =
+                      "/socialpollresult/" + qw[0].resultid;
                   }, 300);
                 }
               }

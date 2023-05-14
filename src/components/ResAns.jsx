@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ResAnsChild from './ResAnsChild';
 
-const ResAns = ({ qus, all, index }) => {
+const ResAns = ({ qus, all, index , idkey }) => {
 // console.log(all);
 
 
@@ -17,7 +17,7 @@ useEffect(()=>{
 
             <div className="quest_box">
                 {
-                    qus.answers.map((it, ind) => (<ResAnsChild anses={it} id={index} all={all} key={ind} skok={all} />))
+                    qus.answers.map((it, ind) => (<ResAnsChild anses={it} idkey ={idkey} id={index} all={all} key={ind} skok={all} />))
                 }
             </div>
         </div>

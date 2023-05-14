@@ -11,22 +11,18 @@ export const answersSlice = createSlice({
   name: "answers",
   initialState,
   reducers: {
-    // getAll: (state, action) => {
-    //   state.data = [...state.data];
-    //   console.log(state.data);
-    // },
-    // changeOpros: (state, action) => {
-    //   const { id, arr, opr } = action.payload;
-    //   const cop = [...state.data];
-    //   console.log(cop);
+    changeOpros: (state, action) => {
+      const { id, arr, opr } = action.payload;
+      const cop = [...state.data];
+      console.log(cop);
 
-    //   state.filluser = cop.filter((item) => item.userid == id)[0];
-    //   let idx = cop.indexOf(state.filluser);
-    //   console.log(cop.filter((item) => item.userid == id)[0]);
+      state.filluser = cop.filter((item) => item.userid == id)[0];
+      let idx = cop.indexOf(state.filluser);
+      console.log(cop.filter((item) => item.userid == id)[0]);
 
-    //   cop[idx][opr] = arr;
-    //   state.data = cop;
-    // },
+      cop[idx][opr] = arr;
+      state.data = cop;
+    },
   },
   extraReducers(builder) {
     builder

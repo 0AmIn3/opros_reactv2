@@ -20,9 +20,9 @@ const Quests = ({ item, id, changeAnswer}) => {
     
 };
 
-Quests.propTypes = {
-    title: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-};
+// Quests.propTypes = {
+//     title: PropTypes.string.isRequired,
+//     id: PropTypes.string.isRequired,
+// };
 
 export default Quests;

@@ -13,22 +13,36 @@ const AnswersV1 = () => {
   const [count, setCount] = useState(0);
   const [nowq, setNowq] = useState(0);
   const [Load, setLoad] = useState(false);
-  const id = useParams()
+  const id = useParams();
   const answers = useSelector((state) => state.answers.data);
   const log = useSelector((state) => state.answers.status);
+  const questDef = [];
 
   const auth_status = Cookies.get("userid");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [d, setd] = useState([...questDef]);
+  const qw = answers.filter((item) => item.id == id.id);
+  const [quest, setQuest] = useState(d);
 
-  const qw = answers.filter(item => item.id == id.id)
-  const [quest, setQuest] = useState([]);
-  useEffect(()=>{
-    if(log == 'fulfilled'){
-      setLoad(true)
-      setQuest(qw[0].DefAnswers)
+  function loadal(){
+    if (log == "fulfilled") {
+      // console.log(answers);
+
+      localStorage.setItem(`${id.id}` , JSON.stringify(qw[0].DefAnswers))
+
+     
+      setLoad(true);
     }
-  })
+    if(localStorage.getItem(`${id.id}`)){
+      setQuest(JSON.parse(localStorage.getItem(`${id.id}`)))
+    }
+    
+  }
+  useEffect(() => {
+  
+    // console.log(qw);
+  }, [Load]);
 
 
   return (
@@ -41,15 +55,20 @@ const AnswersV1 = () => {
             </div>
           </Link>
 
-          {
-            Load ? <Yarus_v2 quest={quest} nowq={nowq} setQuest={setQuest} key={nowq} /> : null
-          }
+          {Load ? (
+            <Yarus_v2
+              quest={quest}
+              nowq={nowq}
+              setQuest={setQuest}
+              key={nowq}
+            />
+          ) : loadal()}
 
           <button
             className="next_btn flex items-center"
             type="submit"
             onClick={() => {
-              console.log(quest);
+              console.log(quest[nowq].answers);
               const er_btn = document.querySelector(".er_q");
               if (
                 quest[nowq].answers.filter((item) => item?.ansucc === true)
@@ -58,16 +77,20 @@ const AnswersV1 = () => {
                 er_btn.style.display = "none";
 
                 if (nowq <= quest.length - 1) {
+                  console.log(nowq, quest.length - 1);
+
                   if (nowq < quest.length - 1) {
                     setNowq(nowq + 1);
                   } else if (nowq === quest.length - 1) {
-                    console.log(quest);
-                    dispatch(
-                      pathUsersAPI({ id: auth_status, obj: { a1: quest } })
-                    );
+                    // console.log(quest);
+                    let ob = {};
+                    ob[`${id.id}`] = quest;
+                    dispatch(pathUsersAPI({ id: auth_status, obj: ob }));
+                    // console.log(ob);
                     // navigate("/psdflk24234");
                     setTimeout(() => {
-                      window.location.href = "/psdflk24234";
+                      window.location.href =
+                        "/socialpollresult/" + qw[0].resultid;
                     }, 300);
                   }
                 }
