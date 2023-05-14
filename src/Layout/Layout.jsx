@@ -21,7 +21,8 @@ const Layout = () => {
     if(!answers.length) {
 			dispatch(getAnswersAPI())
 		}
-    console.log(answers);
+    console.log(answers); 
+    console.log(all); 
   })
 
 // console.log(all[0].a1);

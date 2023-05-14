@@ -17,7 +17,7 @@ import HedAdmin from "../components/HedAdmin";
 const AdminPanel = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
-
+  const answers = useSelector((state) => state.all.data);
 
   const dispatch = useDispatch();
   // const [arr, setArr] = useState(goods);
@@ -33,36 +33,18 @@ const AdminPanel = () => {
   const handleClose = () => setOpen(false);
   const[ser , setSer] = useState('');
   const[fiil , setFill] = useState('');
+  useEffect(() => {
 
-  // useEffect(() => {
-  //   if(goods.length > 0){
-  //       let cop = [...goods]
-  //   setFill(cop.filter(item => item.title.toLowerCase().includes(ser)))
-
-  //   }
-  // }, [ser , goods])
+    console.log(answers);
+  }, [])
   return (
     <div>
       <HedAdmin />
       <main className="mt-[30px] px-[24px]">
         <div className="flex items-center justify-between mb-[15px]">
           <div className="flex items-center mb-[15px]">
-            <p className="text-[#2E3A59] text-[24px] font-extrabold mr-[30px]">
-              Drivers list
-            </p>
-
-            <form
-              className="flex border-[2px] rounded-[20px] border-[#F2ECFF] px-8 py-3"
-              action=""
-            >
-              <input
-                type="text"
-                placeholder="Search by Name"
-                className="outline-none ser text-[gray] bg-[]"
-                onKeyUp={(e) => setSer(e.target.value) }
-              />
-              <img src="/img/search.svg" alt="" />
-            </form>
+            
+            
           </div>
 
           <button
@@ -79,25 +61,15 @@ const AdminPanel = () => {
             aria-label="simple table"
           >
             <TableHead>
-              <TableRow sx={{ background: "#EFF0F4" }}>
-                <TableCell align="center">Product Name</TableCell>
-                <TableCell align="center" width={600}>
-                  Description
-                </TableCell>
-                <TableCell align="center">Total Prise</TableCell>
-                <TableCell align="center" width={100}>
-                  Sale
-                </TableCell>
-                <TableCell align="left">To Change</TableCell>
+              <TableRow sx={{ background: "#EFF0F4", display: "flex", justifyContent: "space-between", padding: "0px 100px" }}>
+                <TableCell align="center">Опросники</TableCell>
+                <TableCell align="center">Вход</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* {goods.length > 0 && ser.length === 0
-                ? goods.map((item, inx) => <TableItem key={inx} item={item} />)
+              {answers.length > 0 && ser.length === 0
+                ? answers.map((item, inx) => <TableItem key={inx} item={item} />)
                 : null}
-                {ser.length > 0
-                ? fiil.map((item, inx) => <TableItem key={inx} item={item} />)
-                : null} */}
             </TableBody>
           </Table>
         </TableContainer>
