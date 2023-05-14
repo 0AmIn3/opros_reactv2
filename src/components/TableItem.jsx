@@ -8,46 +8,30 @@ const TableItem = ({ item }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
+
+  const editOpen = () => setOpen(true);
+  const editClose = () => setOpen(false);
+
   return (
-    <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+    <TableRow sx={{ "&:last-child th, &:last-child th": { border: 0 } }}>
       <TableCell align="justify" component="th" scope="row">
-        <div className="flex w-[300px] m-auto">
-          <img
-            className="min-w-[50px] h-[50px] bg-[#2E3A59] rounded-[50%]"
-            src={item?.media[0]}
-            alt=""
-          />
-          <p className="ml-[10px]">{item?.title}</p>
+        <div className="flex w-[300px]">
+          <p className="ml-[10px]">{item?.name}</p>
         </div>
       </TableCell>
-      <TableCell align="center">
-        <div className="h-[80px] overflow-hidden">
-          <p>{item?.description}</p>
+      <TableCell align="center" sx={{paddingRight: '5%', display: "flex", justifyContent: "end"}}>
+        <div onClick={editOpen} className="h-[50px] ">
+          <div className="login_btn">
+          <p>Изменить</p>
+          </div>
         </div>
       </TableCell>
-      <TableCell width={150} align="center">
-        {item?.price} sum
-      </TableCell>
-      <TableCell align="center">
-        <p className="w-[200px]">{item?.salePercentage}%</p>
-      </TableCell>
-      <TableCell align="left">
-        <div className=" ml-[10px] flex w-[50px] justify-between">
-          <img
-            onClick={() => {
-              dispatch(deleteGoodAPI(item.id));
-            }}
-            src="/img/delImg.svg"
-            alt=""
-          />
-          <img onClick={handleOpen} src="/img/edit.svg" alt="" />
-        </div>
-      </TableCell>
+
       <ModalCard
         open={open}
         item={item}
-        handleOpen={handleOpen}
-        handleClose={handleClose}
+        editOpen={editOpen}
+        editClose={editClose}
       />
     </TableRow>
   );

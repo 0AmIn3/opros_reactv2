@@ -21,8 +21,7 @@ const Layout = () => {
     if(!answers.length) {
 			dispatch(getAnswersAPI())
 		}
-    // console.log(answers);
-  })
+    })
 
 // console.log(all[0].a1);
 if(!auth_status) {

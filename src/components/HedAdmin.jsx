@@ -82,20 +82,11 @@ const HedAdmin = () => {
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar
-          sx={{ borderRadius: "20px", background: "white" }}
+          sx={{ borderRadius: "0px", background: "white" }}
           position="fixed"
           open={open}
         >
           <Toolbar>
-            <IconButton
-              color="red"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{ mr: 2, ...(open && { display: "none" }) }}
-            >
-              <MenuIcon />
-            </IconButton>
             <div className="flex justify-between w-full items-center">
               <p className="font-extralight text-[black] text-[24px]">
                 Good morning, {cookies.get("name")} 👋
@@ -106,118 +97,7 @@ const HedAdmin = () => {
             </div>
           </Toolbar>
         </AppBar>
-        <Drawer
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            "& .MuiDrawer-paper": {
-              width: drawerWidth,
-              boxSizing: "border-box",
-            },
-          }}
-          variant="persistent"
-          anchor="left"
-          open={open}
-        >
-          <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "ltr" ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
-          </DrawerHeader>
-          <p className="text-[gray] text-[14px] font-bold ml-[20px]">
-            MAIN MENU
-          </p>
-          <List>
-            <ListItem sx={{ padding: "10px 0 0px 0px" }} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <img
-                    width={20}
-                    className="mr-[10px]"
-                    src="/img/home.svg"
-                    alt=""
-                  />
-                </ListItemIcon>
-                <p>Dashboard</p>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem sx={{ padding: "0px 0  10px 0px" }} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <img
-                    width={20}
-                    className="mr-[10px]"
-                    src="/img/order.svg"
-                    alt=""
-                  />
-                </ListItemIcon>
-                <p>Orders</p>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem sx={{ padding: "0px 0  10px 0px" }} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <img
-                    width={20}
-                    className="mr-[10px]"
-                    src="/img/clients.svg"
-                    alt=""
-                  />
-                </ListItemIcon>
-                <p>Clients</p>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem sx={{ padding: "0px 0  10px 0px" }} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <img
-                    width={20}
-                    className="mr-[10px]"
-                    src="/img/car.svg"
-                    alt=""
-                  />
-                </ListItemIcon>
-                <p>Car classes</p>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem sx={{ padding: "0px 0  10px 0px" }} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <img
-                    width={20}
-                    className="mr-[10px]"
-                    src="/img/branch.svg"
-                    alt=""
-                  />
-                </ListItemIcon>
-                <p>Branches</p>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem sx={{ padding: "0px 0  10px 0px" }} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <img
-                    width={20}
-                    className="mr-[10px]"
-                    src="/img/settings.svg"
-                    alt=""
-                  />
-                </ListItemIcon>
-                <p>Settings</p>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Drawer>
+       
         <Main open={open}></Main>
       </Box>
     </>

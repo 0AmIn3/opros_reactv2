@@ -14,8 +14,8 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 800,
+  borderRadius: "10px",
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -31,18 +31,34 @@ const AddItem = ({ open, handleClose }) => {
   } = useForm();
   const onSubmit = (data) => {
     // console.log('sw');
-    data = {
-      id: uuidv4(),
-      title: "Кресло компьютерное игровое Cougar ARMOR One Black-Orange",
-      description:
-        "Cougar Armor One — игровое компьютерное кресло с высокой спинкой, поддерживающей позвоночник в анатомически правильном положении. Обивка сделана из воздухопроницаемой экокожи. В комплекте есть подушки для шеи и поясницы. За счет стального каркаса эта модель выдерживает нагрузку до 120 кг. Стул оснащен механизмом регулировки высоты «Газлифт». Металлический кожух защищает его от преждевременной поломки. Специальные ручки предназначены для настройки степени сопротивления к раскачиванию и его полной блокировки. Конструкция раскладывается на 180°. Подлокотники поворачиваются вправо и влево, их можно поднимать и опускать.",
-      colors: ["black", "orange"],
-      isBlackFriday: false,
-      media: [
-        "https://avatars.mds.yandex.net/i?id=072aa5a23f21ab8da49c67a024bf07fb86153e31-8427500-images-thumbs&n=13",
-      ],
-      ...data
-    };
+  
+    let opros = {
+      id: data.id,
+      resultid: data.resultid,
+      name: data.name,
+      type: data.type,
+      DefAnswers: [
+        {
+          "title": "Вопрос",
+          "answers": [
+            {
+              "title": "Ответ",
+              "ansucc": false
+            },
+            {
+              "title": "Ответ",
+              "ansucc": false
+            },
+            {
+              "title": "Ответ",
+              "ansucc": false
+            }
+          ]
+        }
+      ]
+    }
+
+    console.log(opros);
     
   };
 
@@ -71,45 +87,47 @@ const AddItem = ({ open, handleClose }) => {
               onSubmit={handleSubmit(onSubmit)}
               className=" px-4 overflov-hidden flex flex-col items-center"
             >
+              <p className="text-center text-[30px]">Добавить опрос</p>
+              <div className="flex items-center gap-5 w-full mt-[20px]">
+                <p className="text-[gray] text-[20px]">https://teal.band/</p>
               <input
                 type="text"
-                placeholder="Add title"
-                className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
-                {...register("title", {required: true})}
+                placeholder="ссылка для ваше опроса"
+                className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none "
+                {...register("id", {required: true})}
               />
+              </div>
+              <div className="flex items-center gap-5 w-full mt-[20px]">
+                <p className="text-[gray] text-[20px]">https://teal.band/</p>
+              <input
+                type="text"
+                placeholder="ссылка для результата опроса"
+                className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none "
+                {...register("resultid", {required: true})}
+              />
+              </div>
               <br />
               <input
-                type="number"
-                placeholder="Add price"
-                className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
-                {...register("price", { required: true})}
+                type="text"
+                placeholder="Название опросника"
+                className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none"
+                {...register("name", { required: true})}
               />
               <br />
-              <input
+              <select
                 type="text"
-                placeholder="Add description"
-                className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
-                {...register("description", { required: true })}
-              />
-                <input
-                type="text"
-                placeholder="Add rating"
-                className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
-                {...register("rating", { required: true})}
-              />
-                <input
-                type="text"
-                placeholder="Add type"
-                className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
+                placeholder="Выберите тип опроса"
+                className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none"
                 {...register("type", { required: true })}
-              />
-              <input
-                type="text"
-                placeholder="Add sale"
-                className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
-                {...register("salePercentage", {required: true})}
-              />
-              <input type="submit" />
+              >
+                <option value="" cecked disabled>Выберите тип опроса</option>
+                <option value="type1">Вариантами</option>
+                <option value="type2">5 звезд</option>
+                <option value="type3">6 звезд</option>
+              </select>
+                
+             
+              <input type="submit"   className="rounded-[24px] w-full bg-black px-6 py-4 text-[white] outline-none mt-[20px] cursor-pointer"/>
             </form>
           </Box>
         </Fade>
