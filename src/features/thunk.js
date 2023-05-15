@@ -5,10 +5,12 @@ export const getUsersAPI = createAsyncThunk("/getUsersAPI", async () => {
   const res = await axios.get(
     "https://tealband-4afc1-default-rtdb.firebaseio.com/users.json"
   );
+  console.log(res.data);
   return {
     data: Object.values(res.data),
     userKey: res.data,
   };
+  
 });
 
 export const postUsersAPI = createAsyncThunk("/postUsersAPI", async (data) => {

@@ -48,7 +48,7 @@ const Register = () => {
       });
 
       
-      // dispatch(postUsersAPI(obj));
+      dispatch(postUsersAPI(obj));
       if (logAll === 'fulfilled') {
         navigate('/home')
       }
