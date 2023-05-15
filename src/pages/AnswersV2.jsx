@@ -182,7 +182,6 @@ const AnswersV2 = () => {
   const navigate = useNavigate();
   function loadal(){
     if (log == "fulfilled") {
-      // console.log(answers);
 
       localStorage.setItem(`${id.id}` , JSON.stringify(qw[0].DefAnswers))
 

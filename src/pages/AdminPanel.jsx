@@ -38,7 +38,6 @@ const AdminPanel = () => {
     if (!answers.length) {
       dispatch(getAnswersAPI());
     }
-    console.log(answers);
   });
   return (
     <div>

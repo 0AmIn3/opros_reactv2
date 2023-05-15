@@ -20,7 +20,6 @@ const Register = () => {
       dispatch(getUsersAPI());
     }
   });
-  console.log(all);
 
   const {
     register,

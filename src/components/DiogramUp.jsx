@@ -5,11 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const DiogramUp = ({ item, opr, nowq, peoples, setObjTot , setOb }) => {
-  // console.log(item)
-  // console.log(opr)
-  // console.log(nowq)
-  // console.log(item)
-  // console.log(peoples)
+
   const questUser = useSelector((state) => state.all?.data);
   const [newobj, setNewobj] = useState([]);
 
@@ -31,8 +27,7 @@ const DiogramUp = ({ item, opr, nowq, peoples, setObjTot , setOb }) => {
       4: 0,
       5: 0,
     };
-    // console.log(peoples);
-    // console.log(al);
+
     if (peoples.length > 0) {
       for (let i of peoples) {
         for (let a of i[opr][nowq].answers) {
@@ -58,14 +53,12 @@ const DiogramUp = ({ item, opr, nowq, peoples, setObjTot , setOb }) => {
       if(opr == 'a3'){
         setOb([[...Object.values(objtot).slice(0,3)] ,[...Object.values(objtot).slice(3)]])
       }
-      console.log([[...Object.values(objtot).slice(0,3)] ,[...Object.values(objtot).slice(3)]]);
      
 
 
     }
   }
 
-  //   console.log(questUser);
 
   useEffect(() => {
     changes();

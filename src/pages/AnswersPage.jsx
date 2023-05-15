@@ -11,7 +11,6 @@ const AnswersPage = () => {
   const answers = useSelector((state) => state.answers.data);
   const log = useSelector((state) => state.answers.status);
   const logAll = useSelector((state) => state.all.status);
-  console.log();
   const [Load, setLoad] = useState(false);
   function reload() {
     if (logAll == "fulfilled" && log == "fulfilled") {
@@ -20,7 +19,6 @@ const AnswersPage = () => {
   }
   function Type() {
     let typ = answers.filter(item=> item.id == id.id)[0].type;
-    // console.log(typ);
     if (typ === "type1") {
       return <AnswersV1 />;
     } else if (typ === "type2") {

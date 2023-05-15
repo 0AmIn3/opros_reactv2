@@ -2,10 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const UpDiogramItem = ({item , peoples }) => {
-// console.log(item , peoples);
   
     let prosent = Math.round( item / peoples * 100)
-    // console.log(prosent)    ;
   return (
     <div className="dioUpitem relative flex items-end ">
       <div className=" text-center flex flex-col absolute top-[8px] left-[50%] translate-x-[-50%]">

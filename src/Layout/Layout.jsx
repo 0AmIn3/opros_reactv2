@@ -18,13 +18,11 @@ const Layout = () => {
     if(!all.length) {
 			dispatch(getUsersAPI())
 		}
-    // console.log(all);
     if(!answers.length) {
 			dispatch(getAnswersAPI())
 		}
     })
 
-// console.log(all[0].a1);
 if(!auth_status) {
   navigate('/')
 }else{

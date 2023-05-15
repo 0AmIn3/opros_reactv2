@@ -15,7 +15,6 @@ export const allSlice = createSlice({
   reducers: {
     getAll: (state, action) => {
       state.data = [...state.data];
-      console.log(state.data);
     },
 
   },

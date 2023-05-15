@@ -21,8 +21,7 @@ const Yarus = ({ quest, nowq, setQuest , opr }) => {
         4: 0,
         5: 0,
       };
-      console.log(peoples);
-      console.log(al);
+
       if(peoples > 0){
         for (let i of questUser) {
           for (let a of i[opr][nowq].answers) {

@@ -22,15 +22,15 @@ export const postUsersAPI = createAsyncThunk("/postUsersAPI", async (data) => {
 });
 export const pathUsersAPI = createAsyncThunk("/pathUsersAPI", async (data) => {
   // const res = await axios.patch('http://localhost:3001/users/'+ data.id ,  data.obj)
-  const res = await axios.patch(
+ await axios.patch(
     `https://tealband-4afc1-default-rtdb.firebaseio.com/users/${data.key}.json`,
     data.obj
   );
-  console.log(
-    `https://tealband-4afc1-default-rtdb.firebaseio.com/users/${data.key}.json`
+  const res = await axios.get(
+    "https://tealband-4afc1-default-rtdb.firebaseio.com/users.json"
   );
 
-  return res.data;
+  return Object.values(res.data);
 });
 
 export const getAnswersAPI = createAsyncThunk(
@@ -40,7 +40,6 @@ export const getAnswersAPI = createAsyncThunk(
     const res = await axios.get(
       "https://tealband-4afc1-default-rtdb.firebaseio.com/questions.json"
     );
-    // console.log(res1.data);
 
     return res.data;
   }

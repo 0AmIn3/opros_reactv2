@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { changeOpros } from '../features/allSlice';
 
 const Star = ({title,item , changeAnswer ,quest, changes}) => {
-    // console.log(title);
     return (
     
 

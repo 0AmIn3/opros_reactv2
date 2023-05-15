@@ -20,7 +20,6 @@ const ResultPage = () => {
 
   function Type() {
     let typ = answers.filter((item) => item.resultid == id.id)[0].type;
-    console.log(typ);
     if (typ === "type1") {
       return <ResultV1 />;
     } else if (typ === "type2") {

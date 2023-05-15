@@ -216,7 +216,6 @@ const AnswersV3 = () => {
 
   function loadal(){
     if (log == "fulfilled") {
-      // console.log(answers);
 
       localStorage.setItem(`${id.id}` , JSON.stringify(qw[0].DefAnswers))
 

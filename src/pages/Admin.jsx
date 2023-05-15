@@ -31,7 +31,6 @@ const Admin = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const cookies = new Cookies();
     if (
       users.filter(
@@ -40,7 +39,6 @@ const Admin = () => {
     ) {
       navigate("/admin/panel");
       cookies.set("name", data.name, { path: "/" });
-      console.log(cookies.get("name"));
     }
 
   };

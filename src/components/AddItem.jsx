@@ -64,7 +64,6 @@ const AddItem = ({ open, handleClose }) => {
 
   const [goods, setGoods] = useState();
 
-  // console.log(goods);
 
   return (
     <>

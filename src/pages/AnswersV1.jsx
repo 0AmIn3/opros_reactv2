@@ -30,7 +30,6 @@ const AnswersV1 = () => {
   const [quest, setQuest] = useState(d);
   function loadal() {
     if (log == "fulfilled") {
-      // console.log(answers);
 
       localStorage.setItem(`${id.id}`, JSON.stringify(qw[0].DefAnswers));
 
@@ -41,7 +40,6 @@ const AnswersV1 = () => {
     }
   }
   useEffect(() => {
-    // console.log(qw);
   }, [Load]);
 
   return (
@@ -69,7 +67,6 @@ const AnswersV1 = () => {
             className="next_btn flex items-center"
             type="submit"
             onClick={() => {
-              // console.log(quest[nowq].answers);
               const er_btn = document.querySelector(".er_q");
               if (
                 quest[nowq].answers.filter((item) => item?.ansucc === true)
@@ -78,12 +75,10 @@ const AnswersV1 = () => {
                 er_btn.style.display = "none";
 
                 if (nowq <= quest.length - 1) {
-                  // console.log(nowq, quest.length - 1);
 
                   if (nowq < quest.length - 1) {
                     setNowq(nowq + 1);
                   } else if (nowq === quest.length - 1) {
-                    // console.log(quest);
 
                     let ob = {};
                     ob[`${id.id}`] = quest;

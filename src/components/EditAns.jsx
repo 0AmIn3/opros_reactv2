@@ -11,7 +11,6 @@ const EditAns = ({ answer, ind, deleteans, indarr, changeAnswers }) => {
                 changeAnswers(indarr, ind, e.target.value)
             }}></textarea>
             <TiDeleteOutline className='text-[30px] cursor-pointer text-red-600' onClick={() => {
-                console.log(indarr, ind);
                 deleteans(indarr, ind)
             }} />
             

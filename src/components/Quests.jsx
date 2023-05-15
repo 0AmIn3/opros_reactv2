@@ -12,7 +12,6 @@ const Quests = ({ item, id, changeAnswer}) => {
                 <hr />
                 <div className="p-[10px]"><input type="radio" name="ans" id={id} onChange={() => {
                         changeAnswer(item)
-                        console.log(item);
                     }} />
                     <label htmlFor={id}> {item.title} </label>   </div>
             </div>

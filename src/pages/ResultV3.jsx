@@ -15,7 +15,6 @@ const ResultV3 = () => {
   const [user, setUser] = useState();
   const [newObjTot, setObjTot] = useState([]);
   const [newOb, setOb] = useState([]);
-  console.log(newOb);
   const [colors, setColors] = useState(["#FEF445", "#12CDD4"]);
   const questDef = [
     {
@@ -199,7 +198,6 @@ const ResultV3 = () => {
       setLoadQ(true);
     }
   }
-  console.log(quest);
   return (
     <>
       <div className="answers  relative bg-white">

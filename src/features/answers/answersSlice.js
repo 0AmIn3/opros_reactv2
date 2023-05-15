@@ -19,11 +19,9 @@ export const answersSlice = createSlice({
     changeOpros: (state, action) => {
       const { id, arr, opr } = action.payload;
       const cop = [...state.data];
-      console.log(cop);
 
       state.filluser = cop.filter((item) => item.userid == id)[0];
       let idx = cop.indexOf(state.filluser);
-      console.log(cop.filter((item) => item.userid == id)[0]);
 
       cop[idx][opr] = arr;
       state.data = cop;
@@ -33,7 +31,6 @@ export const answersSlice = createSlice({
       let cop = [...state.data];
       cop[idxOpr].DefAnswers.splice(idx, 1);
       state.data = cop
-      console.log(state.data);
     },
   },
   extraReducers(builder) {

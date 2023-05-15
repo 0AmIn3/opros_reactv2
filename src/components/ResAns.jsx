@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import ResAnsChild from './ResAnsChild';
 
 const ResAns = ({ qus, all, index , idkey }) => {
-// console.log(all);
 
 
 
 useEffect(()=>{
-    // console.log(qus);
 })
     return (
         <div className='mt-[80px] res_top'>

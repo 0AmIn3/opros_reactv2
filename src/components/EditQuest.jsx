@@ -31,7 +31,6 @@ const EditQuest = ({
           // {...register("name")}
 
           onChange={(e) => {
-            console.log(e.target.value);
             changeQuest(num, e.target.value);
           }}
         />
@@ -39,8 +38,7 @@ const EditQuest = ({
           className="text-[60px] cursor-pointer text-red-600"
           onClick={() => {
             delQuest(num);
-            // dispatch(deleteAnswer( {idxOpr: idxOpr , idx : num}))
-            // console.log(num);
+
           }}
         />
       </div>
@@ -67,7 +65,6 @@ const EditQuest = ({
               };
 
               const megaans = [...newarr];
-              console.log(megaans[num].answers);
               megaans[num].answers.push(newa);
               setNewarr(megaans);
             }}

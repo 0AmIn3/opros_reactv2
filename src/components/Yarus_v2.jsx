@@ -9,10 +9,8 @@ const Yarus_v2 = ({ quest, nowq, setQuest }) => {
 
     function changeAnswer(item) {
         let cop = [...quest];
-        console.log(cop);
 
         let idx = cop[nowq].answers.indexOf(item);
-        console.log(cop[nowq].answers);
         for (let i of cop[nowq].answers) {
           i.ansucc = false;
         }

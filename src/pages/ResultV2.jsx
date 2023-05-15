@@ -201,7 +201,6 @@ const ResultV2 = () => {
       setLoad(true);
       setLoadQ(true);
     }
-    console.log();
   }
 
 

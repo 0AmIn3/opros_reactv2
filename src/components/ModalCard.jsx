@@ -27,7 +27,6 @@ const style = {
 };
 
 const ModalCard = ({ item,idx, open, editClose }) => {
-  // console.log(good);
 
   const {
     register,
@@ -37,7 +36,7 @@ const ModalCard = ({ item,idx, open, editClose }) => {
   } = useForm();
   const dispatch = useDispatch()
   const onSubmit = (data) => {
-    console.log(newarr);
+   
   };
 
   const aaa = JSON.parse(localStorage.getItem('change'))
@@ -47,7 +46,6 @@ const ModalCard = ({ item,idx, open, editClose }) => {
     let meganewarr = newarr.filter((_, index) => index !== ind);
 
     setNewarr([...meganewarr]);
-    console.log(newarr);
 
   }
 
@@ -58,7 +56,6 @@ const ModalCard = ({ item,idx, open, editClose }) => {
       answers: meganewarr[arrInd].answers.filter((i, index) => index !== ansInd),
     };
     meganewarr[arrInd] = updatedArr;
-    // console.log(meganewarr);
     setNewarr([...meganewarr]);
   }
 

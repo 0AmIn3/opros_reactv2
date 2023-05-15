@@ -3,9 +3,7 @@ import React, { useEffect } from "react";
 const BarV2 = ({ color , item , newOb , idx }) => {
 
 
-// console.log(newOb);
   let line = Math.round(newOb[idx].map((number) => ((number / newOb.flat(2).reduce((a,b) => a + b)) * 100 )).reduce((a,b) => a + b))
-  console.log();
   return (
     <div className="h-[24px] flex w-full">
       <div
