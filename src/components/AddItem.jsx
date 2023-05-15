@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { postAnswersAPI } from "../features/thunk";
 
 const style = {
   position: "absolute",
@@ -30,7 +31,6 @@ const AddItem = ({ open, handleClose }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    // console.log('sw');
   
     let opros = {
       id: data.id,
@@ -57,8 +57,8 @@ const AddItem = ({ open, handleClose }) => {
         }
       ]
     }
-
-    console.log(opros);
+    dispatch(postAnswersAPI(opros))
+  
     
   };
 
@@ -120,7 +120,7 @@ const AddItem = ({ open, handleClose }) => {
                 className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none"
                 {...register("type", { required: true })}
               >
-                <option value="" cecked disabled>Выберите тип опроса</option>
+                <option value=""  disabled>Выберите тип опроса</option>
                 <option value="type1">Вариантами</option>
                 <option value="type2">5 звезд</option>
                 <option value="type3">6 звезд</option>

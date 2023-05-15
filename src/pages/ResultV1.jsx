@@ -318,7 +318,8 @@ const ResultV1 = () => {
   const logAll = useSelector((state) => state.all.status);
   const qw = answers.filter((item) => item.resultid == id.id);
   const [quest, setQuest] = useState(questDef);
-
+  let result =  inds(all);
+  console.log(result);
   function dwdwa() {
     const auth_status = Cookies.get("userid");
     if (logAll == "fulfilled" && log == "fulfilled") {
@@ -331,26 +332,26 @@ const ResultV1 = () => {
     }
   }
 
-  function inds(arr) {
+  async function inds(arr) {
     let qsum = 0;
     let qlen = 0;
-
+  
+    async function kgball(ass, n) {
+      let ans_i = ass.indexOf(n);
+      if (ans_i === 0) {
+        qsum = qsum + 1;
+      } else if (ans_i === 1) {
+        qsum = qsum + 0.5;
+      } else if (ans_i === 1) {
+        qsum = qsum + 0;
+      }
+    }
+  
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i];
       let iam_q = true;
-      function calcind(myq) {
-        function kgball(ass, n) {
-          let ans_i = ass.indexOf(n);
-          if (ans_i === 0) {
-            qsum = qsum + 1;
-          } else if (ans_i === 1) {
-            qsum = qsum + 0.5;
-            // console.log(qsum);
-          } else if (ans_i === 1) {
-            qsum = qsum + 0;
-          }
-        }
-
+  
+      async function calcind(myq) {
         if (myq.length > 0) {
           for (let iq of myq) {
             for (let ans of iq.answers) {
@@ -359,16 +360,16 @@ const ResultV1 = () => {
                   qlen = qlen + myq.length;
                   iam_q = false;
                 }
-                kgball(iq.answers, ans);
+                await kgball(iq.answers, ans); // Ожидание асинхронного вызова kgball
               }
             }
           }
         }
       }
-
-      calcind(item.a1);
+  
+      await calcind(item.a1); // Ожидание асинхронного вызова calcind
     }
-
+  
     return `${(qsum / qlen) * 100}`;
   }
 
@@ -384,7 +385,7 @@ const ResultV1 = () => {
         </Link>
 
         <div className="ind_cel">
-          <p>Индекс целостности = {Math.round(inds(all))}%</p>
+          {/* <p>Индекс целостности = {Load && LoadQ ? Math.round(inds(all)) : dwdwa()}%</p> */}
         </div>
         {Load && LoadQ
           ? quest.map((q, ind) => (

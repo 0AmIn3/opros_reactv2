@@ -32,23 +32,20 @@ const AdminPanel = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [ser, setSer] = useState('');
-  const [fiil, setFill] = useState('');
+  const [ser, setSer] = useState("");
+  const [fiil, setFill] = useState("");
   useEffect(() => {
     if (!answers.length) {
-      dispatch(getAnswersAPI())
+      dispatch(getAnswersAPI());
     }
     console.log(answers);
-  })
+  });
   return (
     <div>
       <HedAdmin />
       <main className="mt-[30px] px-[24px]">
         <div className="flex items-center justify-between mb-[15px]">
-          <div className="flex items-center mb-[15px]">
-
-
-          </div>
+          <div className="flex items-center mb-[15px]"></div>
 
           <button
             onClick={handleOpen}
@@ -60,27 +57,32 @@ const AdminPanel = () => {
 
         <TableContainer component={Paper}>
           <Table
-            sx={{ minWidth: 650, userSelect: "none" }}
+            sx={{ userSelect: "none" }}
             aria-label="simple table"
           >
             <TableHead>
-              <TableRow sx={{ background: "#EFF0F4", display: "flex", justifyContent: "space-between", padding: "0px 100px" }}>
+              <TableRow
+                sx={{
+                  background: "#EFF0F4",
+        
+                  padding: "0px 100px",
+                }}
+              >
                 <TableCell align="center">Опросники</TableCell>
-                <TableCell align="center"> <div className="h-[20px] mt-[-20px] opacity-0">
-                  <div className="login_btn">
-                    <p>Войти</p>
-                  </div>
-                </div></TableCell>
-
+                <TableCell align="right">
+                  Изменить опрос
+       
+                </TableCell>
+                
               </TableRow>
-              <TableCell align="center" sx={{ background: "#EFF0F4", textAlign: "end", paddingRight: "50px", border: 0 }}>
-              Вход
-              </TableCell>
+         
             </TableHead>
 
             <TableBody>
               {answers.length > 0 && ser.length === 0
-                ? answers.map((item, inx) => <TableItem key={inx} item={item} />)
+                ? answers.map((item, inx) => (
+                    <TableItem key={inx} idx={inx} item={item} />
+                  ))
                 : null}
             </TableBody>
           </Table>

@@ -5,6 +5,7 @@ import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import { ImExit } from 'react-icons/im';
 import List from "@mui/material/List";
 
 import IconButton from "@mui/material/IconButton";
@@ -91,8 +92,8 @@ const HedAdmin = () => {
               <p className="font-extralight text-[black] text-[24px]">
                 Good morning, {cookies.get("name")} 👋
               </p>
-              <Link onClick={() => cookies.remove("name")} to={"/admin"}>
-                <img src="/img/exit.svg" alt="" />
+              <Link  to={"/"}>
+                <img src="/exit.svg" alt="" />
               </Link>
             </div>
           </Toolbar>

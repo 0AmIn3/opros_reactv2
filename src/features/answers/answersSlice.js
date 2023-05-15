@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { deleteAnswersAPI, getAnswersAPI, pathAnswersAPI, postAnswersAPI } from "../thunk";
+import {
+  deleteAnswersAPI,
+  getAnswersAPI,
+  pathAnswersAPI,
+  postAnswersAPI,
+} from "../thunk";
 
 const initialState = {
   data: [],
@@ -22,6 +27,13 @@ export const answersSlice = createSlice({
 
       cop[idx][opr] = arr;
       state.data = cop;
+    },
+    deleteAnswer: (state, action) => {
+      const { idx  , idxOpr} = action.payload;
+      let cop = [...state.data];
+      cop[idxOpr].DefAnswers.splice(idx, 1);
+      state.data = cop
+      console.log(state.data);
     },
   },
   extraReducers(builder) {
@@ -69,6 +81,6 @@ export const answersSlice = createSlice({
   },
 });
 
-export const {  } = answersSlice.actions;
+export const {deleteAnswer} = answersSlice.actions;
 
 export default answersSlice.reducer;

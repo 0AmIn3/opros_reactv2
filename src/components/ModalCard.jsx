@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import EditQuest from "./EditQuest";
 import { useState } from "react";
+import { useEffect } from "react";
 
 
 const style = {
@@ -25,8 +26,9 @@ const style = {
   overflow: "scroll"
 };
 
-const ModalCard = ({ item, open, editClose }) => {
+const ModalCard = ({ item,idx, open, editClose }) => {
   // console.log(good);
+
   const {
     register,
     handleSubmit,
@@ -38,26 +40,26 @@ const ModalCard = ({ item, open, editClose }) => {
     console.log(newarr);
   };
 
-
-  const [newarr, setNewarr] = useState(item.DefAnswers);
-
+  const aaa = JSON.parse(localStorage.getItem('change'))
+  const [newarr, setNewarr] = useState([...aaa]);
 
   function delQuest(ind) {
-    const meganewarr = [...newarr];
-    meganewarr.splice(ind, 1);
-    setNewarr(meganewarr);
-    console.log(newarr, ind);
+    let meganewarr = newarr.filter((_, index) => index !== ind);
+
+    setNewarr([...meganewarr]);
+    console.log(newarr);
 
   }
 
   function deleteans(arrInd, ansInd) {
-    const meganewarr = [...newarr];
-    const updatedArr = {
+    let meganewarr = [...newarr];
+    let updatedArr = {
       ...meganewarr[arrInd],
-      answers: meganewarr[arrInd].answers.filter((_, index) => index !== ansInd),
+      answers: meganewarr[arrInd].answers.filter((i, index) => index !== ansInd),
     };
     meganewarr[arrInd] = updatedArr;
-    setNewarr(meganewarr);
+    // console.log(meganewarr);
+    setNewarr([...meganewarr]);
   }
 
 
@@ -95,14 +97,13 @@ const ModalCard = ({ item, open, editClose }) => {
             <Typography id="transition-modal-title" variant="h6" component="h2" className="text-center">
               {item.name}
             </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              <form
+            <form
                 onSubmit={handleSubmit(onSubmit)}
                 className=" px-4 overflov-hidden"
               >
 
                 {
-                  newarr.map((quest, ind) => <EditQuest quest={quest} num={ind} delQuest={delQuest} deleteans={deleteans} setNewarr={setNewarr} newarr={newarr} key={ind} changeQuest={changeQuest} changeAnswers={changeAnswers} />)
+                  newarr.map((quest, ind) => <EditQuest quest={quest} idxOpr={idx} num={ind} delQuest={delQuest} deleteans={deleteans} setNewarr={setNewarr} newarr={newarr} key={ind} changeQuest={changeQuest} changeAnswers={changeAnswers} />)
                 }
 
                 <button className="rounded-[24px] w-full bg-[#c7ffac] px-6 py-4 text-[black] font-bold outline-none mt-[20px] cursor-pointer" onClick={() => {
@@ -132,7 +133,6 @@ const ModalCard = ({ item, open, editClose }) => {
 
                 <input type="submit" value="сохранить" className="rounded-[24px] w-full bg-black px-6 py-4 text-[white] outline-none mt-[20px] cursor-pointer" />
               </form>
-            </Typography>
           </Box>
         </Fade>
       </Modal>

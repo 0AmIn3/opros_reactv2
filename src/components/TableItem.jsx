@@ -3,7 +3,7 @@ import React from "react";
 import ModalCard from "./ModalCard";
 import { useDispatch } from "react-redux";
 
-const TableItem = ({ item }) => {
+const TableItem = ({ item, idx }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -19,10 +19,16 @@ const TableItem = ({ item }) => {
           <p className="ml-[10px]">{item?.name}</p>
         </div>
       </TableCell>
-      <TableCell align="center" sx={{paddingRight: '5%', display: "flex", justifyContent: "end"}}>
-        <div onClick={editOpen} className="h-[50px] ">
+      <TableCell
+        align="center"
+        sx={{ paddingRight: "5%", display: "flex", justifyContent: "end" }}
+      >
+        <div onClick={() =>{
+          editOpen()
+          localStorage.setItem('change' ,JSON.stringify(item.DefAnswers) )
+        }} className="h-[50px] ">
           <div className="login_btn">
-          <p>Изменить</p>
+            <p >Изменить</p>
           </div>
         </div>
       </TableCell>
@@ -30,6 +36,7 @@ const TableItem = ({ item }) => {
       <ModalCard
         open={open}
         item={item}
+        idx={idx}
         editOpen={editOpen}
         editClose={editClose}
       />
