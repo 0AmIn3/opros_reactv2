@@ -12,7 +12,8 @@ const AnswersV2 = () => {
   const [count, setCount] = useState(0);
   const [nowq, setNowq] = useState(0);
   const [Load, setLoad] = useState(false);
-  // const questUser = useSelector((state) => state.all?.data[0]?.a2);
+  const userKey = useSelector((state) => state.all.userKey);
+  const users = useSelector((state) => state.all.data);
   const id = useParams();
   const answers = useSelector((state) => state.answers.data);
   const questDef = [
@@ -172,6 +173,7 @@ const AnswersV2 = () => {
       ],
     },
   ];
+  const logAll = useSelector((state) => state.all.status);
   const log = useSelector((state) => state.answers.status);
   const [d, setd] = useState([...questDef]);
   const qw = answers.filter((item) => item.id == id.id);
@@ -231,11 +233,20 @@ const AnswersV2 = () => {
                 } else if (nowq === quest.length - 1) {
                   let ob = {};
                   ob[`${id.id}`] = quest;
-                  dispatch(pathUsersAPI({ id: auth_status, obj: ob }));
-                  setTimeout(() => {
-                    window.location.href =
-                      "/socialpollresult/" + qw[0].resultid;
-                  }, 300);
+                  dispatch(
+                    pathUsersAPI({
+                      id: auth_status,
+                      obj: ob,
+                      key: Object.keys(userKey)[
+                        users.indexOf(
+                          users.filter((item) => item.id == auth_status)[0]
+                        )
+                      ],
+                    })
+                  );
+                  if (logAll === 'fulfilled') {
+                    navigate("/socialpollresult/" + qw[0].resultid)
+                  }
                 }
               }
             } else {

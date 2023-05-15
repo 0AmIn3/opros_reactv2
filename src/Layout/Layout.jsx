@@ -18,6 +18,7 @@ const Layout = () => {
     if(!all.length) {
 			dispatch(getUsersAPI())
 		}
+    // console.log(all);
     if(!answers.length) {
 			dispatch(getAnswersAPI())
 		}

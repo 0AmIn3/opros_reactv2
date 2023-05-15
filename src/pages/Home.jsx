@@ -27,6 +27,7 @@ const Home = () => {
             <IoCloseSharp />
           </div>
         </Link>
+        
       {/* <div className="borders">
         <button
           className="w-full p-3 bg-[#C7FFAC] rounded-md font-medium outline-none   button"

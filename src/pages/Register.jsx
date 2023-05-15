@@ -7,13 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsersAPI, postUsersAPI } from "../features/thunk";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   // const [count, setCount] = useState(0);
   const all = useSelector((state) => state.all.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const logAll = useSelector((state) => state.all.status);
   useEffect(() => {
     if (!all.length) {
       dispatch(getUsersAPI());
@@ -36,40 +37,40 @@ const Register = () => {
         expires: Infinity,
         path: "/",
       });
-      window.location.href = "./home";
+      navigate('/home')
     } else {
       let obj = {
         id: uuidv4(),
-        a1: [],
-        a2: [],
-        a3: [],
         ...data,
       };
       Cookies.set("userid", `${obj.id}`, {
         expires: Infinity,
         path: "/",
       });
-      dispatch(postUsersAPI(obj));
-      if (dispatch(postUsersAPI(obj))) {
-        window.location.href = "./home";
+
+      
+      // dispatch(postUsersAPI(obj));
+      if (logAll === 'fulfilled') {
+        navigate('/home')
       }
       
     }
   };
+function check(){
+  const checkbox = document.querySelector(".checkbox input");
+  const checkbox_label = document.querySelector(".checkbox label");
+ 
+  checkbox_label.addEventListener("click", () => {
+    if (checkbox.checked) {
+      checkbox_label.firstElementChild.style.display = "none";
+    } else {
+      checkbox_label.firstElementChild.style.display = "block";
+    }
+  });
+}
 
   useEffect(() => {
-    return () => {
-      const checkbox = document.querySelector(".checkbox input");
-      const checkbox_label = document.querySelector(".checkbox label");
-
-      checkbox_label.addEventListener("click", () => {
-        if (checkbox.checked) {
-          checkbox_label.firstElementChild.style.display = "none";
-        } else {
-          checkbox_label.firstElementChild.style.display = "block";
-        }
-      });
-    };
+    check()
   }, []);
 
   return (
@@ -95,6 +96,7 @@ const Register = () => {
           <div
             className="checkbox"
             onClick={() => {
+           
               const polic = document.querySelector("#polic");
               const checkbox_label = document.querySelector(".checkbox label");
               const checkbox_span = document.querySelector(".checkbox span");

@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import ResAns from "../components/ResAns";
 
 const ResultV1 = () => {
-  const all = useSelector((state) => state.all.data);
+  const all = useSelector((state) => state.all.data)
   const dispatch = useDispatch();
   const [allusers, setAllusers] = useState([]);
   const myid = Cookies.get("userid");
@@ -318,17 +318,17 @@ const ResultV1 = () => {
   const logAll = useSelector((state) => state.all.status);
   const qw = answers.filter((item) => item.resultid == id.id);
   const [quest, setQuest] = useState(questDef);
-  let result =  inds(all);
-  console.log(result);
+  // let result =  inds(all);
+  // console.log(result);
   function dwdwa() {
     const auth_status = Cookies.get("userid");
-    if (logAll == "fulfilled" && log == "fulfilled") {
+    if (logAll === "fulfilled" && log === "fulfilled") {
       setPeoples(all.filter((item) => item[`${answers.filter(item => item.resultid == id.id)[0].id}`]));
       setUser(...all.filter((item) => item.id == auth_status));
       setQuest(answers.filter((item) => item.resultid == id.id)[0].DefAnswers);
       console.log();
       setLoad(true);
-      setLoadQ(true);
+      setLoadQ(true); 
     }
   }
 

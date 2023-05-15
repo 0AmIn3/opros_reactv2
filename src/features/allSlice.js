@@ -5,7 +5,7 @@ import { getUsersAPI, pathUsersAPI, postUsersAPI } from "./thunk";
 
 const initialState = {
   data: [],
-  filluser: [],
+  userKey: [],
   status: "idle",
 };
 
@@ -17,18 +17,7 @@ export const allSlice = createSlice({
       state.data = [...state.data];
       console.log(state.data);
     },
-    changeOpros: (state, action) => {
-      const { id, arr, opr } = action.payload;
-      const cop = [...state.data];
-      console.log(cop);
 
-      state.filluser = cop.filter((item) => item.userid == id)[0];
-      let idx = cop.indexOf(state.filluser);
-      console.log(cop.filter((item) => item.userid == id)[0]);
-
-      cop[idx][opr] = arr;
-      state.data = cop;
-    },
   },
   extraReducers(builder) {
     builder
@@ -36,7 +25,8 @@ export const allSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getUsersAPI.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.data = action.payload.data;
+        state.userKey = action.payload.userKey
         state.status = "fulfilled";
       })
       .addCase(getUsersAPI.rejected, (state, action) => {

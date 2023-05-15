@@ -199,6 +199,10 @@ const AnswersV3 = () => {
       ],
     },
   ];
+  const userKey = useSelector((state) => state.all.userKey);
+  const users = useSelector((state) => state.all.data);
+  const navigate = useNavigate();
+  
   const dispatch = useDispatch();
   const [Load, setLoad] = useState(false);
   const [LoadQ, setLoadQ] = useState(false);
@@ -270,11 +274,20 @@ const AnswersV3 = () => {
                 } else if (nowq === quest.length - 1) {
                   let ob = {};
                   ob[`${id.id}`] = quest;
-                  dispatch(pathUsersAPI({ id: auth_status, obj: ob }));
-                  setTimeout(() => {
-                    window.location.href =
-                      "/socialpollresult/" + qw[0].resultid;
-                  }, 300);
+                  dispatch(
+                    pathUsersAPI({
+                      id: auth_status,
+                      obj: ob,
+                      key: Object.keys(userKey)[
+                        users.indexOf(
+                          users.filter((item) => item.id == auth_status)[0]
+                        )
+                      ],
+                    })
+                  );
+                  if (logAll === 'fulfilled') {
+                    navigate("/socialpollresult/" + qw[0].resultid)
+                  }
                 }
               }
             } else {
