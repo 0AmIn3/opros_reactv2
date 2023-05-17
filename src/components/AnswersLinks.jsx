@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom";
 const AnswersLinks = ({ handleClick, idx, item }) => {
   const href = window.location.href;
   const { copid } = useParams();
-  console.log(copid);
   return (
     <div className="borders">
       <button

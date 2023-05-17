@@ -14,23 +14,19 @@ const Home = () => {
   const all = useSelector((state) => state.all.data);
   const logAll = useSelector((state) => state.all.status);
 
-
-const answers = useSelector((state) => state.answers.data);
-// const [questions, setquestions] = useState(IoReload());
-let quest =[]
-function IoReload(){
-
-  quest =  [...all.filter(item => item.id == auth_status)[0].questions]
- 
-}
-
-useEffect(()=>{
-  if(logAll === 'fulfilled'){
-    IoReload()
+  const [questionsMask, setquestionsMask] = useState([]);
+  const answers = useSelector((state) => state.answers.data);
+  // const [questions, setquestions] = useState(IoReload());
+  function IoReload() {
+    if (logAll == "fulfilled" && all.length > 0) {
+      setquestionsMask([
+        ...all.filter((item) => item.id == auth_status)[0].questions,
+      ]);
+    }
   }
-  // console.log(questions);
-})
 
+  useEffect(() => {
+  });
 
   const handleClick = (btn) => {
     const links = document.querySelectorAll(".links");
@@ -39,12 +35,12 @@ useEffect(()=>{
 
   return (
     <div className="flex justify-center mt-[200px] relative bg-white h-auto flex-col w-full items-center home_ans">
-          <Link to={"/"}>
-          <div className="absolute right-[30px] top-[20px] close_btn">
-            <IoCloseSharp />
-          </div>
-        </Link>
-        
+      <Link to={"/"}>
+        <div className="absolute right-[30px] top-[20px] close_btn">
+          <IoCloseSharp />
+        </div>
+      </Link>
+
       {/* <div className="borders">
         <button
           className="w-full p-3 bg-[#C7FFAC] rounded-md font-medium outline-none   button"
@@ -100,12 +96,16 @@ useEffect(()=>{
         </div>
       </div> */}
 
-
-      {
-       logAll === 'fulfilled' ? answers.map((item , idx) => (
-          <AnswersLinks key={idx} idx ={idx}  item={item} handleClick= {handleClick}/>
-        ) ) : null
-      }
+      {questionsMask.length > 0
+        ? questionsMask.map((item, idx) => (
+            <AnswersLinks
+              key={idx}
+              idx={idx}
+              item={item}
+              handleClick={handleClick}
+            />
+          ))
+        : IoReload()}
     </div>
   );
 };
