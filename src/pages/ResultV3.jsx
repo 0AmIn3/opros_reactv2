@@ -9,12 +9,14 @@ import BarV2 from "../components/BarV2";
 
 const ResultV3 = () => {
   const all = useSelector((state) => state.all.data);
-  const auth_status = Cookies.get("userid");
+  const myid = Cookies.get("userid");
   // const [id, setId] = useState(false);
   const [peoples, setPeoples] = useState([]);
   const [user, setUser] = useState();
   const [newObjTot, setObjTot] = useState([]);
   const [newOb, setOb] = useState([]);
+  const users = useSelector((state) => state.users.data)
+
   const [colors, setColors] = useState(["#FEF445", "#12CDD4"]);
   const questDef = [
     {
@@ -184,28 +186,23 @@ const ResultV3 = () => {
 
   function dwdwa() {
     const auth_status = Cookies.get("userid");
-    if (logAll == "fulfilled" && log == "fulfilled") {
-      setPeoples(
-        all.filter(
-          (item) =>
-            item[`${answers.filter((item) => item.resultid == id.id)[0].id}`]
-        )
-      );
-      setUser(...all.filter((item) => item.id == auth_status));
-      setQuest(answers.filter((item) => item.resultid == id.id)[0].DefAnswers);
-
-      setLoad(true);
-      setLoadQ(true);
-    }
+    if (logAll === "fulfilled" && log === "fulfilled") {
+      setPeoples(users.filter(item => item[`${all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].id}`]));
+      setUser(...users.filter((item) => item.companyid == auth_status));
+      setQuest(all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].DefAnswers);
+  
+        setLoad(true);
+        setLoadQ(true);
+      }
   }
   return (
     <>
       <div className="answers  relative bg-white">
-        <Link to={"/home"}>
+        {/* <Link to={"/" + myid}>
           <div className="absolute right-[30px] top-[20px] close_btn">
             <IoCloseSharp />
           </div>
-        </Link>
+        </Link> */}
         <h1>Доминирующие цвета</h1>
         <div className=" mt-3">
           {/* {Load && LoadQ

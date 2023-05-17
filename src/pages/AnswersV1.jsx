@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import QuestMain from "../components/QuestMain";
 import { useDispatch, useSelector } from "react-redux";
-import { getAll } from "../features/allSlice";
+import { getAll } from "../features/CompanySlice";
 import { IoCloseSharp } from "react-icons/io5";
 import { SlArrowRight } from "react-icons/sl";
 import Yarus_v2 from "../components/Yarus_v2";
 import Cookies from "js-cookie";
-import { pathUsersAPI } from "../features/thunk";
 import axios from "axios";
-
+import { postUserAPI } from "../features/thunk";
+import { v4 as uuidv4 } from "uuid";
 const AnswersV1 = () => {
   const [count, setCount] = useState(0);
   const [nowq, setNowq] = useState(0);
   const [Load, setLoad] = useState(false);
   const id = useParams();
+
   const answers = useSelector((state) => state.answers.data);
-  
   const userKey = useSelector((state) => state.all.userKey);
   const users = useSelector((state) => state.all.data);
   const log = useSelector((state) => state.answers.status);
@@ -26,17 +26,21 @@ const AnswersV1 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [d, setd] = useState([...questDef]);
+  const companyQw = users.filter(item => item.id === id.copid)[0].questions.filter((item) => item.id == id.id)[0].DefAnswers
   const qw = answers.filter((item) => item.id == id.id);
   const [quest, setQuest] = useState(d);
+
+
+
+  
   function loadal() {
     if (log == "fulfilled") {
-
-      localStorage.setItem(`${id.id}`, JSON.stringify(qw[0].DefAnswers));
+      localStorage.setItem(`${id.copid}/${id.id}`, JSON.stringify(companyQw));
 
       setLoad(true);
     }
-    if (localStorage.getItem(`${id.id}`)) {
-      setQuest(JSON.parse(localStorage.getItem(`${id.id}`)));
+    if (localStorage.getItem(`${id.copid}/${id.id}`)) {
+      setQuest(JSON.parse(localStorage.getItem(`${id.copid}/${id.id}`)));
     }
   }
   useEffect(() => {
@@ -46,11 +50,11 @@ const AnswersV1 = () => {
     <>
       <>
         <div className="answers relative pt-[100px] bg-white">
-          <Link to={"/home"}>
+          {/* <Link to={"/home"}>
             <div className="absolute right-[30px] top-[20px] close_btn">
               <IoCloseSharp />
             </div>
-          </Link>
+          </Link> */}
 
           {Load ? (
             <Yarus_v2
@@ -83,19 +87,14 @@ const AnswersV1 = () => {
                     let ob = {};
                     ob[`${id.id}`] = quest;
                     dispatch(
-                      pathUsersAPI({
-                        id: auth_status,
-                        obj: ob,
-                        key: Object.keys(userKey)[
-                          users.indexOf(
-                            users.filter((item) => item.id == auth_status)[0]
-                          )
-                        ],
+                      postUserAPI({
+                        companyid: auth_status,
+                        
+                        id: uuidv4(),
+                        ...ob
                       })
                     );
-                    if (logAll === 'fulfilled') {
-                      navigate("/socialpollresult/" + qw[0].resultid)
-                    }
+              
                   }
                 }
               } else {

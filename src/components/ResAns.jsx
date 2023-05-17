@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ResAnsChild from './ResAnsChild';
+import { useParams } from 'react-router-dom';
 
 const ResAns = ({ qus, all, index , idkey }) => {
 
+    const cop = useParams()
+    const peoples = all.filter(item => item.companyid == cop.copid )
 
 
-useEffect(()=>{
-})
     return (
         <div className='mt-[80px] res_top'>
             <p className='text-[20px] font-bold'>{qus.title}</p>
-            <span className='font-bold opacity-50'>Ответили {all.length} человека</span>
+            <span className='font-bold opacity-50'>Ответили {peoples.length} человека</span>
 
             <div className="quest_box">
                 {
-                    qus.answers.map((it, ind) => (<ResAnsChild anses={it} idkey ={idkey} id={index} all={all} key={ind} skok={all} />))
+                    qus.answers.map((it, ind) => (<ResAnsChild anses={it} idkey ={idkey} id={index} all={all} key={ind} peoples={peoples} />))
                 }
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getUsersAPI, pathUsersAPI, postUsersAPI } from "./thunk";
+import { getCompanyAPI, pathCompanyAPI, postCompanyAPI } from "./thunk";
 // import { deleteGoodAPI, getGoodAPI, pathGoodAPI, postGoodAPI } from "./thunk";
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
   status: "idle",
 };
 
-export const allSlice = createSlice({
+export const CompanySlice = createSlice({
   name: "all",
   initialState,
   reducers: {
@@ -20,40 +20,40 @@ export const allSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(getUsersAPI.pending, (state, action) => {
+      .addCase(getCompanyAPI.pending, (state, action) => {
         state.status = "loading";
       })
-      .addCase(getUsersAPI.fulfilled, (state, action) => {
+      .addCase(getCompanyAPI.fulfilled, (state, action) => {
         state.data = action.payload.data;
         state.userKey = action.payload.userKey
         state.status = "fulfilled";
       })
-      .addCase(getUsersAPI.rejected, (state, action) => {
+      .addCase(getCompanyAPI.rejected, (state, action) => {
         state.status = "rejected";
       })
-      .addCase(postUsersAPI.pending, (state, action) => {
+      .addCase(postCompanyAPI.pending, (state, action) => {
         state.status = "loading";
       })
-      .addCase(postUsersAPI.fulfilled, (state, action) => {
+      .addCase(postCompanyAPI.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = "fulfilled";
       })
-      .addCase(postUsersAPI.rejected, (state, action) => {
+      .addCase(postCompanyAPI.rejected, (state, action) => {
         state.status = "rejected";
       })
-      .addCase(pathUsersAPI.pending, (state, action) => {
+      .addCase(pathCompanyAPI.pending, (state, action) => {
         state.status = "loading";
       })
-      .addCase(pathUsersAPI.fulfilled, (state, action) => {
+      .addCase(pathCompanyAPI.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = "fulfilled";
       })
-      .addCase(pathUsersAPI.rejected, (state, action) => {
+      .addCase(pathCompanyAPI.rejected, (state, action) => {
         state.status = "rejected";
       });
   },
 });
 
-export const { getAll, changeOpros } = allSlice.actions;
+export const { getAll, changeOpros } = CompanySlice.actions;
 
-export default allSlice.reducer;
+export default CompanySlice.reducer;

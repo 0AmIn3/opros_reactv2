@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getAnswersAPI, getUsersAPI } from "../features/thunk";
+import { getAnswersAPI, getCompanyAPI } from "../features/thunk";
 import Cookies from "js-cookie";
 import axios from "axios";
 
@@ -16,7 +16,7 @@ const Layout = () => {
 
   useEffect(()=>{
     if(!all.length) {
-			dispatch(getUsersAPI())
+			dispatch(getCompanyAPI())
 		}
     if(!answers.length) {
 			dispatch(getAnswersAPI())

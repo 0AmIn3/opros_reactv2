@@ -7,6 +7,7 @@ import ResAns from "../components/ResAns";
 
 const ResultV1 = () => {
   const all = useSelector((state) => state.all.data)
+  const users = useSelector((state) => state.users.data)
   const dispatch = useDispatch();
   const [allusers, setAllusers] = useState([]);
   const myid = Cookies.get("userid");
@@ -322,12 +323,14 @@ const ResultV1 = () => {
   function dwdwa() {
     const auth_status = Cookies.get("userid");
     if (logAll === "fulfilled" && log === "fulfilled") {
-      setPeoples(all.filter((item) => item[`${answers.filter(item => item.resultid == id.id)[0].id}`]));
-      setUser(...all.filter((item) => item.id == auth_status));
-      setQuest(answers.filter((item) => item.resultid == id.id)[0].DefAnswers);
+      setPeoples(users.filter(item => item[`${all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].id}`]));
+      setUser(...users.filter((item) => item.companyid == auth_status));
+      setQuest(all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].DefAnswers);
+      // console.log(users.filter((item) => item.companyid == auth_status));
       setLoad(true);
       setLoadQ(true); 
     }
+
   }
 
   async function inds(arr) {
@@ -376,11 +379,11 @@ const ResultV1 = () => {
   return (
     <>
       <div className="answers pt-[100px] relative bg-white">
-        <Link to={"/home"}>
+        {/* <Link to={"/" + myid}>
           <div className="absolute right-[30px] top-[20px] close_btn">
             <IoCloseSharp />
           </div>
-        </Link>
+        </Link> */}
 
         <div className="ind_cel">
           {/* <p>Индекс целостности = {Load && LoadQ ? Math.round(inds(all)) : dwdwa()}%</p> */}

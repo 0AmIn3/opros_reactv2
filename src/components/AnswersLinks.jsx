@@ -1,7 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const AnswersLinks = ({handleClick , idx ,item }) => {
+const AnswersLinks = ({ handleClick, idx, item }) => {
+  const href = window.location.href;
+  const { copid } = useParams();
+  console.log(copid);
   return (
     <div className="borders">
       <button
@@ -9,16 +12,10 @@ const AnswersLinks = ({handleClick , idx ,item }) => {
         data-btn={idx}
         onClick={(e) => handleClick(e.target)}
       >
-        {item.name}
+        <Link to={`/${copid}/poll/${item.id}`}>{item.name}</Link>
       </button>
-
-      <div className="links" style={{ display: "none" }}>
-        <Link to={`/socialpoll/${item.id}`}>
-          <h3>Прохождение диагностики</h3>
-        </Link>
-        <Link to={`/socialpollresult/${item.resultid}`}>
-          <h3>Отчет по диагностике</h3>
-        </Link>
+      <div className="links" style={{ display: "flex" }}>
+        <h3>{` ${href.split("/")[0]}://${href.split("/")[2]}/${copid}/poll/${item.id}`}</h3>
       </div>
     </div>
   );

@@ -21,13 +21,7 @@ const AdminPanel = () => {
   const answers = useSelector((state) => state.answers.data);
 
   const dispatch = useDispatch();
-  // const [arr, setArr] = useState(goods);
-  // useEffect(() => {
-  //   if (!goods.length) {
-  //     dispatch(getGoodAPI());
 
-  //   }
-  // }, [goods]);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);

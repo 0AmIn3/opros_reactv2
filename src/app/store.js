@@ -2,13 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 // import goodsSlice from "../features/goods/goodsSlice";
 // import likedSlice from "../features/liked/likedSlice";
 // import cartSlice from "../features/cart/cartSlice";
-import allSlice from "../features/allSlice";
+import CompanySlice from "../features/CompanySlice";
 import answersSlice from "../features/answers/answersSlice";
+import UsersSlice from "../features/users/UsersSlice";
 
 export const store = configureStore({
   reducer: {
-    all: allSlice,
+    all: CompanySlice,
     answers: answersSlice,
-    // cart: cartSlice,
+    users: UsersSlice,
   },
 });

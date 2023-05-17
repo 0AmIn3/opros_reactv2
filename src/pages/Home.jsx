@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
@@ -11,8 +11,25 @@ const Home = () => {
   if (!auth_status) {
     window.location.href = "/";
   }
-  const answers = useSelector((state) => state.answers.data);
+  const all = useSelector((state) => state.all.data);
+  const logAll = useSelector((state) => state.all.status);
 
+
+const answers = useSelector((state) => state.answers.data);
+// const [questions, setquestions] = useState(IoReload());
+let quest =[]
+function IoReload(){
+
+  quest =  [...all.filter(item => item.id == auth_status)[0].questions]
+ 
+}
+
+useEffect(()=>{
+  if(logAll === 'fulfilled'){
+    IoReload()
+  }
+  // console.log(questions);
+})
 
 
   const handleClick = (btn) => {
@@ -85,9 +102,9 @@ const Home = () => {
 
 
       {
-        answers.map((item , idx) => (
+       logAll === 'fulfilled' ? answers.map((item , idx) => (
           <AnswersLinks key={idx} idx ={idx}  item={item} handleClick= {handleClick}/>
-        ) )
+        ) ) : null
       }
     </div>
   );

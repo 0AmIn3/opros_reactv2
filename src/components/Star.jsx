@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { changeOpros } from '../features/allSlice';
+import { changeOpros } from '../features/CompanySlice';
 
 const Star = ({title,item , changeAnswer ,quest, changes}) => {
     return (

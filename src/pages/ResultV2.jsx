@@ -12,6 +12,9 @@ const ResultV2 = () => {
   const [peoples, setPeoples] = useState([]);
   const [user, setUser] = useState();
   const [newObjTot, setObjTot] = useState([]);
+  const myid = Cookies.get("userid");
+  const users = useSelector((state) => state.users.data)
+
   const [colors, setColors] = useState([
     "#7f077f",
     "red",
@@ -177,6 +180,7 @@ const ResultV2 = () => {
       ],
     },
   ];
+
   const [Load, setLoad] = useState(false);
   const [LoadQ, setLoadQ] = useState(false);
   const id = useParams();
@@ -188,15 +192,10 @@ const ResultV2 = () => {
 
   function dwdwa() {
     const auth_status = Cookies.get("userid");
-    if (logAll == "fulfilled" && log == "fulfilled") {
-      setPeoples(
-        all.filter(
-          (item) =>
-            item[`${answers.filter((item) => item.resultid == id.id)[0].id}`]
-        )
-      );
-      setUser(...all.filter((item) => item.id == auth_status));
-      setQuest(answers.filter((item) => item.resultid == id.id)[0].DefAnswers);
+    if (logAll === "fulfilled" && log === "fulfilled") {
+    setPeoples(users.filter(item => item[`${all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].id}`]));
+    setUser(...users.filter((item) => item.companyid == auth_status));
+    setQuest(all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].DefAnswers);
 
       setLoad(true);
       setLoadQ(true);
@@ -208,11 +207,7 @@ const ResultV2 = () => {
   return (
     <>
       <div className="answers  relative bg-white">
-        <Link to={"/home"}>
-          <div className="absolute right-[30px] top-[20px] close_btn">
-            <IoCloseSharp />
-          </div>
-        </Link>
+ 
         <h1>Доминирующие цвета</h1>
         <div className=" mt-3">
           {Load && LoadQ

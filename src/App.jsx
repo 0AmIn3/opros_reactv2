@@ -23,16 +23,19 @@ function App() {
     <Routes>
       <Route path="/" element={<Register />} />
 
-      <Route path="/" element={<Layout />}>
-        <Route index path="/home" element={<Home />} />
-        <Route  path="/socialpoll/:id" element={<AnswersPage/>} />
-        <Route  path="/socialpollresult/:id" element={<ResultPage />} />
+      <Route path="/:copid" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/:copid/poll/:id" element={<AnswersPage />} />
+        <Route path="/:copid/result/:id" element={<ResultPage />} />
       </Route>
-      <Route path="/nedminRegister" element={<Admin />}/>
-      <Route path="/panel" element={<AdminPanel />} />
 
+      <Route path="/nedminRegister" element={<Admin />} />
+      <Route path="/panel" element={<AdminPanel />} />
     </Routes>
   );
 }
-
+{
+  /* <Route  path="/poll/:id" element={<AnswersPage/>} />
+        <Route  path="/pollresult/:id" element={<ResultPage />} /> */
+}
 export default App;
