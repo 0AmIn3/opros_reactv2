@@ -16,10 +16,9 @@ const AnswersV1 = () => {
   const [Load, setLoad] = useState(false);
   const id = useParams();
 
-  const answers = useSelector((state) => state.answers.data);
+
   const userKey = useSelector((state) => state.all.userKey);
   const users = useSelector((state) => state.all.data);
-  const log = useSelector((state) => state.answers.status);
   const questDef = [];
   const logAll = useSelector((state) => state.all.status);
   const auth_status = Cookies.get("userid");
@@ -27,14 +26,13 @@ const AnswersV1 = () => {
   const navigate = useNavigate();
   const [d, setd] = useState([...questDef]);
   const companyQw = users.filter(item => item.id === id.copid)[0].questions.filter((item) => item.id == id.id)[0].DefAnswers
-  const qw = answers.filter((item) => item.id == id.id);
   const [quest, setQuest] = useState(d);
 
 
 
   
   function loadal() {
-    if (log == "fulfilled") {
+    if (logAll == "fulfilled") {
       localStorage.setItem(`${id.copid}/${id.id}`, JSON.stringify(companyQw));
 
       setLoad(true);

@@ -15,6 +15,8 @@ import Admin from "./pages/Admin";
 import AdminPanel from "./pages/AdminPanel";
 import AnswersPage from "./pages/AnswersPage";
 import ResultPage from "./pages/ResultPage";
+import AdminChange from "./pages/AdminChange";
+import LayoutAdmin from "./Layout/LayoutAdmin";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -29,8 +31,11 @@ function App() {
         <Route path="/:copid/result/:id" element={<ResultPage />} />
       </Route>
 
-      <Route path="/nedminRegister" element={<Admin />} />
-      <Route path="/panel" element={<AdminPanel />} />
+      <Route path="/nedminRegister" element={<LayoutAdmin />}>
+        <Route index element={<Admin />} />
+        <Route path="panel" element={<AdminPanel />} />
+        <Route path="panel/:id" element={<AdminChange />} />
+      </Route>
     </Routes>
   );
 }

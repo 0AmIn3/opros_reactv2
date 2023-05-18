@@ -178,19 +178,23 @@ const ResultV3 = () => {
   const [Load, setLoad] = useState(false);
   const [LoadQ, setLoadQ] = useState(false);
   const id = useParams();
-  const answers = useSelector((state) => state.answers.data);
-  const log = useSelector((state) => state.answers.status);
-  const logAll = useSelector((state) => state.all.status);
-  // const qw = answers.filter((item) => item.resultid == id.id);
-  const [quest, setQuest] = useState(questDef);
+  const [answers, setanswers] = useState([]);
 
+  const log = useSelector((state) => state.users.status);
+  const logAll = useSelector((state) => state.all.status);
+  const [quest, setQuest] = useState(questDef);
+  let defe=[]
   function dwdwa() {
     const auth_status = Cookies.get("userid");
     if (logAll === "fulfilled" && log === "fulfilled") {
       setPeoples(users.filter(item => item[`${all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].id}`]));
       setUser(...users.filter((item) => item.companyid == auth_status));
       setQuest(all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].DefAnswers);
-  
+      setanswers(
+        all
+          .filter((item) => item.id === id.copid)[0]
+          .questions.filter((item) => item.resultid == id.id)[0].id
+      );
         setLoad(true);
         setLoadQ(true);
       }
@@ -205,7 +209,7 @@ const ResultV3 = () => {
         </Link> */}
         <h1>Доминирующие цвета</h1>
         <div className=" mt-3">
-          {/* {Load && LoadQ
+          {Load && LoadQ
             ? colors.map((item, idx) => (
                 <BarV2
                   item={item}
@@ -215,7 +219,7 @@ const ResultV3 = () => {
                   color={colors[idx]}
                 />
               ))
-            : dwdwa()} */}
+            : dwdwa()}
         </div>
 
         {Load && LoadQ
@@ -225,10 +229,12 @@ const ResultV3 = () => {
                 peoples={peoples}
                 setPeoples={setPeoples}
                 nowq={idx}
-                opr={answers.filter((item) => item.resultid == id.id)[0].id}
+                opr={answers}
+                defe={defe}
                 key={idx}
                 setObjTot={setObjTot}
                 setOb={setOb}
+                type={'type3'}
               />
             ))
           : dwdwa()}

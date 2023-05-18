@@ -12,194 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 const AnswersV3 = () => {
   const [count, setCount] = useState(0);
   const [nowq, setNowq] = useState(0);
-  const questDef = [
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-  ];
+
   const userKey = useSelector((state) => state.all.userKey);
   const users = useSelector((state) => state.all.data);
   const navigate = useNavigate();
@@ -208,17 +21,14 @@ const AnswersV3 = () => {
   const [Load, setLoad] = useState(false);
   const [LoadQ, setLoadQ] = useState(false);
   const id = useParams();
-  const answers = useSelector((state) => state.answers.data);
-  const [d, setd] = useState([...questDef]);
-  const log = useSelector((state) => state.answers.status);
+  const [d, setd] = useState([]);
   const logAll = useSelector((state) => state.all.status);
-  const qw = answers.filter((item) => item.id == id.id);
   const companyQw = users.filter(item => item.id === id.copid)[0].questions.filter((item) => item.id == id.id)[0].DefAnswers
 
   const [quest, setQuest] = useState(d);
 
   function loadal(){
-    if (log == "fulfilled") {
+    if (logAll == "fulfilled") {
       localStorage.setItem(`${id.copid}/${id.id}`, JSON.stringify(companyQw));
 
       setLoad(true);

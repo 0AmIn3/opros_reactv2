@@ -12,12 +12,10 @@ const ResultPage = () => {
   const id = useParams();
   const all = useSelector((state) => state.all.data);
   const users = useSelector((state) => state.users.data)
-  const answers = useSelector((state) => state.answers.data);
-  const log = useSelector((state) => state.answers.status);
   const logAll = useSelector((state) => state.all.status);
   const dispatch = useDispatch();
   function reload() {
-    if (logAll == "fulfilled" && log == "fulfilled") {
+    if (logAll == "fulfilled" ) {
       setLoad(true);
     }
   }

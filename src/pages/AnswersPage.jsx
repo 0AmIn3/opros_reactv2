@@ -8,17 +8,17 @@ import AnswersV3 from "./AnswersV3";
 const AnswersPage = () => {
   const [type, settype] = useState("");
   const id = useParams();
-  const answers = useSelector((state) => state.answers.data);
-  const log = useSelector((state) => state.answers.status);
+  const all = useSelector((state) => state.all.data);
+
   const logAll = useSelector((state) => state.all.status);
   const [Load, setLoad] = useState(false);
   function reload() {
-    if (logAll == "fulfilled" && log == "fulfilled") {
+    if (logAll == "fulfilled") {
       setLoad(true);
     }
   }
   function Type() {
-    let typ = answers.filter(item=> item.id == id.id)[0].type;
+    let typ = all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.id == id.id)[0].type;
     if (typ === "type1") {
       return <AnswersV1 />;
     } else if (typ === "type2") {

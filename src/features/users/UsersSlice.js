@@ -38,26 +38,7 @@ export const UsersSlice = createSlice({
       .addCase(postUserAPI.rejected, (state, action) => {
         state.status = "rejected";
       })
-      // .addCase(pathAnswersAPI.pending, (state, action) => {
-      //   state.status = "loading";
-      // })
-      // .addCase(pathAnswersAPI.fulfilled, (state, action) => {
-      //   state.data = action.payload;
-      //   state.status = "fulfilled";
-      // })
-      // .addCase(pathAnswersAPI.rejected, (state, action) => {
-      //   state.status = "rejected";
-      // })
-      // .addCase(deleteAnswersAPI.pending, (state, action) => {
-      //   state.status = "loading";
-      // })
-      // .addCase(deleteAnswersAPI.fulfilled, (state, action) => {
-      //   state.data = action.payload;
-      //   state.status = "fulfilled";
-      // })
-      // .addCase(deleteAnswersAPI.rejected, (state, action) => {
-      //   state.status = "rejected";
-      // });
+ 
   },
 });
 

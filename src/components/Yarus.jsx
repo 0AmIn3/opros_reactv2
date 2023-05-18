@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Star from "./Star";
-import DiogramUp from "./DiogramUp";
 import { useDispatch, useSelector } from "react-redux";
-import { changeOpros } from "../features/CompanySlice";
 
 const Yarus = ({ quest, nowq, setQuest , opr }) => {
 
@@ -21,9 +19,10 @@ const Yarus = ({ quest, nowq, setQuest , opr }) => {
         4: 0,
         5: 0,
       };
-
+      
       if(peoples > 0){
         for (let i of questUser) {
+          
           for (let a of i[opr][nowq].answers) {
             if (a.ansucc) {
               obj[a.title]++;

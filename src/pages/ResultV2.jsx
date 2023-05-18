@@ -13,7 +13,7 @@ const ResultV2 = () => {
   const [user, setUser] = useState();
   const [newObjTot, setObjTot] = useState([]);
   const myid = Cookies.get("userid");
-  const users = useSelector((state) => state.users.data)
+  const users = useSelector((state) => state.users.data);
 
   const [colors, setColors] = useState([
     "#7f077f",
@@ -21,193 +21,53 @@ const ResultV2 = () => {
     "royalblue",
     "#9c9c01",
     "#07b55e",
-    "black",
+    // "#07b55e",
   ]);
-  const questDef = [
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?1",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?2",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?3",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?4",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-    {
-      title:
-        "Могу ли я остановить принятие любого решения, если оцениваю его небезопасным для себя?5",
-      succ: false,
-      answers: [
-        {
-          title: "0",
-          ansucc: false,
-        },
-        {
-          title: "1",
-          ansucc: false,
-        },
-        {
-          title: "2",
-          ansucc: false,
-        },
-        {
-          title: "3",
-          ansucc: false,
-        },
-        {
-          title: "4",
-          ansucc: false,
-        },
-        {
-          title: "5",
-          ansucc: false,
-        },
-      ],
-    },
-  ];
 
   const [Load, setLoad] = useState(false);
   const [LoadQ, setLoadQ] = useState(false);
   const id = useParams();
-  const answers = useSelector((state) => state.answers.data);
-  const log = useSelector((state) => state.answers.status);
+  const [answers, setanswers] = useState([]);
+  const log = useSelector((state) => state.users.status);
   const logAll = useSelector((state) => state.all.status);
-  const qw = answers.filter((item) => item.resultid == id.id);
-  const [quest, setQuest] = useState(questDef);
+  const [quest, setQuest] = useState([]);
+
+  let defe = [];
 
   function dwdwa() {
     const auth_status = Cookies.get("userid");
     if (logAll === "fulfilled" && log === "fulfilled") {
-    setPeoples(users.filter(item => item[`${all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].id}`]));
-    setUser(...users.filter((item) => item.companyid == auth_status));
-    setQuest(all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].DefAnswers);
-
+      setPeoples(
+        users.filter(
+          (item) =>
+            item[
+              `${
+                all
+                  .filter((item) => item.id === id.copid)[0]
+                  .questions.filter((item) => item.resultid == id.id)[0].id
+              }`
+            ]
+        )
+      );
+      setUser(...users.filter((item) => item.companyid == auth_status));
+      setQuest(
+        all
+          .filter((item) => item.id === id.copid)[0]
+          .questions.filter((item) => item.resultid == id.id)[0].DefAnswers
+      );
+      setanswers(
+        all
+          .filter((item) => item.id === id.copid)[0]
+          .questions.filter((item) => item.resultid == id.id)[0].id
+      );
       setLoad(true);
       setLoadQ(true);
     }
   }
 
-
-
   return (
     <>
       <div className="answers  relative bg-white">
- 
         <h1>Доминирующие цвета</h1>
         <div className=" mt-3">
           {Load && LoadQ
@@ -218,6 +78,7 @@ const ResultV2 = () => {
                   key={idx}
                   idx={idx}
                   color={colors[idx]}
+                  type={"type2"}
                 />
               ))
             : dwdwa()}
@@ -230,8 +91,10 @@ const ResultV2 = () => {
                 peoples={peoples}
                 setPeoples={setPeoples}
                 nowq={idx}
-                opr={answers.filter((item) => item.resultid == id.id)[0].id}
+                opr={answers}
                 key={idx}
+                defe={defe}
+                newObjTot={newObjTot}
                 setObjTot={setObjTot}
               />
             ))

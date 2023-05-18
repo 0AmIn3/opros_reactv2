@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 
-const AnswersLinks = ({ handleClick, idx, item }) => {
+const AnswersLinks = ({ idx, item }) => {
   const href = window.location.href;
   const { copid } = useParams();
   return (
@@ -9,7 +9,7 @@ const AnswersLinks = ({ handleClick, idx, item }) => {
       <button
         className="w-[210px] p-3 bg-[#C7FFAC] rounded-md font-medium outline-none   button"
         data-btn={idx}
-        onClick={(e) => handleClick(e.target)}
+       
       >
         <Link to={`/${copid}/poll/${item.id}`}>{item.name}</Link>
       </button>

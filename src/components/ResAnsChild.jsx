@@ -11,7 +11,6 @@ let dead = Howlengh()
 
   function Howlengh(){
     let al = 0;
-    // console.log();
     for (let user of peoples) {
      
       for (let ans of user[idkey][id].answers) {

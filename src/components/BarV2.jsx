@@ -1,16 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-const BarV2 = ({ color , item , newOb , idx }) => {
+const BarV2 = ({ color, item, newOb, idx }) => {
 
 
-  let line = Math.round(newOb[idx].map((number) => ((number / newOb.flat(2).reduce((a,b) => a + b)) * 100 )).reduce((a,b) => a + b))
+  const id = useParams();
+
+  const users = useSelector((state) => state.users.data).filter(
+    (item) => item.companyid === id.copid && item[id.id.slice(1)]
+  );
+  const [line, setline] = useState(0);
+
+  function setLinee() {
+    if (newOb.length > 0) {
+      
+      for(let i of newOb[idx]){
+        setline(line +
+          Object.values(i).flat(1)[0]
+        );
+      }
+    
+    }
+  }
+
   return (
     <div className="h-[24px] flex w-full">
-      <div
-        style={{ width: `${line === 0 ? line + 1 : line}%`, backgroundColor: `${color}` }}
-        className="flex w-full h-full"
-      ></div>
-      <p>{line }%</p>
+      {line > 0 ? 
+        <>
+          <div
+            style={{
+              width: `${line === 0 ? line + 1 : line}%`,
+              backgroundColor: `${color}`,
+            }}
+            className="flex w-full h-full"
+          ></div>
+          <p>{line}%</p>
+        </>
+      : 
+        setLinee()
+      }
     </div>
   );
 };

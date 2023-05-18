@@ -663,3 +663,28 @@ label {
     display: none;
   }
 }
+
+
+.modalAdmin{
+  padding: 20px;
+  width: 100%;
+  height: fit-content;
+  position: absolute;
+  background-color: white;
+  border-radius: 18px;
+  z-index: 9999;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.3s ease;
+}
+.modalAdminbg{
+  
+  background-color: #00000055;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+}
