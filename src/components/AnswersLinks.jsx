@@ -11,7 +11,8 @@ const AnswersLinks = ({ idx, item }) => {
         data-btn={idx}
        
       >
-        <Link to={`/${copid}/poll/${item.id}`}>{item.name}</Link>
+        {item.name}
+        {/* <Link to={`/${copid}/poll/${item.id}`}></Link> */}
       </button>
       <div className="links" style={{ display: "flex" }}>
         <h3>{` ${href.split("/")[0]}://${href.split("/")[2]}/${copid}/poll/${item.id}`}</h3>

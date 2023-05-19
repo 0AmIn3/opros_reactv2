@@ -134,22 +134,24 @@ const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
           </button>
           {MainArr.map((item, idx) => (
             <div className="w-full" key={idx}>
-              <span>{idx + 1} </span>
+            <div className="w-[80%] flex gap-2 p-5 bg-[#81dd9084] rounded-md">
+            <span>{idx + 1} </span>
               <input
                 type="text"
-                className="w-[80%]"
+                className="w-[100%] bg-transparent"
                 defaultValue={item.title}
                 onInput={(e) => ChangeQuestions(e.target.value, idx)}
               />
+            </div>
 
-              <div className="ml-[20px] flex flex-col gap-3">
+              <div className="pl-[50px] w-full flex flex-col gap-3">
                 {type
                   ? item.answers.map((i) => (
                       <div key={item.answers.indexOf(i)}>
                         <span>{item.answers.indexOf(i) + 1}. </span>
                         <input
                           type="text"
-                          className="w-[80%]"
+                          className="w-[90%]"
                           defaultValue={i.title}
                           onInput={(e) =>
                             ChangeAnswers(
@@ -174,9 +176,12 @@ const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
                     Добавить ответ
                   </button>
                 ) : null}
+          
             </div>
           ))}
         </div>
+        <br />
+        <hr />
         <button
         className="p-3 bg-[#acffc8] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
           onClick={() => {

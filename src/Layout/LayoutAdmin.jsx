@@ -11,7 +11,6 @@ const LayoutAdmin = () => {
 	const dispatch = useDispatch();
   const navigate = useNavigate()
 
-
   useEffect(()=>{
     if(!all.length) {
 			dispatch(getCompanyAPI())

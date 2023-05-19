@@ -692,6 +692,9 @@ function check(){
       <div className="bgall"></div>
       <div className="bgopa"></div>
       <div className="reg_box">
+
+    
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Вход</h1>
           <input
@@ -750,6 +753,7 @@ function check(){
                 checkbox_span.style.color = "#ff0000";
                 checkbox_span.style.opacity = 1;
               }
+
             }}
           >
             Войти

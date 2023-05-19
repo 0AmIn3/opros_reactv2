@@ -43,7 +43,7 @@ const Admin = () => {
   return (
     <div>
       <div>
-        <div className="bg-[#ffffff] flex rounded-[30px] p-5 reg_centr">
+        <div className="bg-[#ffffff] flex rounded-[30px] flex-col  items-center justify-center p-5 reg_centr">
           <div className="w-[50%] mt-[40px] px-10 regch_centr">
             <h1 className="text-[#252733] text-[27px] font-bold text-center">
               Вход в админ панель
