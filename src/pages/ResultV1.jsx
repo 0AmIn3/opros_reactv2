@@ -320,8 +320,8 @@ const ResultV1 = () => {
   const [quest, setQuest] = useState([]);
 
   function getAnincArr() {
-    const auth_status = Cookies.get("userid");
-    if (logAll === "fulfilled" && log === "fulfilled") {
+    const auth_status = id.copid;
+    if (logAll === "fulfilled" && log === "fulfilled" ) {
       setPeoples(
         users.filter(
           (item) =>
@@ -387,16 +387,9 @@ const ResultV1 = () => {
   }
 
   useEffect(() => {}, []);
-
   return (
     <>
       <div className="answers pt-[100px] relative bg-white">
-        {/* <Link to={"/" + myid}>
-          <div className="absolute right-[30px] top-[20px] close_btn">
-            <IoCloseSharp />
-          </div>
-        </Link> */}
-
         <div className="ind_cel">
           <p>
             Индекс целостности ={" "}

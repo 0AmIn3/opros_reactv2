@@ -14,7 +14,7 @@ const Home = () => {
   }
   const all = useSelector((state) => state.all.data);
   const logAll = useSelector((state) => state.all.status);
-
+  const [Company, setCompany] = useState([]);
   const [questionsMask, setquestionsMask] = useState([]);
   // const [questions, setquestions] = useState(IoReload());
   function IoReload() {
@@ -22,11 +22,11 @@ const Home = () => {
       setquestionsMask([
         ...all.filter((item) => item.id == auth_status)[0].questions,
       ]);
+      setCompany(all.filter((item) => item.id == auth_status)[0]);
     }
   }
 
-  useEffect(() => {
-  });
+  useEffect(() => {});
 
   // const handleClick = (btn) => {
   //   const links = document.querySelectorAll(".links");
@@ -41,16 +41,14 @@ const Home = () => {
         </div>
       </Link>
 
-      <SendEmail 
-      arr={questionsMask}/>
-
+      {questionsMask.length > 0 ? (
+        <SendEmail arr={questionsMask} item={Company} />
+      ) : (
+        IoReload()
+      )}
       {questionsMask.length > 0
         ? questionsMask.map((item, idx) => (
-            <AnswersLinks
-              key={idx}
-              idx={idx}
-              item={item}
-            />
+            <AnswersLinks key={idx} idx={idx} item={item} />
           ))
         : IoReload()}
     </div>

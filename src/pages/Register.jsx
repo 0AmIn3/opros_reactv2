@@ -32,7 +32,6 @@ const Register = () => {
     let cop = [...all];
     let aa = cop.filter((item) => item.email === data.email);
     if (aa.length > 0) {
-      // console.log(all.filter((item) => item.id == aa[0].id)[0].questions,);
 
 
       Cookies.set("userid", `${aa[0].id}`, {
