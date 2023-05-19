@@ -19,13 +19,12 @@ export const SendEmail = ({ arr, item }) => {
       .then(
         (result) => {
           result.text;
+          localStorage.setItem(`${item.email}`, "sended");
         },
         (error) => {
           error.text;
         }
       );
-
-    localStorage.setItem(`${item.email}`, "sended");
   };
 
   useEffect(() => {
