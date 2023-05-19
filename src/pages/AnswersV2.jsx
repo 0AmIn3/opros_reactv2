@@ -16,6 +16,18 @@ const AnswersV2 = () => {
   const userKey = useSelector((state) => state.all.userKey);
   const users = useSelector((state) => state.all.data);
   const id = useParams();
+  const [passed, setPassed] = useState(false);
+
+  useEffect(()=>{
+    if(localStorage.getItem(`${id.id}`) === 'passed'){
+      setPassed(true)
+    }else{
+      setPassed(false)
+  
+    }
+  })
+
+
   const questDef = [
     {
       title:
@@ -175,12 +187,14 @@ const AnswersV2 = () => {
   ];
   const logAll = useSelector((state) => state.all.status);
   const [d, setd] = useState([...questDef]);
-  const companyQw = users.filter(item => item.id === id.copid)[0].questions.filter((item) => item.id == id.id)[0].DefAnswers
-
+  const companyQw = users
+    .filter((item) => item.id === id.copid)[0]
+    .questions.filter((item) => item.id == id.id)[0].DefAnswers;
   const [quest, setQuest] = useState(d);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  function loadal(){
+
+  function loadal() {
     if (logAll == "fulfilled") {
       localStorage.setItem(`${id.copid}/${id.id}`, JSON.stringify(companyQw));
 
@@ -194,60 +208,62 @@ const AnswersV2 = () => {
 
   return (
     <>
-      <div className="answers relative pt-[100px] bg-white">
-        {/* <Link to={"/home"}>
-          <div className="absolute right-[30px] top-[20px] close_btn">
-            <IoCloseSharp />
-          </div>
-        </Link> */}
-        <div className="q_now">
-          {/* <span className=" bg-[#C7FFAC]">{nowq + 1} вопрос </span>из
-          {quest.length} */}
+      {passed ? (
+        <div className="answers relative pt-[100px] flex items-center justify-center bg-white">
+          <h1 className=" text-4xl">Опрос пройден.</h1>
         </div>
+      ) : (
+        <div className="answers relative pt-[100px] bg-white">
+          {Load ? (
+            <Yarus
+              setQuest={setQuest}
+              opr={id.id}
+              quest={quest}
+              nowq={nowq}
+              key={nowq}
+            />
+          ) : (
+            loadal()
+          )}
 
-        {Load  ?   <Yarus
-          setQuest={setQuest}
-          opr={id.id}
-          quest={quest}
-          nowq={nowq}
-          key={nowq}
-        /> : loadal()}
+          <button
+            className="next_btn flex items-center"
+            type="submit"
+            onClick={() => {
+              const er_btn = document.querySelector(".er_q");
+              if (
+                quest[nowq].answers.filter((item) => item?.ansucc === true)
+                  .length > 0
+              ) {
+                er_btn.style.display = "none";
 
-        <button
-          className="next_btn flex items-center"
-          type="submit"
-          onClick={() => {
-            const er_btn = document.querySelector(".er_q");
-            if (
-              quest[nowq].answers.filter((item) => item?.ansucc === true)
-                .length > 0
-            ) {
-              er_btn.style.display = "none";
-
-              if (nowq <= quest.length - 1) {
-                if (nowq < quest.length - 1) {
-                  setNowq(nowq + 1);
-                } else if (nowq === quest.length - 1) {
-                  let ob = {};
-                  ob[`${id.id}`] = quest;
-                  dispatch(
-                    postUserAPI({
-                      companyid: auth_status,
-                      id: uuidv4(),
-                      ...ob
-                    })
-                  );
+                if (nowq <= quest.length - 1) {
+                  if (nowq < quest.length - 1) {
+                    setNowq(nowq + 1);
+                  } else if (nowq === quest.length - 1) {
+                    let ob = {};
+                    ob[`${id.id}`] = quest;
+                    dispatch(
+                      postUserAPI({
+                        companyid: auth_status,
+                        id: uuidv4(),
+                        ...ob,
+                      })
+                    );
+                    localStorage.setItem(`${id.id}`, "passed");
+                    setPassed(true)
+                  }
                 }
+              } else {
+                er_btn.style.display = "block";
               }
-            } else {
-              er_btn.style.display = "block";
-            }
-          }}
-        >
-          <p>Следующий вопрос</p>
-          <SlArrowRight />
-        </button>
-      </div>
+            }}
+          >
+            <p>Следующий вопрос</p>
+            <SlArrowRight />
+          </button>
+        </div>
+      )}
     </>
   );
 };

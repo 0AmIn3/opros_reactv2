@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 const AnswersLinks = ({ idx, item }) => {
   const href = window.location.href;
+  // console.log(item);
   const { copid } = useParams();
   return (
     <div className="borders">

@@ -16,6 +16,7 @@ const DiogramUp = ({
   defe,
   type
 }) => {
+  // const logAll = useSelector((state) => state.users.status);
   const id = useParams();
 
   const all = useSelector((state) => state.all.data)
@@ -81,13 +82,13 @@ const DiogramUp = ({
       }
     }
 
-    if(type === 'type2'){
+    if(type == 'type2'){
       if (defe.length <= 4) {
         defe.push(objtot);
         setObjTot([...defe]);
       }
     }
-    if(type === 'type3'){
+    if(type == 'type3'){
       if (defe.length <= 5) {
         defe.push(objtot);
         setOb([[...Object.values(defe).slice(0,3)] ,[...Object.values(defe).slice(3)]])
@@ -100,7 +101,8 @@ const DiogramUp = ({
   }
 
   useEffect(() => {
-    changes();
+      changes();
+    
   }, []);
 
   return (

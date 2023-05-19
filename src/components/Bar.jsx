@@ -11,6 +11,7 @@ const Bar = ({ color, item, newObjTot, idx }) => {
   const [line, setline] = useState(0);
 
   function setLine() {
+    // console.log(newObjTot);
     if (newObjTot.length > 0) {
       setline(
         Object.values(newObjTot[idx])

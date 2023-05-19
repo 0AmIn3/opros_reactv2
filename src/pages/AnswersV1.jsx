@@ -15,7 +15,16 @@ const AnswersV1 = () => {
   const [nowq, setNowq] = useState(0);
   const [Load, setLoad] = useState(false);
   const id = useParams();
+  const [passed, setPassed] = useState(false);
 
+  useEffect(()=>{
+    if(localStorage.getItem(`${id.id}`) === 'passed'){
+      setPassed(true)
+    }else{
+      setPassed(false)
+  
+    }
+  })
 
   const userKey = useSelector((state) => state.all.userKey);
   const users = useSelector((state) => state.all.data);
@@ -46,65 +55,69 @@ const AnswersV1 = () => {
 
   return (
     <>
-      <>
-        <div className="answers relative pt-[100px] bg-white">
-          {/* <Link to={"/home"}>
-            <div className="absolute right-[30px] top-[20px] close_btn">
-              <IoCloseSharp />
-            </div>
-          </Link> */}
-
-          {Load ? (
-            <Yarus_v2
-              quest={quest}
-              nowq={nowq}
-              setQuest={setQuest}
-              key={nowq}
-            />
-          ) : (
-            loadal()
-          )}
-
-          <button
-            className="next_btn flex items-center"
-            type="submit"
-            onClick={() => {
-              const er_btn = document.querySelector(".er_q");
-              if (
-                quest[nowq].answers.filter((item) => item?.ansucc === true)
-                  .length > 0
-              ) {
-                er_btn.style.display = "none";
-
-                if (nowq <= quest.length - 1) {
-
-                  if (nowq < quest.length - 1) {
-                    setNowq(nowq + 1);
-                  } else if (nowq === quest.length - 1) {
-
-                    let ob = {};
-                    ob[`${id.id}`] = quest;
-                    dispatch(
-                      postUserAPI({
-                        companyid: auth_status,
-                        
-                        id: uuidv4(),
-                        ...ob
-                      })
-                    );
-              
-                  }
-                }
-              } else {
-                er_btn.style.display = "block";
-              }
-            }}
-          >
-            <p>Следующий вопрос</p>
-            <SlArrowRight />
-          </button>
+    {
+      passed ? (
+        <div className="answers relative pt-[100px] flex items-center justify-center bg-white">
+          <h1 className=" text-4xl">Опрос пройден.</h1>
         </div>
-      </>
+      ) : (
+        <div className="answers relative pt-[100px] bg-white">
+        {Load ? (
+          <Yarus_v2
+            quest={quest}
+            nowq={nowq}
+            setQuest={setQuest}
+            key={nowq}
+          />
+        ) : (
+          loadal()
+        )}
+
+        <button
+          className="next_btn flex items-center"
+          type="submit"
+          onClick={() => {
+            const er_btn = document.querySelector(".er_q");
+            if (
+              quest[nowq].answers.filter((item) => item?.ansucc === true)
+                .length > 0
+            ) {
+              er_btn.style.display = "none";
+
+              if (nowq <= quest.length - 1) {
+
+                if (nowq < quest.length - 1) {
+                  setNowq(nowq + 1);
+                } else if (nowq === quest.length - 1) {
+
+                  let ob = {};
+                  ob[`${id.id}`] = quest;
+                  dispatch(
+                    postUserAPI({
+                      companyid: auth_status,
+                      
+                      id: uuidv4(),
+                      ...ob
+                    })
+                  );
+                  localStorage.setItem(`${id.id}`, "passed");
+                    setPassed(true)
+                }
+              }
+            } else {
+              er_btn.style.display = "block";
+            }
+          }}
+        >
+          <p>Следующий вопрос</p>
+          <SlArrowRight />
+        </button>
+      </div>
+      )
+    }
+
+
+       
     </>
   );
 };

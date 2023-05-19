@@ -4,7 +4,6 @@ import ResAnsChild from './ResAnsChild';
 import { useParams } from 'react-router-dom';
 
 const ResAns = ({ qus, all, index , idkey }) => {
-
     const cop = useParams()
     const peoples = all.filter(item => item.companyid == cop.copid )
 

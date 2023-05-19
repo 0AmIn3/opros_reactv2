@@ -34,7 +34,7 @@ const ResultV2 = () => {
 
   let defe = [];
 
-  function dwdwa() {
+  function getAnincArr() {
     const auth_status = Cookies.get("userid");
     if (logAll === "fulfilled" && log === "fulfilled") {
       setPeoples(
@@ -81,7 +81,7 @@ const ResultV2 = () => {
                   type={"type2"}
                 />
               ))
-            : dwdwa()}
+            : getAnincArr()}
         </div>
 
         {Load && LoadQ
@@ -96,9 +96,10 @@ const ResultV2 = () => {
                 defe={defe}
                 newObjTot={newObjTot}
                 setObjTot={setObjTot}
+                type={'type2'}  
               />
             ))
-          : dwdwa()}
+          : getAnincArr()}
         {}
       </div>
     </>

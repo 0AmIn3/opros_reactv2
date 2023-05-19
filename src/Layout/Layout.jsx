@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getCompanyAPI } from "../features/thunk";
+import { getCompanyAPI, getUserAPI } from "../features/thunk";
 import Cookies from "js-cookie";
 import axios from "axios";
 
@@ -11,7 +11,13 @@ const Layout = () => {
 	const dispatch = useDispatch();
   const navigate = useNavigate()
   const auth_status = Cookies.get('userid')
+  const users = useSelector((state) => state.users.data)
+  useEffect(()=>{
+    if(!users.length) {
+			dispatch(getUserAPI())
+		}
 
+    })
 
   useEffect(()=>{
     if(!all.length) {

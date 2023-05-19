@@ -184,7 +184,7 @@ const ResultV3 = () => {
   const logAll = useSelector((state) => state.all.status);
   const [quest, setQuest] = useState(questDef);
   let defe=[]
-  function dwdwa() {
+  function getAnincArr() {
     const auth_status = Cookies.get("userid");
     if (logAll === "fulfilled" && log === "fulfilled") {
       setPeoples(users.filter(item => item[`${all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].id}`]));
@@ -219,7 +219,7 @@ const ResultV3 = () => {
                   color={colors[idx]}
                 />
               ))
-            : dwdwa()}
+            : getAnincArr()}
         </div>
 
         {Load && LoadQ
@@ -237,7 +237,7 @@ const ResultV3 = () => {
                 type={'type3'}
               />
             ))
-          : dwdwa()}
+          : getAnincArr()}
         {}
       </div>
     </>

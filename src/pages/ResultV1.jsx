@@ -313,14 +313,15 @@ const ResultV1 = () => {
   const [Load, setLoad] = useState(false);
   const [LoadQ, setLoadQ] = useState(false);
   const id = useParams();
-
+  
   const [answers, setanswers] = useState([]);
+  const log = useSelector((state) => state.users.status);
   const logAll = useSelector((state) => state.all.status);
   const [quest, setQuest] = useState([]);
 
-  function dwdwa() {
+  function getAnincArr() {
     const auth_status = Cookies.get("userid");
-    if (logAll === "fulfilled") {
+    if (logAll === "fulfilled" && log === "fulfilled") {
       setPeoples(
         users.filter(
           (item) =>
@@ -416,7 +417,7 @@ const ResultV1 = () => {
                     )
                   )
                 )
-              : dwdwa()}
+              : getAnincArr()}
             %
           </p>
         </div>
@@ -430,7 +431,7 @@ const ResultV1 = () => {
                 index={ind}
               />
             ))
-          : dwdwa()}
+          : getAnincArr()}
       </div>
     </>
   );
