@@ -5,6 +5,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AnswersLinks from "../components/AnswersLinks";
+import SendEmail from "../components/SendEmail";
 
 const Home = () => {
   const auth_status = Cookies.get("userid");
@@ -40,7 +41,8 @@ const Home = () => {
         </div>
       </Link>
 
-
+      <SendEmail 
+      arr={questionsMask}/>
 
       {questionsMask.length > 0
         ? questionsMask.map((item, idx) => (
