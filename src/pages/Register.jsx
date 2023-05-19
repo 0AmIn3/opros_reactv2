@@ -695,7 +695,7 @@ function check(){
       <div className="bgall"></div>
       <div className="bgopa"></div>
       <div className="reg_box">
-
+      
     
 
         <form onSubmit={handleSubmit(onSubmit)}>
