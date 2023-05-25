@@ -15,13 +15,17 @@ const AdminChange = () => {
   const [Modal, setModal] = useState(false);
   const [type, setType] = useState(false);
   const [QuestIdx, setQuestIdx] = useState(0);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get("https://tealband-4afc1-default-rtdb.firebaseio.com/admin.json")
       .then((res) => {
         let user = res.data[0];
-        if (user.email + user.password !== Cookies.get("key") || !Cookies.get("key") || Cookies.get("key") == '') {
+        if (
+          user.email + user.password !== Cookies.get("key") ||
+          !Cookies.get("key") ||
+          Cookies.get("key") == ""
+        ) {
           navigate("/");
         }
       });
@@ -35,7 +39,6 @@ const AdminChange = () => {
     });
     save[idx].style.display = "block";
   }
-
   return (
     <div className="answers pt-[100px] gap-3  bg-white relative">
       <Link to={"/nedminRegister/panel"}>

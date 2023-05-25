@@ -54,22 +54,20 @@ export const SendEmail = ({ arr, item }) => {
       />
       <br />
       {arr.length > 0
-        ? arr.map((item, idx) => (
-            <>
-              {" "}
-              <input
-                type="text"
-                name="links"
-                id="links"
-                key={idx}
-                defaultValue={`Ссылка на опрос ${idx + 1} : ${
-                  href.split("/")[0]
-                }://${href.split("/")[2]}/${copid}/result/p${item.id} `}
-              />{" "}
-              <br />
-            </>
-          ))
-        : null}
+          ? arr.map((item, idx) => (
+              <div key={idx}>
+                <input
+                  type="text"
+                  name="links"
+                  id="links"
+                  defaultValue={`Ссылка на опрос ${idx + 1} : ${
+                    href.split("/")[0]
+                  }://${href.split("/")[2]}/${copid}/result/p${item.id} `}
+                />
+                <br />
+              </div>
+            ))
+          : null}
       <br />
       <label>reply_to</label>
       <br />

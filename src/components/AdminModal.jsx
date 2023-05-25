@@ -8,6 +8,7 @@ const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
   const allKey = useSelector((state) => state.all.userKey);
   const all = useSelector((state) => state.all.data);
   const logAll = useSelector((state) => state.all.status);
+  const log = useSelector((state) => state.users.status);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function getKey() {
@@ -210,8 +211,12 @@ const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
                 },
               })
             );
-            if (logAll === "fulfilled") {
-              window.location.href = "/nedminRegister/panel";
+            if (logAll === "fulfilled" ) {
+
+            
+              setTimeout(()=>{
+                window.location.href = "/nedminRegister/panel";
+              } , 300)
             }
           }}
         >
