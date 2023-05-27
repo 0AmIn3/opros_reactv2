@@ -50,10 +50,45 @@
   margin: 0 auto;
   padding: 55px 0;
   border-radius: 20px;
-  box-shadow: 0px 225px 63px rgba(0, 0, 0, 0.01), 0px 144px 57px rgba(0, 0, 0, 0.05), 0px 81px 49px rgba(0, 0, 0, 0.18),
-    0px 36px 36px rgba(0, 0, 0, 0.31), 0px 9px 20px rgba(0, 0, 0, 0.36), 0px 0px 0px rgba(0, 0, 0, 0.36);
+  box-shadow: 0px 225px 63px rgba(0, 0, 0, 0.01),
+    0px 144px 57px rgba(0, 0, 0, 0.05), 0px 81px 49px rgba(0, 0, 0, 0.18),
+    0px 36px 36px rgba(0, 0, 0, 0.31), 0px 9px 20px rgba(0, 0, 0, 0.36),
+    0px 0px 0px rgba(0, 0, 0, 0.36);
 }
-
+.modalHomeBg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #030000;
+  opacity: 0.3;
+  z-index: 7;
+}
+.modalHome {
+  width: 50%;
+  border-radius: 20px;
+  z-index: 8;
+  box-shadow: 0px 225px 63px rgba(0, 0, 0, 0.01),
+    0px 144px 57px rgba(0, 0, 0, 0.05), 0px 81px 49px rgba(0, 0, 0, 0.18),
+    0px 36px 36px rgba(0, 0, 0, 0.31), 0px 9px 20px rgba(0, 0, 0, 0.36),
+    0px 0px 0px rgba(0, 0, 0, 0.36);
+}
+@media only screen and (max-width: 768px) {
+  .modalHome {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 677px) {
+  .modalHome {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .modalHome {
+    width: 90%;
+  }
+}
 .links {
   display: flex;
   justify-content: space-between;
@@ -190,8 +225,10 @@ label {
   height: 375px;
   border-radius: 20px;
   background-color: white;
-  box-shadow: 0px 225px 63px rgba(0, 0, 0, 0.01), 0px 144px 57px rgba(0, 0, 0, 0.05), 0px 81px 49px rgba(0, 0, 0, 0.18),
-    0px 36px 36px rgba(0, 0, 0, 0.31), 0px 9px 20px rgba(0, 0, 0, 0.36), 0px 0px 0px rgba(0, 0, 0, 0.36);
+  box-shadow: 0px 225px 63px rgba(0, 0, 0, 0.01),
+    0px 144px 57px rgba(0, 0, 0, 0.05), 0px 81px 49px rgba(0, 0, 0, 0.18),
+    0px 36px 36px rgba(0, 0, 0, 0.31), 0px 9px 20px rgba(0, 0, 0, 0.36),
+    0px 0px 0px rgba(0, 0, 0, 0.36);
   position: absolute;
   left: calc(50% - 226.5px + 0.5px);
   top: calc(50% - 187.5px + 0.5px);
@@ -549,7 +586,7 @@ label {
       width: 100%;
       text-align: center;
       font-size: 16px;
-    line-height: 1.3rem;
+      line-height: 1.3rem;
     }
     p {
       text-align: center;
@@ -559,9 +596,7 @@ label {
   .star_prot {
     font-size: 11px;
   }
-
 }
-
 
 .reg_centr {
   width: 85%;
@@ -569,7 +604,6 @@ label {
   display: flex;
   justify-content: center;
 }
-
 
 .ansea {
   width: 100%;
@@ -581,8 +615,6 @@ label {
   max-width: 500px;
   margin-top: 100px;
 }
-
-
 
 @media (max-width: 900px) {
   .answers {
@@ -606,7 +638,6 @@ label {
     justify-content: center;
   }
 }
-
 
 .modal {
   position: fixed;
@@ -641,7 +672,6 @@ label {
   background-color: rgba(0, 0, 0, 0.196);
 }
 
-
 .login_btn {
   width: 100px;
   max-width: 100px;
@@ -656,7 +686,7 @@ label {
 
 .css-1yhpg23-MuiTableCell-root {
   max-width: 80px !important;
-} 
+}
 
 .nonescroll {
   &::-webkit-scrollbar {
@@ -664,8 +694,7 @@ label {
   }
 }
 
-
-.modalAdmin{
+.modalAdmin {
   padding: 20px;
   width: 100%;
   height: fit-content;
@@ -678,8 +707,7 @@ label {
   transform: translateX(-50%);
   transition: 0.3s ease;
 }
-.modalAdminbg{
-  
+.modalAdminbg {
   background-color: #00000055;
   width: 100%;
   height: 100%;

@@ -17,6 +17,8 @@ const Home = () => {
   const [Company, setCompany] = useState([]);
   const [questionsMask, setquestionsMask] = useState([]);
   // const [questions, setquestions] = useState(IoReload());
+  const [Modal, setModal] = useState(false);
+  const [Href, setHref] = useState('');
   function IoReload() {
     if (logAll == "fulfilled" && all.length > 0) {
       setquestionsMask([
@@ -46,9 +48,28 @@ const Home = () => {
       ) : (
         IoReload()
       )}
+
+      {Modal ? (
+        <div className="">
+          <div className=" h-[500px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white modalHome flex px-6  py-20 justify-center">
+            <div onClick={() => {
+              setModal(false)
+            }} className="absolute right-[30px] top-[20px] close_btn">
+              <IoCloseSharp />
+            </div>
+
+            <div className="flex flex-col gap-5">
+            <p className="text-xl font-bold">Отправьте ссылку вашим респондентам: </p>
+            <p className=" text-gray-500 ">{Href}</p>
+            </div>
+          </div>
+          <div className="modalHomeBg"></div>
+        </div>
+      ) : null}
+
       {questionsMask.length > 0
         ? questionsMask.map((item, idx) => (
-            <AnswersLinks key={idx} idx={idx} item={item} />
+            <AnswersLinks key={idx} idx={idx} setHref={setHref} setModal={setModal} item={item} />
           ))
         : IoReload()}
     </div>
