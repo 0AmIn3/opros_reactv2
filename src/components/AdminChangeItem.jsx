@@ -56,7 +56,9 @@ const AdminChangeItem = ({ item, setModal, setType, setQuests,saveBtn, setQuestI
             })
           );
           if (logAll === "fulfilled") {
-            window.location.href = "/nedminRegister/panel";
+            setTimeout(()=>{
+              window.location.href = "/nedminRegister/panel";
+            } , 800)
           }
         }}
       >
