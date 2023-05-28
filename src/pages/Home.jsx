@@ -59,7 +59,8 @@ const Home = () => {
             </div>
 
             <div className="flex flex-col gap-5">
-            <p className="text-xl font-bold">Отправьте ссылку вашим респондентам: </p>
+              <p className="text-xl font-bold text-center">Ссылка для отправки вашим респондентам отправлена вам на почту</p>
+            <p className="text-xl mt-12 font-bold">Отправьте ссылку вашим респондентам: </p>
             <p className=" text-gray-500 ">{Href}</p>
             </div>
           </div>

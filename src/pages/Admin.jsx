@@ -8,18 +8,8 @@ const Admin = () => {
   const [users, setUsers] = useState(
     JSON.parse(localStorage.getItem("adminUsers"))
   );
-  const cookies = new Cookies();
 
-  useEffect(() => {
-    cookies.set("name", "admin", { path: "/" });
-    if (!localStorage.getItem("adminUsers")) {
-      axios
-        .get("http://localhost:3001/users")
-        .then((res) =>
-          localStorage.setItem("adminUsers", JSON.stringify(res.data))
-        );
-    }
-  });
+
   const navigate = useNavigate();
   const {
     register,
