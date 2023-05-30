@@ -25,9 +25,7 @@ const Layout = () => {
 		}
     })
 
-if(!auth_status || auth_status == '') {
-  navigate('/')
-}else{
+
   return (
     <div className="w-[80%] max-w-[1728px] mx-auto my-0" >
       <div className="bgall"></div>
@@ -37,7 +35,6 @@ if(!auth_status || auth_status == '') {
       </main>
     </div>
 );
-}
 
 };
 

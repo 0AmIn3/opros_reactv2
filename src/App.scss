@@ -725,3 +725,27 @@ label {
   left: 0;
   z-index: 9998;
 }
+@media only screen and (max-width: 768px) {
+    .AdminCompanies{
+      flex-direction: column;
+      align-items: center;
+    }
+    .AdminChange{
+      flex-direction: column;
+      align-items: center;
+      p{
+        width: 100%;
+        input{
+          width: 100%;
+          text-align: center;
+        }
+      }
+    
+    }
+    .AdminAnswers{
+      padding: 0;
+    }
+    .AdminQues{
+      width: 100%;
+    }
+}

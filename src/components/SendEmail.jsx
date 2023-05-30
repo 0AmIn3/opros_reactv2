@@ -11,10 +11,10 @@ export const SendEmail = ({ arr, item }) => {
 
     emailjs
       .sendForm(
-        "service_kgpzccn",
-        "template_4w994q6",
+        "service_0e0qbga",
+        "template_v3lbxf7",
         form.current,
-        "8EKNGh-IHITW3kjAU"
+        "pxy0y-dMVkmzi5SL6"
       )
       .then(
         (result) => {
@@ -43,7 +43,7 @@ export const SendEmail = ({ arr, item }) => {
         type="hidden"
         name="from_name"
         id="from_name"
-        defaultValue={"Lcode"}
+        defaultValue={"Tail.Band"}
       />
       <label>company_name</label> <br />
       <input
@@ -53,23 +53,40 @@ export const SendEmail = ({ arr, item }) => {
         defaultValue={item.name}
       />
       <br />
-      {arr.length > 0
-        ? arr.map((item, idx) => (
-            <div key={idx}>
-              <input
-                type="text"
-                name="links"
-                id="links"
-                defaultValue={`Ссылки №${idx + 1} : Ссылка на опрос ${href.split("/")[0]}://${
-                  href.split("/")[2]
-                }/${copid}/poll/${item.id} , Ссылка на результаты опросса ${href.split("/")[0]}://${
-                  href.split("/")[2]
-                }/${copid}/result/p${item.id} `}
-              />
-              <br />
-            </div>
-          ))
-        : null}
+  
+      <input
+        type="text"
+        name="links"
+        id="links"
+        defaultValue={`Ссылки №1 : Ссылка на опрос ${href.split("/")[2]}/${copid}/poll/${
+        arr[0].id
+        } , Ссылка на результаты опросса ${
+          href.split("/")[2]
+        }/${copid}/result/p${arr[0].id}`}
+      />
+      <br />
+      <input
+        type="text"
+        name="links"
+        id="links"
+        defaultValue={`Ссылки №2 : Ссылка на опрос ${href.split("/")[2]}/${copid}/poll/${
+          arr[1].id
+        } , Ссылка на результаты опросса ${
+          href.split("/")[2]
+        }/${copid}/result/p${arr[1].id}`}
+      />
+      <br />
+
+      <input
+        type="text"
+        name="links"
+        id="links"
+        defaultValue={`Ссылки №3 : Ссылка на опрос ${href.split("/")[2]}/${copid}/poll/${
+          arr[2].id
+        } , Ссылка на результаты опросса ${
+          href.split("/")[2]
+        }/${copid}/result/p${arr[2].id}`}
+      />
       <br />
       <label>reply_to</label>
       <br />
@@ -81,27 +98,7 @@ export const SendEmail = ({ arr, item }) => {
       />
       <input type="submit" value="Send" />
     </form>
-    // <>
-    //     <form onSubmit={handleSubmit(onSubmit)} className=' flex flex-col gap-3'>
-
-    //         <input defaultValue="Lcode" {...register("from_name")} />
-
-    //         <label>company_name</label>
-    //         <input defaultValue="TealBand," {...register("company_name")} />
-
-    //         {arr.length > 0
-    //             ? arr.map((item, idx) => (
-    //                 <>  <input key={idx} defaultValue={` ${href.split("/")[0]}://${href.split("/")[2]}/${copid}/result/p${item.id}`} {...register("links")} /> <br />
-    //                 </>
-    //             ))
-    //             : null
-    //         }
-
-    //         <label>reply_to</label>
-    //         <input type="text" defaultValue="alekstagaev18@gmail.com" {...register("reply_to")}/>
-    //         <input type="submit" value="Send" />
-    //     </form>
-    // </>
+ 
   );
 };
 

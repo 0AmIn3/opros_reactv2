@@ -18,7 +18,7 @@ const AnswersV1 = () => {
   const [passed, setPassed] = useState(false);
 
   useEffect(()=>{
-    if(localStorage.getItem(`${id.id}`) === 'passed'){
+    if(localStorage.getItem(`${id.copid}`) === 'passed'){
       setPassed(true)
     }else{
       setPassed(false)
@@ -100,7 +100,7 @@ const AnswersV1 = () => {
                       ...ob
                     })
                   );
-                  localStorage.setItem(`${id.id}`, "passed");
+                  localStorage.setItem(`${id.copid}`, "passed");
                     setPassed(true)
                 }
               }

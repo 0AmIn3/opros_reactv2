@@ -12,8 +12,9 @@ const Companyes = ({ item , setDeleteKey ,setModal,setUSer}) => {
   }
 
   return (
-    <div className="flex gap-7 w-full justify-between">
-      <p>{item.name}</p>
+    <div className=" w-full  mt-5">
+     <div className="flex AdminCompanies gap-7 w-full justify-between">
+     <p>{item.name}</p>
       <p> {item.email} </p>
       <div className="flex gap-5">
         <Link to={"/nedminRegister/panel/" + item.id}>
@@ -29,6 +30,8 @@ const Companyes = ({ item , setDeleteKey ,setModal,setUSer}) => {
           Удалить
         </p>
       </div>
+     </div>
+     <hr className=" mt-5" />
     </div>
   );
 };

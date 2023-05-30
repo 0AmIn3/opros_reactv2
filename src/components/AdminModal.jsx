@@ -135,7 +135,7 @@ const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
           </button>
           {MainArr.map((item, idx) => (
             <div className="w-full" key={idx}>
-            <div className="w-[80%] flex gap-2 p-5 bg-[#81dd9084] rounded-md">
+            <div className="w-[80%] AdminQues  flex gap-2 p-5 bg-[#81dd9084] rounded-md">
             <span>{idx + 1} </span>
               <input
                 type="text"
@@ -145,7 +145,7 @@ const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
               />
             </div>
 
-              <div className="pl-[50px] w-full flex flex-col gap-3">
+              <div className="pl-[50px] AdminAnswers w-full flex flex-col gap-3">
                 {type
                   ? item.answers.map((i) => (
                       <div key={item.answers.indexOf(i)}>

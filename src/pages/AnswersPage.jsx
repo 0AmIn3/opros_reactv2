@@ -4,8 +4,17 @@ import { useParams } from "react-router-dom";
 import AnswersV1 from "./AnswersV1";
 import AnswersV2 from "./AnswersV2";
 import AnswersV3 from "./AnswersV3";
+import Cookies from "js-cookie";
 
 const AnswersPage = () => {
+  const IsCompany = Cookies.get("IsCompany");
+  const IsUser = Cookies.get("IsUser");
+  console.log(IsCompany);
+
+  !IsCompany ?   Cookies.set("IsUser", `true`, {
+    expires: Infinity,
+    path: "/",
+  }) : null
   const [type, settype] = useState("");
   const id = useParams();
   const all = useSelector((state) => state.all.data);
