@@ -20,6 +20,14 @@ export const postCompanyAPI = createAsyncThunk("/postCompanyAPI", async (data) =
 
   return res.data;
 });
+export const deleteCompanyAPI = createAsyncThunk("/deleteCompanyAPI", async (data) => {
+   await axios.delete(
+    `https://tealband-4afc1-default-rtdb.firebaseio.com/company/${data}.json`  );
+    const res = await axios.get(
+      "https://tealband-4afc1-default-rtdb.firebaseio.com/company.json"
+    );
+  return res.data;
+});
 export const pathCompanyAPI = createAsyncThunk("/pathCompanyAPI", async (data) => {
  await axios.patch(
     `https://tealband-4afc1-default-rtdb.firebaseio.com/company/${data.key}.json`,

@@ -36,7 +36,6 @@ export const SendEmail = ({ arr, item }) => {
         sendEmail();
       }, 1000);
     }
-    console.log(item);
   }, [copid]);
   return (
     <form ref={form} className=" fixed top-[-100%]">
