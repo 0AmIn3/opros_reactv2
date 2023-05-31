@@ -25,7 +25,7 @@ const AnswersV3 = () => {
   const [passed, setPassed] = useState(false);
 
   useEffect(()=>{
-    if(localStorage.getItem(`${id.id}`) === 'passed'){
+    if(localStorage.getItem(`${id.copid}/${id.id}1`) === 'passed'){
       setPassed(true)
     }else{
       setPassed(false)
@@ -89,12 +89,12 @@ const AnswersV3 = () => {
                 ob[`${id.id}`] = quest;
                 dispatch(
                   postUserAPI({
-                    companyid: auth_status,
+                    companyid: id.copid,
                     id: uuidv4(),
                     ...ob
                   })
                 );
-                localStorage.setItem(`${id.id}`, "passed");
+                localStorage.setItem(`${id.copid}/${id.id}1`, "passed");
                 setPassed(true)
               }
             }

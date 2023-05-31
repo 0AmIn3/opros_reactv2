@@ -56,8 +56,8 @@ export const SendEmail = ({ arr, item }) => {
   
       <input
         type="text"
-        name="links"
-        id="links"
+        name="link1"
+        id="link1"
         defaultValue={`Ссылки №1 : Ссылка на опрос ${href.split("/")[2]}/${copid}/poll/${
         arr[0].id
         } , Ссылка на результаты опросса ${
@@ -67,8 +67,8 @@ export const SendEmail = ({ arr, item }) => {
       <br />
       <input
         type="text"
-        name="links"
-        id="links"
+        name="link2"
+        id="link2"
         defaultValue={`Ссылки №2 : Ссылка на опрос ${href.split("/")[2]}/${copid}/poll/${
           arr[1].id
         } , Ссылка на результаты опросса ${
@@ -79,8 +79,8 @@ export const SendEmail = ({ arr, item }) => {
 
       <input
         type="text"
-        name="links"
-        id="links"
+        name="link3"
+        id="link3"
         defaultValue={`Ссылки №3 : Ссылка на опрос ${href.split("/")[2]}/${copid}/poll/${
           arr[2].id
         } , Ссылка на результаты опросса ${

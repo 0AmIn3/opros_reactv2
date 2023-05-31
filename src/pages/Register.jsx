@@ -12,7 +12,6 @@ import axios from "axios";
 const Register = () => {
   const IsCompany = Cookies.get("IsCompany");
   const IsUser = Cookies.get("IsUser");
-  console.log();
   const all = useSelector((state) => state.all.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();

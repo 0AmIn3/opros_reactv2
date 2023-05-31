@@ -15,7 +15,13 @@ const ResultV3 = () => {
   const [user, setUser] = useState();
   const [newObjTot, setObjTot] = useState([]);
   const [newOb, setOb] = useState([]);
-  const users = useSelector((state) => state.users.data)
+  let total = 0
+  let total2 = 0
+  let counter=0
+  let counter2 = 0
+  const users = useSelector((state) => state.users.data);
+
+
 
   const [colors, setColors] = useState(["#FEF445", "#12CDD4"]);
   const questDef = [
@@ -183,21 +189,37 @@ const ResultV3 = () => {
   const log = useSelector((state) => state.users.status);
   const logAll = useSelector((state) => state.all.status);
   const [quest, setQuest] = useState(questDef);
-  let defe=[]
+  let defe = [];
+
   function getAnincArr() {
     const auth_status = Cookies.get("userid");
     if (logAll === "fulfilled" && log === "fulfilled") {
-      setPeoples(users.filter(item => item[`${all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].id}`]));
+      setPeoples(
+        users.filter(
+          (item) =>
+            item[
+              `${
+                all
+                  .filter((item) => item.id === id.copid)[0]
+                  .questions.filter((item) => item.resultid == id.id)[0].id
+              }`
+            ]
+        )
+      );
       setUser(...users.filter((item) => item.companyid == auth_status));
-      setQuest(all.filter(item=> item.id === id.copid)[0].questions.filter((item) => item.resultid == id.id)[0].DefAnswers);
+      setQuest(
+        all
+          .filter((item) => item.id === id.copid)[0]
+          .questions.filter((item) => item.resultid == id.id)[0].DefAnswers
+      );
       setanswers(
         all
           .filter((item) => item.id === id.copid)[0]
           .questions.filter((item) => item.resultid == id.id)[0].id
       );
-        setLoad(true);
-        setLoadQ(true);
-      }
+      setLoad(true);
+      setLoadQ(true);
+    }
   }
   return (
     <>
@@ -214,6 +236,9 @@ const ResultV3 = () => {
                 <BarV2
                   item={item}
                   newOb={newOb}
+                  counter={counter}
+                  total={total}
+                  total2={total2}
                   key={idx}
                   idx={idx}
                   color={colors[idx]}
@@ -234,7 +259,7 @@ const ResultV3 = () => {
                 key={idx}
                 setObjTot={setObjTot}
                 setOb={setOb}
-                type={'type3'}
+                type={"type3"}
               />
             ))
           : getAnincArr()}

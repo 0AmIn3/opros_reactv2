@@ -9,7 +9,6 @@ import Cookies from "js-cookie";
 const AnswersPage = () => {
   const IsCompany = Cookies.get("IsCompany");
   const IsUser = Cookies.get("IsUser");
-  console.log(IsCompany);
 
   !IsCompany ?   Cookies.set("IsUser", `true`, {
     expires: Infinity,

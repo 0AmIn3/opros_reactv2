@@ -91,7 +91,8 @@ const DiogramUp = ({
     if(type == 'type3'){
       if (defe.length <= 5) {
         defe.push(objtot);
-        setOb([[...Object.values(defe).slice(0,3)] ,[...Object.values(defe).slice(3)]])
+        // setOb([[...Object.values(defe).slice(0,3)] ,[...Object.values(defe).slice(3)]])
+        localStorage.setItem('Barv2' , JSON.stringify([[...Object.values(defe).slice(0,3)] ,[...Object.values(defe).slice(3)]]))
       }
     }
 
