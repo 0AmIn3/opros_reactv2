@@ -120,7 +120,7 @@ const AdminPanel = () => {
         </div>
       ) : null}
       <div className="flex justify-center gap-5 mt-[200px] p-3 rounded-2xl relative bg-white h-auto flex-col w-full items-center ">
-        {logAll == "fulfilled"
+        {logAll == "fulfilled" && all.length > 0
           ? all.map((item, idx) => (
               <Companyes
                 item={item}

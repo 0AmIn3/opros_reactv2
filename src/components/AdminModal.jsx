@@ -3,12 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { pathCompanyAPI } from "../features/thunk";
 
-const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
+const AdminModal = ({
+  arr,
+  setModal,
+  changeType,
+  type,
+  allQuests,
+  QuestIdx,
+}) => {
   const CompanyId = useParams().id;
   const allKey = useSelector((state) => state.all.userKey);
   const all = useSelector((state) => state.all.data);
   const logAll = useSelector((state) => state.all.status);
   const log = useSelector((state) => state.users.status);
+  const [err, setErr] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function getKey() {
@@ -128,6 +136,7 @@ const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
           <button
             onClick={() => {
               setCop([]);
+              setErr(true)
             }}
             className="p-3 bg-[#f8ffac] cursor-pointer   rounded-md font-medium outline-none   button"
           >
@@ -135,15 +144,15 @@ const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
           </button>
           {MainArr.map((item, idx) => (
             <div className="w-full" key={idx}>
-            <div className="w-[80%] AdminQues  flex gap-2 p-5 bg-[#81dd9084] rounded-md">
-            <span>{idx + 1} </span>
-              <input
-                type="text"
-                className="w-[100%] bg-transparent"
-                defaultValue={item.title}
-                onInput={(e) => ChangeQuestions(e.target.value, idx)}
-              />
-            </div>
+              <div className="w-[80%] AdminQues  flex gap-2 p-5 bg-[#81dd9084] rounded-md">
+                <span>{idx + 1} </span>
+                <input
+                  type="text"
+                  className="w-[100%] bg-transparent"
+                  defaultValue={item.title}
+                  onInput={(e) => ChangeQuestions(e.target.value, idx)}
+                />
+              </div>
 
               <div className="pl-[50px] AdminAnswers w-full flex flex-col gap-3">
                 {type
@@ -165,36 +174,49 @@ const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
                       </div>
                     ))
                   : null}
-           
               </div>
-              {type ? (
+              {/* {type ? (
                   <button
                     onClick={() => {
+                      
                       AddAnswer(idx);
                     }}
                     className="p-3 bg-[#C7FFAC] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
                   >
                     Добавить ответ
                   </button>
-                ) : null}
-          
+                ) : null} */}
             </div>
           ))}
         </div>
         <br />
         <hr />
         <button
-        className="p-3 bg-[#acffc8] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
+          className="p-3 bg-[#acffc8] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
           onClick={() => {
-            AddQuestions();
+            console.log(changeType);
+            if (changeType == "type1" && cop.length <= 11) {
+              AddQuestions();
+              setErr(true)
+            }else if (changeType == "type2" && cop.length <= 4) {
+              AddQuestions();
+              setErr(true)
+            }else if (changeType == "type3" && cop.length <= 5) {
+              AddQuestions();
+              setErr(true)
+            } else{
+              setErr(false)
+            }
+            
+            
+    
           }}
-          
         >
-          Добавить Вопрос
+          {err ? <p>Добавить Вопрос</p> : <p>Превышен лимит вопросов</p>}
         </button>
         <br />
         <button
-           className="p-3 bg-[#acfff3] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
+          className="p-3 bg-[#acfff3] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
           onClick={() => {
             let copQuests = [...allQuests];
             let newObj = {
@@ -211,12 +233,11 @@ const AdminModal = ({ arr, setModal, type, allQuests, QuestIdx }) => {
                 },
               })
             );
-            if (logAll === "fulfilled" ) {
-
-            
-              setTimeout(()=>{
-                window.location.href = "/nedminRegister/panel";
-              } , 300)
+            if (logAll === "fulfilled") {
+              navigate("/nedminRegister/panel");
+              // setTimeout(()=>{
+              //   window.location.href = "/nedminRegister/panel";
+              // } , 300)
             }
           }}
         >

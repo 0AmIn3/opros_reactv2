@@ -14,7 +14,10 @@ const AdminChange = () => {
   const [Quests, setQuests] = useState([]);
   const [Modal, setModal] = useState(false);
   const [type, setType] = useState(false);
+  const [changeType, setChangeType] = useState('');
   const [QuestIdx, setQuestIdx] = useState(0);
+
+  
   const navigate = useNavigate();
   useEffect(() => {
     axios
@@ -47,7 +50,7 @@ const AdminChange = () => {
         </div>
       </Link>
       <div className="flex flex-col gap-4">
-        {logAll == "fulfilled"
+        {logAll == "fulfilled" && all.length > 0
           ? all
               .filter((item) => item.id === CompanyId)[0]
               .questions.map((item, idx) => (
@@ -60,6 +63,7 @@ const AdminChange = () => {
                   setType={setType}
                   item={item}
                   setQuestIdx={setQuestIdx}
+                  setChangeType={setChangeType}
                 />
               ))
           : null}
@@ -70,6 +74,7 @@ const AdminChange = () => {
           setModal={setModal}
           QuestIdx={QuestIdx}
           type={type}
+          changeType={changeType}
           allQuests={all.filter((item) => item.id === CompanyId)[0].questions}
           arr={Quests}
         />

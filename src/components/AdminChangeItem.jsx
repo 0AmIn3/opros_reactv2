@@ -11,6 +11,7 @@ const AdminChangeItem = ({
   saveBtn,
   setQuestIdx,
   idx,
+  setChangeType
 }) => {
   let CompanyId = useParams().id;
   const all = useSelector((state) => state.all.data);
@@ -75,10 +76,629 @@ const AdminChangeItem = ({
         </p>
         <p
           onClick={() => {
+            setChangeType(item.type)
             setModal(true);
-            setQuests([...item.DefAnswers]);
+            // setQuests([...item.DefAnswers].length);
             setQuestIdx(idx);
-            localStorage.setItem("changeArr", JSON.stringify(item.DefAnswers));
+            if(!item.DefAnswers && item.type === "type1"){
+              localStorage.setItem("changeArr", JSON.stringify([
+                {
+                  title:
+                    "Вопрос1",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос2",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос3",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос4",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос5",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос6",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос7",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос8",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос9",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос10",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос11",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                    "Вопрос12",
+                  succ: false,
+                  answers: [
+                    {
+                      title:
+                        "Ответ1",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                      "Ответ2",
+                      ansucc: false,
+                    },
+                    {
+                      title:
+                        "Ответ3",
+                      ansucc: false,
+                    },
+                  ],
+                },
+            
+              ]));
+            }else if(!item.DefAnswers && item.type === "type2"){
+              localStorage.setItem("changeArr", JSON.stringify(   [
+                {
+                  title:
+                    "Вопрос1",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                  "Вопрос2",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                  "Вопрос3",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                  "Вопрос4",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                  "Вопрос5",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+              ]));
+            }else if(!item.DefAnswers && item.type === "type3"){
+              localStorage.setItem("changeArr", JSON.stringify(   [
+                {
+                  title:
+                    "Вопрос1",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                  "Вопрос2",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                  "Вопрос3",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                  "Вопрос4",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                  "Вопрос5",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+                {
+                  title:
+                  "Вопрос6",
+                  succ: false,
+                  answers: [
+                    {
+                      title: "0",
+                      ansucc: false,
+                    },
+                    {
+                      title: "1",
+                      ansucc: false,
+                    },
+                    {
+                      title: "2",
+                      ansucc: false,
+                    },
+                    {
+                      title: "3",
+                      ansucc: false,
+                    },
+                    {
+                      title: "4",
+                      ansucc: false,
+                    },
+                    {
+                      title: "5",
+                      ansucc: false,
+                    },
+                  ],
+                },
+              ]));
+            }else{
+              localStorage.setItem("changeArr", JSON.stringify(item.DefAnswers));
+            }
+           
             if (item.type === "type1") {
               setType(true);
             } else {
