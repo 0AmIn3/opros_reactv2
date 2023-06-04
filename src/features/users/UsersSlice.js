@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getUserAPI, postUserAPI } from "../thunk";
+import { getUserAPI, pathUserAPI, postUserAPI } from "../thunk";
 
 
 const initialState = {
@@ -38,7 +38,16 @@ export const UsersSlice = createSlice({
       .addCase(postUserAPI.rejected, (state, action) => {
         state.status = "rejected";
       })
- 
+      .addCase(pathUserAPI.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(pathUserAPI.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.status = "fulfilled";
+      })
+      .addCase(pathUserAPI.rejected, (state, action) => {
+        state.status = "rejected";
+      })
   },
 });
 

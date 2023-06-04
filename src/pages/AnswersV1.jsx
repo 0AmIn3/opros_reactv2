@@ -8,7 +8,7 @@ import { SlArrowRight } from "react-icons/sl";
 import Yarus_v2 from "../components/Yarus_v2";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { postUserAPI } from "../features/thunk";
+import { pathUserAPI, postUserAPI } from "../features/thunk";
 import { v4 as uuidv4 } from "uuid";
 const AnswersV1 = () => {
   const [count, setCount] = useState(0);
@@ -16,16 +16,18 @@ const AnswersV1 = () => {
   const [Load, setLoad] = useState(false);
   const id = useParams();
   const [passed, setPassed] = useState(false);
-
+  const ChangedUsers = useSelector((state) => state.users.data);
+  const ChangedUserskeys = useSelector((state) => state.users.userKey);
+  const ChangedUsersStatus = useSelector((state) => state.users.status);
   useEffect(()=>{
-    if(localStorage.getItem(`${id.copid}/${id.id}1`) === 'passed'){
+   
+    if(localStorage.getItem(`${id.copid}/${id.id}1`) === 'passed' && localStorage.getItem(`${id.copid}/${id.id}/userID`) !== null){
       setPassed(true)
     }else{
       setPassed(false)
   
     }
   })
-
   const userKey = useSelector((state) => state.all.userKey);
   const users = useSelector((state) => state.all.data);
   const questDef = [];
@@ -57,9 +59,14 @@ const AnswersV1 = () => {
     <>
     {
       passed ? (
-        <div className="answers relative pt-[100px] flex items-center justify-center bg-white">
-          <h1 className=" text-4xl">Опрос пройден.</h1>
-        </div>
+        <div className="answers relative pt-[100px] flex gap-6   flex-col items-center justify-center bg-white">
+        <h1 className=" text-4xl">Опрос пройден.</h1>
+        <button onClick={()=>{
+          localStorage.setItem(`${id.copid}/${id.id}1` , 'repeat')
+          window.location.reload(false);
+        }} className="p-3 bg-[#C7FFAC] rounded-md font-medium outline-none">Повторно пройти опрос</button>
+     
+      </div>  
       ) : (
         <div className="answers relative pt-[100px] bg-white">
         {Load ? (
@@ -92,16 +99,36 @@ const AnswersV1 = () => {
 
                   let ob = {};
                   ob[`${id.id}`] = quest;
-                  dispatch(
-                    postUserAPI({
+                  if(!localStorage.getItem(`${id.copid}/${id.id}/userID`)){
+                    let usersObj ={
                       companyid: id.copid,
-                      
                       id: uuidv4(),
-                      ...ob
-                    })
-                  );
-                  localStorage.setItem(`${id.copid}/${id.id}1`, "passed");
+                      ...ob,
+                    }
+                    dispatch(
+                      postUserAPI(usersObj)
+                    );
+                    localStorage.setItem(`${id.copid}/${id.id}1`, "passed");
+                    localStorage.setItem(`${id.copid}/${id.id}/userID`, usersObj.id);
                     setPassed(true)
+                  }else{
+                    let idx = ChangedUsers.indexOf(ChangedUsers.filter(item => item.id == localStorage.getItem(`${id.copid}/${id.id}/userID`))[0])
+                    let key  = Object.keys(ChangedUserskeys)[idx]
+                    dispatch(
+                      pathUserAPI({
+                        key: key,
+                        obj: {
+                          ...ob
+                        },
+                      })
+                    )
+                    if(ChangedUsersStatus === 'fulfilled'){
+                      setNowq(0)
+                    localStorage.setItem(`${id.copid}/${id.id}1`, "passed");
+
+                    }
+                    setPassed(true)
+                  }
                 }
               }
             } else {

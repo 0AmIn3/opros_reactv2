@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { SlArrowRight } from "react-icons/sl";
 import { IoCloseSharp } from "react-icons/io5";
 import Cookies from "js-cookie";
-import { pathCompanyAPI, postUserAPI } from "../features/thunk";
+import { pathCompanyAPI, pathUserAPI, postUserAPI } from "../features/thunk";
 import { v4 as uuidv4 } from "uuid";
+import { set } from "react-hook-form";
 
 const AnswersV2 = () => {
   const [count, setCount] = useState(0);
@@ -15,11 +16,16 @@ const AnswersV2 = () => {
   const [Load, setLoad] = useState(false);
   const userKey = useSelector((state) => state.all.userKey);
   const users = useSelector((state) => state.all.data);
+  const ChangedUsers = useSelector((state) => state.users.data);
+  const ChangedUserskeys = useSelector((state) => state.users.userKey);
+  const ChangedUsersStatus = useSelector((state) => state.users.status);
+  
   const id = useParams();
   const [passed, setPassed] = useState(false);
 
   useEffect(()=>{
-    if(localStorage.getItem(`${id.copid}/${id.id}1`) === 'passed'){
+   
+    if(localStorage.getItem(`${id.copid}/${id.id}1`) === 'passed' && localStorage.getItem(`${id.copid}/${id.id}/userID`) !== null){
       setPassed(true)
     }else{
       setPassed(false)
@@ -204,14 +210,19 @@ const AnswersV2 = () => {
       setQuest(JSON.parse(localStorage.getItem(`${id.copid}/${id.id}`)));
     }
   }
-  const auth_status = Cookies.get("userid");
+  const auth_status = Cookies.get("${id.copid}/${id.id}/userID");
 
   return (
     <>
       {passed ? (
-        <div className="answers relative pt-[100px] flex items-center justify-center bg-white">
+        <div className="answers relative pt-[100px] flex gap-6   flex-col items-center justify-center bg-white">
           <h1 className=" text-4xl">Опрос пройден.</h1>
-        </div>
+          <button onClick={()=>{
+            localStorage.setItem(`${id.copid}/${id.id}1` , 'repeat')
+            window.location.reload(false);
+          }} className="p-3 bg-[#C7FFAC] rounded-md font-medium outline-none">Повторно пройти опрос</button>
+       
+        </div>  
       ) : (
         <div className="answers relative pt-[100px] bg-white">
           {Load ? (
@@ -243,15 +254,38 @@ const AnswersV2 = () => {
                   } else if (nowq === quest.length - 1) {
                     let ob = {};
                     ob[`${id.id}`] = quest;
-                    dispatch(
-                      postUserAPI({
+                    if(!localStorage.getItem(`${id.copid}/${id.id}/userID`)){
+                      let usersObj ={
                         companyid: id.copid,
                         id: uuidv4(),
                         ...ob,
-                      })
-                    );
-                    localStorage.setItem(`${id.copid}/${id.id}1`, "passed");
-                    setPassed(true)
+                      }
+                      dispatch(
+                        postUserAPI(usersObj)
+                      );
+                      localStorage.setItem(`${id.copid}/${id.id}1`, "passed");
+                      localStorage.setItem(`${id.copid}/${id.id}/userID`, usersObj.id);
+                      setPassed(true)
+                    }else{
+                      let idx = ChangedUsers.indexOf(ChangedUsers.filter(item => item.id == localStorage.getItem(`${id.copid}/${id.id}/userID`))[0])
+                      let key  = Object.keys(ChangedUserskeys)[idx]
+                      dispatch(
+                        pathUserAPI({
+                          key: key,
+                          obj: {
+                            ...ob
+                          },
+                        })
+                      )
+                      if(ChangedUsersStatus === 'fulfilled'){
+                        setNowq(0)
+                      localStorage.setItem(`${id.copid}/${id.id}1`, "passed");
+
+                      }
+                      setPassed(true)
+                    }
+                  
+                    
                   }
                 }
               } else {

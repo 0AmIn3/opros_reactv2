@@ -514,182 +514,128 @@ const AdminChangeItem = ({
                   succ: false,
                   answers: [
                     {
-                      title: "0",
+                      title:
+                        "Ответ1",
                       ansucc: false,
                     },
                     {
-                      title: "1",
+                      title:
+                      "Ответ2",
                       ansucc: false,
                     },
                     {
-                      title: "2",
-                      ansucc: false,
-                    },
-                    {
-                      title: "3",
-                      ansucc: false,
-                    },
-                    {
-                      title: "4",
-                      ansucc: false,
-                    },
-                    {
-                      title: "5",
+                      title:
+                        "Ответ3",
                       ansucc: false,
                     },
                   ],
                 },
                 {
                   title:
-                  "Вопрос2",
+                    "Вопрос2",
                   succ: false,
                   answers: [
                     {
-                      title: "0",
+                      title:
+                        "Ответ1",
                       ansucc: false,
                     },
                     {
-                      title: "1",
+                      title:
+                      "Ответ2",
                       ansucc: false,
                     },
                     {
-                      title: "2",
-                      ansucc: false,
-                    },
-                    {
-                      title: "3",
-                      ansucc: false,
-                    },
-                    {
-                      title: "4",
-                      ansucc: false,
-                    },
-                    {
-                      title: "5",
+                      title:
+                        "Ответ3",
                       ansucc: false,
                     },
                   ],
                 },
                 {
                   title:
-                  "Вопрос3",
+                    "Вопрос3",
                   succ: false,
                   answers: [
                     {
-                      title: "0",
+                      title:
+                        "Ответ1",
                       ansucc: false,
                     },
                     {
-                      title: "1",
+                      title:
+                      "Ответ2",
                       ansucc: false,
                     },
                     {
-                      title: "2",
-                      ansucc: false,
-                    },
-                    {
-                      title: "3",
-                      ansucc: false,
-                    },
-                    {
-                      title: "4",
-                      ansucc: false,
-                    },
-                    {
-                      title: "5",
+                      title:
+                        "Ответ3",
                       ansucc: false,
                     },
                   ],
                 },
                 {
                   title:
-                  "Вопрос4",
+                    "Вопрос4",
                   succ: false,
                   answers: [
                     {
-                      title: "0",
+                      title:
+                        "Ответ1",
                       ansucc: false,
                     },
                     {
-                      title: "1",
+                      title:
+                      "Ответ2",
                       ansucc: false,
                     },
                     {
-                      title: "2",
-                      ansucc: false,
-                    },
-                    {
-                      title: "3",
-                      ansucc: false,
-                    },
-                    {
-                      title: "4",
-                      ansucc: false,
-                    },
-                    {
-                      title: "5",
+                      title:
+                        "Ответ3",
                       ansucc: false,
                     },
                   ],
                 },
                 {
                   title:
-                  "Вопрос5",
+                    "Вопрос5",
                   succ: false,
                   answers: [
                     {
-                      title: "0",
+                      title:
+                        "Ответ1",
                       ansucc: false,
                     },
                     {
-                      title: "1",
+                      title:
+                      "Ответ2",
                       ansucc: false,
                     },
                     {
-                      title: "2",
-                      ansucc: false,
-                    },
-                    {
-                      title: "3",
-                      ansucc: false,
-                    },
-                    {
-                      title: "4",
-                      ansucc: false,
-                    },
-                    {
-                      title: "5",
+                      title:
+                        "Ответ3",
                       ansucc: false,
                     },
                   ],
                 },
                 {
                   title:
-                  "Вопрос6",
+                    "Вопрос6",
                   succ: false,
                   answers: [
                     {
-                      title: "0",
+                      title:
+                        "Ответ1",
                       ansucc: false,
                     },
                     {
-                      title: "1",
+                      title:
+                      "Ответ2",
                       ansucc: false,
                     },
                     {
-                      title: "2",
-                      ansucc: false,
-                    },
-                    {
-                      title: "3",
-                      ansucc: false,
-                    },
-                    {
-                      title: "4",
-                      ansucc: false,
-                    },
-                    {
-                      title: "5",
+                      title:
+                        "Ответ3",
                       ansucc: false,
                     },
                   ],
@@ -699,10 +645,10 @@ const AdminChangeItem = ({
               localStorage.setItem("changeArr", JSON.stringify(item.DefAnswers));
             }
            
-            if (item.type === "type1") {
-              setType(true);
-            } else {
+            if (item.type === "type2") {
               setType(false);
+            } else {
+              setType(true);
             }
           }}
           className=" p-3 bg-[#C7FFAC] cursor-pointer   rounded-md font-medium outline-none   button"

@@ -194,7 +194,6 @@ const AdminModal = ({
         <button
           className="p-3 bg-[#acffc8] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
           onClick={() => {
-            console.log(changeType);
             if (changeType == "type1" && cop.length <= 11) {
               AddQuestions();
               setErr(true)

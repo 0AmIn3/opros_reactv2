@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import Bar from "../components/Bar";
 import DiogramUp from "../components/DiogramUp";
 import BarV2 from "../components/BarV2";
+import ResAns from "../components/ResAns";
 
 const ResultV3 = () => {
   const all = useSelector((state) => state.all.data);
@@ -15,14 +16,7 @@ const ResultV3 = () => {
   const [user, setUser] = useState();
   const [newObjTot, setObjTot] = useState([]);
   const [newOb, setOb] = useState([]);
-  let total = 0
-  let total2 = 0
-  let counter=0
-  let counter2 = 0
   const users = useSelector((state) => state.users.data);
-
-
-
   const [colors, setColors] = useState(["#FEF445", "#12CDD4"]);
   const questDef = [
     {
@@ -185,11 +179,11 @@ const ResultV3 = () => {
   const [LoadQ, setLoadQ] = useState(false);
   const id = useParams();
   const [answers, setanswers] = useState([]);
-
   const log = useSelector((state) => state.users.status);
   const logAll = useSelector((state) => state.all.status);
   const [quest, setQuest] = useState(questDef);
-  let defe = [];
+  const [OneBar, setOneBar] = useState(0);
+  const [TwoBar, setTwoBar] = useState(0);
 
   function getAnincArr() {
     const auth_status = Cookies.get("userid");
@@ -221,6 +215,62 @@ const ResultV3 = () => {
       setLoadQ(true);
     }
   }
+
+  function inds(arr) {
+    let one = [];
+    let two = [];
+    for (let item of arr) {
+      one.push(item[id.id.slice(1)].slice(0, 3));
+      two.push(item[id.id.slice(1)].slice(3));
+    }
+
+    function get(ar) {
+      let total = [];
+
+      for (let quest of ar) {
+        let answers = [];
+
+        for (let ans of quest) {
+          answers.push(ans.answers);
+        }
+        for (let an of answers) {
+          for (let succ of an) {
+            if (succ.ansucc) {
+              let idx = an.indexOf(succ);
+              if (idx == 0) {
+                total.push(1);
+              } else if (idx == 1) {
+                total.push(0.5);
+              } else if (idx == 2) {
+                total.push(0);
+              }
+            }
+          }
+        }
+      }
+    return  Math.round((total.reduce((a, b) => a + b) / (arr.length * 3)) * 100)
+    }
+    let onebar = get(one)
+    let twobar = get(two)
+    setOneBar(onebar)
+    setTwoBar(twobar)
+  }
+  useEffect(() => {
+    Load && LoadQ
+      ? inds(
+          users.filter(
+            (item) =>
+              item[
+                `${
+                  all
+                    .filter((item) => item.id === id.copid)[0]
+                    .questions.filter((item) => item.resultid == id.id)[0].id
+                }`
+              ]
+          )
+        )
+      : null;
+  });
   return (
     <>
       <div className="answers  relative bg-white">
@@ -236,9 +286,8 @@ const ResultV3 = () => {
                 <BarV2
                   item={item}
                   newOb={newOb}
-                  counter={counter}
-                  total={total}
-                  total2={total2}
+              OneBar= {OneBar}
+                  TwoBar= {TwoBar}
                   key={idx}
                   idx={idx}
                   color={colors[idx]}
@@ -249,17 +298,12 @@ const ResultV3 = () => {
 
         {Load && LoadQ
           ? quest.map((item, idx) => (
-              <DiogramUp
-                item={item}
-                peoples={peoples}
-                setPeoples={setPeoples}
-                nowq={idx}
-                opr={answers}
-                defe={defe}
+              <ResAns
+                qus={item}
+                all={peoples}
+                idkey={answers}
                 key={idx}
-                setObjTot={setObjTot}
-                setOb={setOb}
-                type={"type3"}
+                index={idx}
               />
             ))
           : getAnincArr()}

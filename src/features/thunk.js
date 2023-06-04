@@ -67,3 +67,17 @@ export const postUserAPI = createAsyncThunk("users/postUserAPI", async (data) =>
   return res.data;
 });
 
+export const pathUserAPI = createAsyncThunk("users/pathUserAPI", async (data) => {
+  await axios.patch(
+    `https://tealband-4afc1-default-rtdb.firebaseio.com/allusers/${data.key}.json`,
+    data.obj
+  );
+  const res = await axios.get(
+    "https://tealband-4afc1-default-rtdb.firebaseio.com/allusers.json"
+  );
+
+  return {
+    data: Object.values(res.data),
+    userKey: res.data,
+  };
+});

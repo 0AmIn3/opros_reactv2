@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AnswersLinks from "../components/AnswersLinks";
 import SendEmail from "../components/SendEmail";
+import { useRef } from "react";
+import { set } from "react-hook-form";
 
 const Home = () => {
   const {copid} = useParams()
@@ -17,6 +19,7 @@ const Home = () => {
   const [questionsMask, setquestionsMask] = useState([]);
   const [Modal, setModal] = useState(false);
   const [Href, setHref] = useState('');
+  const [CopyText, setCopyText] = useState('Копировать ссылку');
   const navigate = useNavigate()
   function IoReload() {
     if (logAll == "fulfilled" && all.length > 0) {
@@ -27,7 +30,14 @@ const Home = () => {
     }
   }  
 
+  const textRef = useRef(null);
 
+  const copyText = () => {
+    if (textRef.current) {
+      const textToCopy = textRef.current.innerText;
+      navigator.clipboard.writeText(textToCopy);
+    }
+  };
 
   if (IsUser == "true" ) {
     return (
@@ -35,8 +45,8 @@ const Home = () => {
         <div className="container"></div>
         <div className="bgall"></div>
         <div className="bgopa"></div>
-        <div className="reg_box item">
-          <h1>Page in not found</h1>
+        <div className="reg_box  flex items-center justify-center">
+          <h1> 404 Page in not found</h1>
         </div>
       </>
     );
@@ -65,9 +75,16 @@ const Home = () => {
               </div>
   
               <div className="flex flex-col gap-5">
-                <p className="text-xl font-bold text-center">Ссылка на опрос  у вас на почте. Отправьте ее вашим респондентам</p>
+                <p className="text-xl font-bold text-center">Ссылка на опрос  у вас на почте.</p>
               <p className="text-xl mt-12 font-bold">Отправьте ссылку вашим респондентам: </p>
-              <p className=" text-gray-500 ">{Href}</p>
+              <p ref={textRef} className=" text-gray-500 ">{Href}</p>
+              <button className=" p-3 bg-[#C7FFAC] rounded-md font-medium outline-none   " onClick={() =>{
+               copyText()
+               setCopyText('Ссылка скопирована')
+               setTimeout(()=>{
+                setCopyText('Копировать ссылку')
+               }, 2000)
+              }}>{CopyText}</button>
               </div>
             </div>
             <div className="modalHomeBg"></div>
