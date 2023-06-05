@@ -61,10 +61,12 @@ const AnswersV1 = () => {
       passed ? (
         <div className="answers relative pt-[100px] flex gap-6   flex-col items-center justify-center bg-white">
         <h1 className=" text-4xl">Опрос пройден.</h1>
-        <button onClick={()=>{
+        {/* <button 
+        onClick={()=>{
           localStorage.setItem(`${id.copid}/${id.id}1` , 'repeat')
           window.location.reload(false);
-        }} className="p-3 bg-[#C7FFAC] rounded-md font-medium outline-none">Повторно пройти опрос</button>
+        }} 
+        className="p-3 bg-[#C7FFAC] rounded-md font-medium outline-none">Повторно пройти опрос</button> */}
      
       </div>  
       ) : (
