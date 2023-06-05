@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import Bar from "../components/Bar";
-import DiogramUp from "../components/DiogramUp";
+
 import BarV2 from "../components/BarV2";
 import ResAns from "../components/ResAns";
 
@@ -17,7 +16,7 @@ const ResultV3 = () => {
   const [newObjTot, setObjTot] = useState([]);
   const [newOb, setOb] = useState([]);
   const users = useSelector((state) => state.users.data);
-  const [colors, setColors] = useState(["#FEF445", "#12CDD4"]);
+  const [colors, setColors] = useState(["#FEF445", "#12CDD4", "gray  "]);
   const questDef = [
     {
       title:
@@ -182,8 +181,7 @@ const ResultV3 = () => {
   const log = useSelector((state) => state.users.status);
   const logAll = useSelector((state) => state.all.status);
   const [quest, setQuest] = useState(questDef);
-  const [OneBar, setOneBar] = useState(0);
-  const [TwoBar, setTwoBar] = useState(0);
+  const [BarTotal, setBarTotal] = useState([]);
 
   function getAnincArr() {
     const auth_status = Cookies.get("userid");
@@ -200,7 +198,7 @@ const ResultV3 = () => {
             ]
         )
       );
-      setUser(...users.filter((item) => item.companyid == auth_status));
+      setUser(...users.filter((item) => item.companyid == id.copid));
       setQuest(
         all
           .filter((item) => item.id === id.copid)[0]
@@ -217,77 +215,56 @@ const ResultV3 = () => {
   }
 
   function inds(arr) {
-    let one = [];
-    let two = [];
-    for (let item of arr) {
-      one.push(item[id.id.slice(1)].slice(0, 3));
-      two.push(item[id.id.slice(1)].slice(3));
+    let one = 0;
+    let two = 0;
+    let three = 0;
+    let total = [];
+    let Allusers = arr.filter(
+      (item) => item.companyid == id.copid && item[id.id.slice(1)]
+    );
+    let ans = [];
+    for (let item of Allusers) {
+      for (let i of item[id.id.slice(1)]) {
+        ans.push(i);
+      }
     }
-
-    function get(ar) {
-      let total = [];
-
-      for (let quest of ar) {
-        let answers = [];
-
-        for (let ans of quest) {
-          answers.push(ans.answers);
-        }
-        for (let an of answers) {
-          for (let succ of an) {
-            if (succ.ansucc) {
-              let idx = an.indexOf(succ);
-              if (idx == 0) {
-                total.push(1);
-              } else if (idx == 1) {
-                total.push(0.5);
-              } else if (idx == 2) {
-                total.push(0);
-              }
-            }
+    for (let i of ans) {
+      for (let succ of i.answers) {
+        if (succ.ansucc) {
+          let idx = i.answers.indexOf(succ);
+          if (idx == 0) {
+            one += 1;
+          } else if (idx == 1) {
+            two += 1;
+          } else if (idx == 2) {
+            three += 1;
           }
         }
       }
-    return  Math.round((total.reduce((a, b) => a + b) / (arr.length * 3)) * 100)
     }
-    let onebar = get(one)
-    let twobar = get(two)
-    setOneBar(onebar)
-    setTwoBar(twobar)
+    total = [
+      Math.round((one / (Allusers.length * 6)) * 100),
+      Math.round((two / (Allusers.length * 6)) * 100),
+      Math.round((three / (Allusers.length * 6)) * 100),
+    ];
+    setBarTotal([...total])
+
   }
   useEffect(() => {
-    Load && LoadQ
-      ? inds(
-          users.filter(
-            (item) =>
-              item[
-                `${
-                  all
-                    .filter((item) => item.id === id.copid)[0]
-                    .questions.filter((item) => item.resultid == id.id)[0].id
-                }`
-              ]
-          )
-        )
-      : null;
+    Load && LoadQ ? inds(users) : null;
   });
   return (
     <>
       <div className="answers  relative bg-white">
-        {/* <Link to={"/" + myid}>
-          <div className="absolute right-[30px] top-[20px] close_btn">
-            <IoCloseSharp />
-          </div>
-        </Link> */}
         <h1>Доминирующие цвета</h1>
         <div className=" mt-3">
           {Load && LoadQ
             ? colors.map((item, idx) => (
                 <BarV2
                   item={item}
+                  BarTotal={BarTotal}
                   newOb={newOb}
-              OneBar= {OneBar}
-                  TwoBar= {TwoBar}
+              
                   key={idx}
                   idx={idx}
                   color={colors[idx]}

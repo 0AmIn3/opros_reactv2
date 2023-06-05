@@ -110,8 +110,8 @@ const DiogramUp = ({
     <>
       <div className="mt-[60px]">
         <h1 className="w-[70%] text-2xl  font-extrabold">{item.title}</h1>
-        <p className=" mt-[18px] text-sm opacity-30">
-          Ответили {users.length} человек
+        <p className=" mt-[18px] font-bold opacity-50 text-sm ">
+        Количество ответов ({users.length})
         </p>
         <div className="flex gap-3 mt-[12px] ">
           {newobj.map((item, idx) => (

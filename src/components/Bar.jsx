@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const Bar = ({ color, item, newObjTot, idx }) => {
+const Bar = ({ color,  newObjTot, idx }) => {
   const id = useParams();
-
   const users = useSelector((state) => state.users.data).filter(
     (item) => item.companyid === id.copid && item[id.id.slice(1)]
   );

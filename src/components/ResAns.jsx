@@ -11,7 +11,7 @@ const ResAns = ({ qus, all, index , idkey }) => {
     return (
         <div className='mt-[80px] res_top'>
             <p className='text-[20px] font-bold'>{qus.title}</p>
-            <span className='font-bold opacity-50'>Ответили {peoples.length} человека</span>
+            <span className='font-bold opacity-50'> Количество ответов ({peoples.length}) </span>
 
             <div className="quest_box">
                 {

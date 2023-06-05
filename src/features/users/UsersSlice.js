@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getUserAPI, pathUserAPI, postUserAPI } from "../thunk";
+import { getUserAPI, pathUserAPI, postUserAPI, putUserAPI } from "../thunk";
 
 
 const initialState = {
@@ -21,8 +21,8 @@ export const UsersSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getUserAPI.fulfilled, (state, action) => {
-        state.data = action.payload.data;
-        state.userKey = action.payload.userKey
+        state.data = action.payload.data || []
+        state.userKey = action.payload.userKey || []
         state.status = "fulfilled";
       })
       .addCase(getUserAPI.rejected, (state, action) => {
@@ -42,10 +42,22 @@ export const UsersSlice = createSlice({
         state.status = "loading";
       })
       .addCase(pathUserAPI.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.data = action.payload.data;
+        state.userKey = action.payload.userKey
         state.status = "fulfilled";
       })
       .addCase(pathUserAPI.rejected, (state, action) => {
+        state.status = "rejected";
+      })
+      .addCase(putUserAPI.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(putUserAPI.fulfilled, (state, action) => {
+       state.data = action.payload.data;
+        state.userKey = action.payload.userKey
+        state.status = "fulfilled";
+      })
+      .addCase(putUserAPI.rejected, (state, action) => {
         state.status = "rejected";
       })
   },

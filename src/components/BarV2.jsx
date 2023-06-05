@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const BarV2 = ({ color, OneBar, TwoBar, idx }) => {
+const BarV2 = ({ color,BarTotal,  idx }) => {
   const id = useParams();
 
   const users = useSelector((state) => state.users.data).filter(
@@ -11,11 +11,8 @@ const BarV2 = ({ color, OneBar, TwoBar, idx }) => {
   const [line, setline] = useState(0);
 
   function setLinee() {
-    if (idx == 0) {
-      return OneBar;
-    }else if(idx == 1){
-      return TwoBar;
-    }
+
+    return BarTotal[idx]
   }
 
   return (

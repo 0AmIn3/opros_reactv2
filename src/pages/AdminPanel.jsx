@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCompanyAPI, getCompanyAPI } from "../features/thunk";
+import { deleteCompanyAPI, getCompanyAPI, getUserAPI, putUserAPI } from "../features/thunk";
 import Companyes from "../components/Companyes";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -13,6 +13,9 @@ const AdminPanel = () => {
   // const [CompanyCop, setCompanyCop] = useState([...all]);
   const dispatch = useDispatch();
   const logAll = useSelector((state) => state.all.status);
+  const Allusers = useSelector((state) => state.users.data);
+  const Alluserskeys = useSelector((state) => state.users.userKey);
+  const AllusersStatus = useSelector((state) => state.users.status);
   const [DeleteKey, setDeleteKey] = useState("");
   const [Modal, setModal] = useState(false);
   const [USer, setUSer] = useState(null);
@@ -34,6 +37,9 @@ const AdminPanel = () => {
   useEffect(() => {
     if (!all.length) {
       dispatch(getCompanyAPI());
+    }
+    if (!Allusers.length) {
+      dispatch(getUserAPI());
     }
   });
   return (
@@ -103,13 +109,21 @@ const AdminPanel = () => {
               </p>
               <p onClick={()=>{
                 dispatch(deleteCompanyAPI(DeleteKey))
-                if(logAll == "fulfilled"){
+      
+                let al = {
+
+                }
+                for(let i in Alluserskeys){
+                  if(Alluserskeys[i].companyid != USer.id){
+                    al[i] = Alluserskeys[i]
+                  }
+                }
+                dispatch(putUserAPI(al))
+                if(logAll == "fulfilled" && AllusersStatus == 'fulfilled'){
                   setModal(false)
                   setTimeout(()=>{
                     window.location.reload(false);
                   },500)
-
-                
                 }
               }}  className=" p-3 bg-[#f92727de] cursor-pointer text-white   rounded-md font-medium outline-none   button">
                 Удалить
