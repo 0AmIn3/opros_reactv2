@@ -11,7 +11,7 @@ const UpDiogramItem = ({item , peoples }) => {
         <span className=" text-[10px] font-light opacity-60 star_peo">{item} отв</span>
       </div>
       <div
-        className=" w-full bg-[#C7FFAC]"
+        className=" w-full bg-[#77dddf]"
         style={{height: `${prosent}%`}}
       ></div>
     </div>

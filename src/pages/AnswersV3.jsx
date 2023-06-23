@@ -24,7 +24,7 @@ const AnswersV3 = () => {
   const [Load, setLoad] = useState(false);
   const [LoadQ, setLoadQ] = useState(false);
   const id = useParams();
-
+console.log(id.copid);
   const [passed, setPassed] = useState(false);
 
   useEffect(()=>{
@@ -65,7 +65,7 @@ const AnswersV3 = () => {
              {/* <button onClick={()=>{
                localStorage.setItem(`${id.copid}/${id.id}1` , 'repeat')
                window.location.reload(false);
-             }} className="p-3 bg-[#C7FFAC] rounded-md font-medium outline-none">Повторно пройти опрос</button> */}
+             }} className="p-3 bg-[#77dddf] rounded-md font-medium outline-none">Повторно пройти опрос</button> */}
           
            </div>  
       ) : (

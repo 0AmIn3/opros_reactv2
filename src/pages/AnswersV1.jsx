@@ -66,7 +66,7 @@ const AnswersV1 = () => {
           localStorage.setItem(`${id.copid}/${id.id}1` , 'repeat')
           window.location.reload(false);
         }} 
-        className="p-3 bg-[#C7FFAC] rounded-md font-medium outline-none">Повторно пройти опрос</button> */}
+        className="p-3 bg-[#77dddf] rounded-md font-medium outline-none">Повторно пройти опрос</button> */}
      
       </div>  
       ) : (

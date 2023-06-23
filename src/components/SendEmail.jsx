@@ -19,7 +19,7 @@ export const SendEmail = ({ arr, item }) => {
       .then(
         (result) => {
           result.text;
-          localStorage.setItem(`${item.email}`, "sended");
+          localStorage.setItem(`${copid}/${item.email}`, "sended");
         },
         (error) => {
           error.text;
@@ -29,8 +29,8 @@ export const SendEmail = ({ arr, item }) => {
 
   useEffect(() => {
     if (
-      localStorage.getItem(`${item.email}`) !== "sended" ||
-      !localStorage.getItem(`${item.email}`)
+      localStorage.getItem(`${copid}/${item.email}`) !== "sended" ||
+      !localStorage.getItem(`${copid}/${item.email}`)
     ) {
       setTimeout(() => {
         sendEmail();

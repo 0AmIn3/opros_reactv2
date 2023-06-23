@@ -22,7 +22,6 @@ const LayoutAdmin = () => {
   return (
     <div className="w-[80%] max-w-[1728px] mx-auto my-0" >
       <div className="bgall"></div>
-      <div className="bgopa"></div>
       <main className="">
         <Outlet />
       </main>

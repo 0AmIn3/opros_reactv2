@@ -181,7 +181,7 @@ const AdminModal = ({
                       
                       AddAnswer(idx);
                     }}
-                    className="p-3 bg-[#C7FFAC] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
+                    className="p-3 bg-[#77dddf] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
                   >
                     Добавить ответ
                   </button>

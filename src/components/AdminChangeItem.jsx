@@ -651,7 +651,7 @@ const AdminChangeItem = ({
               setType(true);
             }
           }}
-          className=" p-3 bg-[#C7FFAC] cursor-pointer   rounded-md font-medium outline-none   button"
+          className=" p-3 bg-[#77dddf] cursor-pointer   rounded-md font-medium outline-none   button"
         >
           Изменить
         </p>

@@ -9,7 +9,7 @@
   font-family: "Inter", sans-serif;
 }
 .borders {
-  border: 1px solid #c7ffac;
+  border: 1px solid #77dddf;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -35,13 +35,23 @@
 }
 .bgopa {
   width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
+  height: fit-content;
   background-color: #ffffff;
-  opacity: 0.3;
-  z-index: -1;
+border-radius: 18px;  // overflow-y: hidden;
+  // overflow-y: scroll;
+  // position: fixed;
+  // bottom: 0;
+  // left:  0;
+  margin-top: 100px;
+
+}
+.cont{
+  position: relative;
+}
+@media only screen and (max-width: 768px) {
+  .bgopa {
+    width: 100%;
+  }
 }
 .home_ans {
   gap: 30px;
@@ -112,7 +122,7 @@
     font-size: 10px;
     line-height: 110%;
     padding: 10px;
-    background: #c7ffac;
+    background: #77dddf;
     border-radius: 10px;
   }
 }
@@ -147,7 +157,7 @@
   bottom: 30px;
   right: 30px;
   padding: 10px 20px;
-  background-color: #c7ffac;
+  background-color: #77dddf;
   border-radius: 10px;
   width: 186px;
   text-align: start;
@@ -168,7 +178,7 @@
     display: flex;
     padding: 0px 20px;
     align-items: center;
-    background-color: #c7ffac;
+    background-color: #77dddf;
     border-radius: 10px;
     margin-right: 10px;
   }
@@ -193,7 +203,7 @@
 }
 
 .starBorder {
-  border: 2px solid #c7ffac;
+  border: 2px solid #77dddf;
   border-radius: 10px;
 }
 .urus {
@@ -204,7 +214,7 @@
   text-align: center;
   span {
     border-radius: 10px;
-    background: #c7ffac;
+    background: #77dddf;
     padding: 10px;
     font-size: 14px;
     font-weight: 700;
@@ -221,7 +231,7 @@
   width: 62px;
   height: 158px;
   border-radius: 10px;
-  border: 2px solid #c7ffac;
+  border: 2px solid #77dddf;
 }
 label {
   -webkit-user-select: none;
@@ -287,7 +297,7 @@ label {
   width: 100%;
   height: 38px;
   outline: none;
-  background: #c7ffac;
+  background: #77dddf;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -296,6 +306,23 @@ label {
   font-size: 16px;
   line-height: 115%;
   color: #000000;
+}
+.PolicModal button {
+  outline: none;
+  background: #77dddf;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 115%;
+  color: #000000;
+  padding: 20px 32px;
+  transition: 0.3s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 .reg_box .checkbox {
   width: 217px;
@@ -311,7 +338,6 @@ label {
   font-weight: 400;
   font-size: 8px;
   line-height: 120%;
-  color: #000000;
   opacity: 0.6;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -324,14 +350,41 @@ label {
   display: block;
   width: 15px;
   height: 15px;
-  border: 1px solid #000000;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+.PolicModal .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.PolicModal .checkbox span {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 120%;
+  opacity: 0.6;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.PolicModal .checkbox input {
+  display: none;
+}
+.PolicModal .checkbox label {
+  display: block;
+  width: 15px;
+  height: 15px;
+  // border: 1px solid ;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .close_btn {
   width: 24px;
   height: 24px;
@@ -344,15 +397,15 @@ label {
 }
 
 .answers {
-  position: absolute;
-  top: 100px;
-  margin-top: 0px;
-  left: calc(50% - (800px / 2));
+  // position: absolute;
+  // top: 100px;
+  // margin-top: 0px;
+  // left: calc(50% - (800px / 2));
 }
 
 .home_ans {
-  position: absolute;
-  left: calc(50% - (453px / 2));
+  // position: absolute;
+  // left: calc(50% - (453px / 2));
   margin-top: 10vh;
 }
 .sel_q {
@@ -422,7 +475,7 @@ label {
 
 .ans_sel {
   height: 100%;
-  background-color: #c7ffac;
+  background-color: #77dddf;
 }
 
 label {
@@ -460,7 +513,7 @@ label {
   content: "";
   width: 12px;
   height: 12px;
-  background: #c7ffac;
+  background: #77dddf;
   position: absolute;
   top: 3.2px;
   left: 3.2px;
@@ -487,7 +540,7 @@ label {
 
   .home_ans {
     width: 90%;
-    left: calc(50% - 90% / 2);
+    // left: calc(50% - 90% / 2);
   }
 
   .ques_flex {
@@ -628,7 +681,6 @@ label {
 @media (max-width: 900px) {
   .answers {
     width: 90%;
-    left: calc(50% - 90% / 2);
   }
 
   .ques_flex {
@@ -685,7 +737,7 @@ label {
   width: 100px;
   max-width: 100px;
   padding: 10px 10px;
-  background-color: #c7ffac;
+  background-color: #77dddf;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -725,27 +777,59 @@ label {
   left: 0;
   z-index: 9998;
 }
+.logo {
+  position: fixed;
+  top: 20px;
+  left: 50px;
+  width: 200px;
+}
 @media only screen and (max-width: 768px) {
-    .AdminCompanies{
-      flex-direction: column;
-      align-items: center;
-    }
-    .AdminChange{
-      flex-direction: column;
-      align-items: center;
-      p{
-        width: 100%;
-        input{
-          width: 100%;
-          text-align: center;
-        }
-      }
-    
-    }
-    .AdminAnswers{
-      padding: 0;
-    }
-    .AdminQues{
+  .AdminCompanies {
+    flex-direction: column;
+    align-items: center;
+  }
+  .AdminChange {
+    flex-direction: column;
+    align-items: center;
+    p {
       width: 100%;
+      input {
+        width: 100%;
+        text-align: center;
+      }
     }
+  }
+  .AdminAnswers {
+    padding: 0;
+  }
+  .AdminQues {
+    width: 100%;
+  }
+}
+.PolicModal {
+  width: 60%;
+  height: 90%;
+  background-color: white;
+  border-radius: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 8;
+}
+
+@media only screen and (max-width: 768px) {
+  .PolicModal {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 677px) {
+  .PolicModal {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .PolicModal {
+    width: 90%;
+  }
 }

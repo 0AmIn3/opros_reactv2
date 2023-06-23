@@ -34,7 +34,7 @@ const Home = () => {
 
   const copyText = () => {
     if (textRef.current) {
-      const textToCopy = textRef.current.innerText;
+      let textToCopy = textRef.current.innerHTML;
       navigator.clipboard.writeText(textToCopy);
     }
   };
@@ -78,7 +78,7 @@ const Home = () => {
                 <p className="text-xl font-bold text-center">Ссылка на опрос  у вас на почте.</p>
               <p className="text-xl mt-12 font-bold">Отправьте ссылку вашим респондентам: </p>
               <p ref={textRef} className=" text-gray-500 ">{Href}</p>
-              <button className=" p-3 bg-[#C7FFAC] rounded-md font-medium outline-none   " onClick={() =>{
+              <button className=" p-3 bg-[#77dddf] rounded-md font-medium outline-none   " onClick={() =>{
                copyText()
                setCopyText('Ссылка скопирована')
                setTimeout(()=>{

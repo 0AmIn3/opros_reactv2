@@ -18,7 +18,7 @@ const Companyes = ({ item , setDeleteKey ,setModal,setUSer}) => {
       <p> {item.email} </p>
       <div className="flex gap-5">
         <Link to={"/nedminRegister/panel/" + item.id}>
-          <p className=" p-3 bg-[#C7FFAC] cursor-pointer   rounded-md font-medium outline-none   button">
+          <p className=" p-3 bg-[#77dddf] cursor-pointer   rounded-md font-medium outline-none   button">
             Изменить
           </p>
         </Link>
