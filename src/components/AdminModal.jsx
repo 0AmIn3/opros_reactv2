@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { pathCompanyAPI } from "../features/thunk";
+import { pathCompanyAPI, pathSampleAPI } from "../features/thunk";
 
 const AdminModal = ({
   arr,
@@ -13,16 +13,25 @@ const AdminModal = ({
 }) => {
   const CompanyId = useParams().id;
   const allKey = useSelector((state) => state.all.userKey);
+  const sampleKey = useSelector((state) => state.sample.userKey);
   const all = useSelector((state) => state.all.data);
   const logAll = useSelector((state) => state.all.status);
+  const logsample = useSelector((state) => state.sample.status);
   const log = useSelector((state) => state.users.status);
+  const sample = useSelector((state) => state.sample.data);
   const [err, setErr] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function getKey() {
-    return Object.keys(allKey)[
-      all.indexOf(all.filter((item) => item.id === CompanyId)[0])
-    ];
+    if (CompanyId === "sample") {
+      return Object.keys(sampleKey)[
+        sample.indexOf(sample.filter((item) => item.id === CompanyId)[0])
+      ];
+    } else {
+      return Object.keys(allKey)[
+        all.indexOf(all.filter((item) => item.id === CompanyId)[0])
+      ];
+    }
   }
 
   const [MainArr, setMainArr] = useState([...arr]);
@@ -37,6 +46,7 @@ const AdminModal = ({
     };
     NewArr.splice(idx, 1, obj);
     setCop([...NewArr]);
+    console.log(NewArr);
   }
 
   function ChangeAnswers(value, idx, i) {
@@ -129,6 +139,7 @@ const AdminModal = ({
   useEffect(() => {
     setMainArr([...cop]);
   }, [cop]);
+  console.log(getKey());
   return (
     <>
       <div className="modalAdmin">
@@ -136,7 +147,7 @@ const AdminModal = ({
           <button
             onClick={() => {
               setCop([]);
-              setErr(true)
+              setErr(true);
             }}
             className="p-3 bg-[#f8ffac] cursor-pointer   rounded-md font-medium outline-none   button"
           >
@@ -196,19 +207,16 @@ const AdminModal = ({
           onClick={() => {
             if (changeType == "type1" && cop.length <= 11) {
               AddQuestions();
-              setErr(true)
-            }else if (changeType == "type2" && cop.length <= 4) {
+              setErr(true);
+            } else if (changeType == "type2" && cop.length <= 4) {
               AddQuestions();
-              setErr(true)
-            }else if (changeType == "type3" && cop.length <= 5) {
+              setErr(true);
+            } else if (changeType == "type3" && cop.length <= 5) {
               AddQuestions();
-              setErr(true)
-            } else{
-              setErr(false)
+              setErr(true);
+            } else {
+              setErr(false);
             }
-            
-            
-    
           }}
         >
           {err ? <p>Добавить Вопрос</p> : <p>Превышен лимит вопросов</p>}
@@ -224,15 +232,28 @@ const AdminModal = ({
             };
             copQuests.splice(QuestIdx, 1, newObj);
 
-            dispatch(
-              pathCompanyAPI({
-                key: getKey(),
-                obj: {
-                  questions: copQuests,
-                },
-              })
-            );
-            if (logAll === "fulfilled") {
+
+            if (CompanyId === "sample") {
+              dispatch(
+                pathSampleAPI({
+                  key: getKey(),
+                  obj: {
+                    questions: copQuests,
+                  },
+                })
+              );
+            } else {
+              dispatch(
+                pathCompanyAPI({
+                  key: getKey(),
+                  obj: {
+                    questions: copQuests,
+                  },
+                })
+              );
+            }
+       
+            if (logAll === "fulfilled" || logsample === "fulfilled") {
               navigate("/nedminRegister/panel");
               // setTimeout(()=>{
               //   window.location.href = "/nedminRegister/panel";

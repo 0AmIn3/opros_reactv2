@@ -11,13 +11,14 @@ const AdminChange = () => {
   const all = useSelector((state) => state.all.data);
   let CompanyId = useParams().id;
   const logAll = useSelector((state) => state.all.status);
+  const logSample = useSelector((state) => state.sample.status);
   const [Quests, setQuests] = useState([]);
   const [Modal, setModal] = useState(false);
   const [type, setType] = useState(false);
-  const [changeType, setChangeType] = useState('');
+  const [changeType, setChangeType] = useState("");
   const [QuestIdx, setQuestIdx] = useState(0);
-
-  
+  const sample = useSelector((state) => state.sample.data);
+  const [AllQuents, setAllQuents] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     axios
@@ -32,6 +33,12 @@ const AdminChange = () => {
           navigate("/");
         }
       });
+    // if (CompanyId === "sample" && sample.length > 0) {
+    // } else if (all.length > 0) {
+    // }
+    CompanyId === "sample" && sample.length > 0
+      ? setAllQuents(sample[0].questions)
+      : setAllQuents(all.filter((item) => item.id === CompanyId)[0]?.questions);
   });
 
   function saveBtn(idx) {
@@ -50,8 +57,26 @@ const AdminChange = () => {
         </div>
       </Link>
       <div className="flex flex-col gap-4">
-        {logAll == "fulfilled" && all.length > 0
+        {/* {CompanyId === "sample"} */}
+        {logAll == "fulfilled" && all.length > 0 && CompanyId !== "sample"
           ? all
+              .filter((item) => item.id === CompanyId)[0]
+              .questions.map((item, idx) => (
+                <AdminChangeItem
+                  key={idx}
+                  idx={idx}
+                  saveBtn={saveBtn}
+                  setModal={setModal}
+                  setQuests={setQuests}
+                  setType={setType}
+                  item={item}
+                  setQuestIdx={setQuestIdx}
+                  setChangeType={setChangeType}
+                />
+              ))
+          : null}
+        {logSample == "fulfilled" && sample.length > 0 && CompanyId === "sample"
+          ? sample
               .filter((item) => item.id === CompanyId)[0]
               .questions.map((item, idx) => (
                 <AdminChangeItem
@@ -75,7 +100,7 @@ const AdminChange = () => {
           QuestIdx={QuestIdx}
           type={type}
           changeType={changeType}
-          allQuests={all.filter((item) => item.id === CompanyId)[0].questions}
+          allQuests={AllQuents}
           arr={Quests}
         />
       ) : null}

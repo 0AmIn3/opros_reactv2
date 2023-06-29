@@ -19,7 +19,7 @@ const ResultV2 = () => {
     "#7f077f",
     "red",
     "royalblue",
-    "#9c9c01",
+    "#F07427",
     "#07b55e",
     // "#07b55e",
   ]);

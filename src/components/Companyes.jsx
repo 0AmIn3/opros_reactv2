@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Companyes = ({ item , setDeleteKey ,setModal,setUSer}) => {
   const all = useSelector((state) => state.all.data);
@@ -10,7 +10,6 @@ const Companyes = ({ item , setDeleteKey ,setModal,setUSer}) => {
       all.indexOf(all.filter((i) => i.id === item.id)[0])
     ];
   }
-
   return (
     <div className=" w-full  mt-5">
      <div className="flex AdminCompanies gap-7 w-full justify-between">

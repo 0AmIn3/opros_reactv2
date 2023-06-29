@@ -35,7 +35,7 @@ const Layout = () => {
         <Outlet />
     
       </main>
-      <footer className="bgopa px-4 py-2">
+      {/* <footer className="bgopa px-4 py-2">
         <div className="">
           <h1 className="text-black font-extrabold ">Контактные данные:</h1>
           <div className="flex  flex-col  gap-4">
@@ -55,7 +55,7 @@ const Layout = () => {
             </p>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };

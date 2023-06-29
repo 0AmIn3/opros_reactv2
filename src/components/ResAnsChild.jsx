@@ -12,10 +12,12 @@ let dead = Howlengh()
   function Howlengh(){
     let al = 0;
     for (let user of peoples) {
-     
+    
       for (let ans of user[idkey][id].answers) {
         if (ans.ansucc) {
-             
+          // if(ans.title == 'Могу влиять только на большую часть решений, но не на все'){
+          //   console.log(user );
+          //  }
               if(ans.title == anses.title){
                 al++
               }
@@ -28,7 +30,7 @@ let dead = Howlengh()
 
   useEffect(() => {
  
-
+    // console.log(peoples);
   });
   return (
     <div className="p-[10px]">

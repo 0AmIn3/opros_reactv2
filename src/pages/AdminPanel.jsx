@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCompanyAPI, getCompanyAPI, getUserAPI, putUserAPI } from "../features/thunk";
+import {
+  deleteCompanyAPI,
+  getCompanyAPI,
+  getSampleAPI,
+  getUserAPI,
+  postSampleAPI,
+  putUserAPI,
+} from "../features/thunk";
 import Companyes from "../components/Companyes";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -19,7 +26,7 @@ const AdminPanel = () => {
   const [DeleteKey, setDeleteKey] = useState("");
   const [Modal, setModal] = useState(false);
   const [USer, setUSer] = useState(null);
-  
+  const sample = useSelector((state) => state.sample.data);
   useEffect(() => {
     axios
       .get("https://tealband-4afc1-default-rtdb.firebaseio.com/admin.json")
@@ -33,14 +40,22 @@ const AdminPanel = () => {
           navigate("/");
         }
       });
+
+      
   });
   useEffect(() => {
     if (!all.length) {
       dispatch(getCompanyAPI());
+      
     }
     if (!Allusers.length) {
       dispatch(getUserAPI());
     }
+    if (!sample.length) {
+      dispatch(getSampleAPI());
+   
+    }
+  
   });
   return (
     // <div>
@@ -102,30 +117,34 @@ const AdminPanel = () => {
           <div className="  fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white modalDelete flex px-6 flex-col gap-11  py-10 justify-center">
             <h1>Вы дейстительно хотите удалить компанию "{USer.name}" ?</h1>
             <div className="flex gap-4 mx-auto">
-              <p onClick={()=>{
-                setModal(false)
-              }} className=" p-3 bg-[#77dddf] cursor-pointer   rounded-md font-medium outline-none   button">
+              <p
+                onClick={() => {
+                  setModal(false);
+                }}
+                className=" p-3 bg-[#77dddf] cursor-pointer   rounded-md font-medium outline-none   button"
+              >
                 Отменить
               </p>
-              <p onClick={()=>{
-                dispatch(deleteCompanyAPI(DeleteKey))
-      
-                let al = {
+              <p
+                onClick={() => {
+                  dispatch(deleteCompanyAPI(DeleteKey));
 
-                }
-                for(let i in Alluserskeys){
-                  if(Alluserskeys[i].companyid != USer.id){
-                    al[i] = Alluserskeys[i]
+                  let al = {};
+                  for (let i in Alluserskeys) {
+                    if (Alluserskeys[i].companyid != USer.id) {
+                      al[i] = Alluserskeys[i];
+                    }
                   }
-                }
-                dispatch(putUserAPI(al))
-                if(logAll == "fulfilled" && AllusersStatus == 'fulfilled'){
-                  setModal(false)
-                  setTimeout(()=>{
-                    window.location.reload(false);
-                  },500)
-                }
-              }}  className=" p-3 bg-[#f92727de] cursor-pointer text-white   rounded-md font-medium outline-none   button">
+                  dispatch(putUserAPI(al));
+                  if (logAll == "fulfilled" && AllusersStatus == "fulfilled") {
+                    setModal(false);
+                    setTimeout(() => {
+                      window.location.reload(false);
+                    }, 500);
+                  }
+                }}
+                className=" p-3 bg-[#f92727de] cursor-pointer text-white   rounded-md font-medium outline-none   button"
+              >
                 Удалить
               </p>
             </div>
@@ -134,6 +153,16 @@ const AdminPanel = () => {
         </div>
       ) : null}
       <div className="flex justify-center gap-5 mt-[200px] p-3 rounded-2xl relative bg-white h-auto flex-col w-full items-center ">
+        
+        {sample.length > 0 ?   <Companyes
+          item={sample[0]}
+          setModal={setModal}
+          setDeleteKey={setDeleteKey}
+          key={1212}
+          setUSer={setUSer}
+        /> : null}
+      
+
         {logAll == "fulfilled" && all.length > 0
           ? all.map((item, idx) => (
               <Companyes

@@ -95,3 +95,53 @@ export const putUserAPI = createAsyncThunk("users/putUserAPI", async (dat) => {
     userKey: res.data,
   };
 });
+
+
+export const getSampleAPI = createAsyncThunk("sample/getSampleAPI", async () => {
+  const res = await axios.get(
+    "https://tealband-4afc1-default-rtdb.firebaseio.com/sample.json"
+  );
+  return {
+    data: Object.values(res.data),
+    userKey: res.data,
+  };
+  
+});
+
+export const postSampleAPI = createAsyncThunk("sample/postSampleAPI", async (data) => {
+  const res = await axios.post(
+    "https://tealband-4afc1-default-rtdb.firebaseio.com/sample.json",
+    data
+  );
+
+  return res.data;
+});
+
+export const pathSampleAPI = createAsyncThunk("sample/pathSampleAPI", async (data) => {
+  await axios.patch(
+    `https://tealband-4afc1-default-rtdb.firebaseio.com/sample/${data.key}.json`,
+    data.obj
+  );
+  const res = await axios.get(
+    "https://tealband-4afc1-default-rtdb.firebaseio.com/sample.json"
+  );
+
+  return {
+    data: Object.values(res.data),
+    userKey: res.data,
+  };
+});
+export const putSampleAPI = createAsyncThunk("sample/putSampleAPI", async (dat) => {
+  await axios.put(
+    `https://tealband-4afc1-default-rtdb.firebaseio.com/sample.json`,
+    dat
+  );
+  const res = await axios.get(
+    "https://tealband-4afc1-default-rtdb.firebaseio.com/sample.json"
+  );
+
+  return {
+    data: Object.values(res.data),
+    userKey: res.data,
+  };
+});
