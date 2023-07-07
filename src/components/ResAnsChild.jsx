@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 
-const ResAnsChild = ({ anses, id, idkey , peoples }) => {
+const ResAnsChild = ({ anses, id, idkey ,idx , peoples }) => {
   
 
 const [lengh, setlengh] = useState();
@@ -15,10 +15,7 @@ let dead = Howlengh()
     
       for (let ans of user[idkey][id].answers) {
         if (ans.ansucc) {
-          // if(ans.title == 'Могу влиять только на большую часть решений, но не на все'){
-          //   console.log(user );
-          //  }
-              if(ans.title == anses.title){
+              if(idx === ans.idx){
                 al++
               }
         }
@@ -28,10 +25,7 @@ let dead = Howlengh()
     return al
   }
 
-  useEffect(() => {
- 
-    // console.log(peoples);
-  });
+
   return (
     <div className="p-[10px]">
       <hr />

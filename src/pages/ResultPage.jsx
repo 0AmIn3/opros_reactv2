@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getUserAPI } from "../features/thunk";
 import NotFound from "../components/NotFound";
+import ResultV4 from "./ResultV4";
 
 const ResultPage = () => {
   const [type, settype] = useState("");
@@ -40,6 +41,8 @@ const ResultPage = () => {
         return <ResultV2 />;
       } else if (typ === "type3") {
         return <ResultV3 />;
+      }else if (typ === "type4") {
+        return <ResultV4 />;
       }
     }else{
       return (

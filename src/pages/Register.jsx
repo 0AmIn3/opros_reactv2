@@ -4,7 +4,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { getCompanyAPI, getSampleAPI, postCompanyAPI, postSampleAPI } from "../features/thunk";
+import {
+  getCompanyAPI,
+  getSampleAPI,
+  postCompanyAPI,
+  postSampleAPI,
+} from "../features/thunk";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -33,10 +38,9 @@ const Register = () => {
       dispatch(getSampleAPI());
     }
     // console.log(...sample);
-    setDefQues(...sample)
-
-
-  });
+    setDefQues(...sample);
+  }, [sample]);
+  console.log(DefQues);
   const {
     register,
     handleSubmit,
@@ -44,11 +48,9 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    // const randomId = Math.floor(Math.random() * 1000000);
-    console.log(isPolic);
     if (isPolic) {
       let cop = [...all];
-      let aa = cop.filter((item) => item.email === data.email);
+      let aa = cop.filter((item) => item.name === data.name);
       console.log(cop);
 
       if (aa.length > 0) {
@@ -62,7 +64,6 @@ const Register = () => {
           id: uuidv4(),
           ...data,
           questions: DefQues.questions,
-          polic: true,
         };
         Cookies.set("IsCompany", `true`, {
           expires: Infinity,
@@ -70,7 +71,6 @@ const Register = () => {
         });
 
         dispatch(postCompanyAPI(obj));
-        console.log(obj);
         if (logAll === "fulfilled") {
           navigate("/" + obj.id);
         }
@@ -917,3 +917,7 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+

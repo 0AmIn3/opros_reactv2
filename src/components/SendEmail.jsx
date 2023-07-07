@@ -1,60 +1,59 @@
-import React, { useEffect, useRef } from "react";
-// import emailjs from "@emailjs/browser";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-// import nodemailer from "nodemailer";
+import axios from "axios";
+
 export const SendEmail = ({ arr, item }) => {
   const href = window.location.href;
   const { copid } = useParams();
   const form = useRef();
-  const sendEmail = (e) => {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "aminfedya2888@gmail.com",
-        pass: "jcwlgbeeqvgrmxdx",
-      },
-    });
-    const mailOptions = {
-      from: "aminfedya2888@gmail.com",
-      to: "aminfedya2888@gmail.com",
-      subject: "Nodemailer test msg",
-      text: "привет бро",
+  const handleSubmit = () => {
+    event.preventDefault();
+    const data = {
+      reply_to: form.current.elements.reply_to.value,
+      subject: "Новое сообщение от Teal.Band",
+      company_name: form.current.elements.company_name.value,
+      link1: form.current.elements.link1.value,
+      link2: form.current.elements.link2.value,
+      link3: form.current.elements.link3.value,
     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log("ошибка", error);
-      } else console.log("email отправлен: " + info.response);
+    axios
+    .post("./email.php", JSON.stringify(data), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      console.log(response.data + " THIS IS WORK!!!");
+    })
+    .catch((error) => {
+      console.error(error);
     });
-
   };
 
   useEffect(() => {
+    handleSubmit()
     if (
       localStorage.getItem(`${copid}/${item.email}`) !== "sended" ||
       !localStorage.getItem(`${copid}/${item.email}`)
     ) {
-      setTimeout(() => {
-        sendEmail();
-      }, 1000);
     }
   }, [copid]);
+
   return (
-    <form ref={form} className=" fixed top-[-100%]">
+    <form ref={form} onSubmit={handleSubmit} className="fixed top-[-100%]">
       <input
         type="hidden"
         name="from_name"
         id="from_name"
-        defaultValue={"Tail.Band"}
+        defaultValue={"Teal.Band"}
       />
-      <label>company_name</label> <br />
       <input
         type="text"
         name="company_name"
         id="company_name"
         defaultValue={item.name}
       />
-      <br />
       <input
         type="text"
         name="link1"
@@ -65,7 +64,6 @@ export const SendEmail = ({ arr, item }) => {
           href.split("/")[2]
         }/${copid}/result/p${arr[0].id}`}
       />
-      <br />
       <input
         type="text"
         name="link2"
@@ -76,7 +74,6 @@ export const SendEmail = ({ arr, item }) => {
           href.split("/")[2]
         }/${copid}/result/p${arr[1].id}`}
       />
-      <br />
       <input
         type="text"
         name="link3"
@@ -87,16 +84,12 @@ export const SendEmail = ({ arr, item }) => {
           href.split("/")[2]
         }/${copid}/result/p${arr[2].id}`}
       />
-      <br />
-      <label>reply_to</label>
-      <br />
       <input
         type="text"
-        defaultValue={item.email}
         name="reply_to"
         id="reply_to"
+        defaultValue={item.email}
       />
-      <input type="submit" value="Send" />
     </form>
   );
 };

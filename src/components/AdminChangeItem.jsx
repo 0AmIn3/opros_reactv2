@@ -69,7 +69,6 @@ const AdminChangeItem = ({
           id="save"
           style={{ display: "none" }}
           onClick={() => {
-         
             if (CompanyId === "sample") {
               dispatch(
                 pathSampleAPI({
@@ -113,14 +112,17 @@ const AdminChangeItem = ({
                     succ: false,
                     answers: [
                       {
+                        idx: 0,
                         title: "Ответ1",
                         ansucc: false,
                       },
                       {
+                        idx: 1,
                         title: "Ответ2",
                         ansucc: false,
                       },
                       {
+                        idx: 2,
                         title: "Ответ3",
                         ansucc: false,
                       },
@@ -133,14 +135,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -151,14 +156,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -169,14 +177,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -187,14 +198,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -205,14 +219,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -223,14 +240,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -241,14 +261,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -259,14 +282,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -277,14 +303,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -295,13 +324,16 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
+                        idx: 2,
                         ansucc: false,
                       },
                     ],
@@ -313,14 +345,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -337,26 +372,32 @@ const AdminChangeItem = ({
                       {
                         title: "0",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "1",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "2",
                         ansucc: false,
+                        idx: 2,
                       },
                       {
                         title: "3",
                         ansucc: false,
+                        idx: 3,
                       },
                       {
                         title: "4",
                         ansucc: false,
+                        idx: 4,
                       },
                       {
                         title: "5",
                         ansucc: false,
+                        idx: 5,
                       },
                     ],
                   },
@@ -367,26 +408,32 @@ const AdminChangeItem = ({
                       {
                         title: "0",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "1",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "2",
                         ansucc: false,
+                        idx: 2,
                       },
                       {
                         title: "3",
                         ansucc: false,
+                        idx: 3,
                       },
                       {
                         title: "4",
                         ansucc: false,
+                        idx: 4,
                       },
                       {
                         title: "5",
                         ansucc: false,
+                        idx: 5,
                       },
                     ],
                   },
@@ -397,26 +444,32 @@ const AdminChangeItem = ({
                       {
                         title: "0",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "1",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "2",
                         ansucc: false,
+                        idx: 2,
                       },
                       {
                         title: "3",
                         ansucc: false,
+                        idx: 3,
                       },
                       {
                         title: "4",
                         ansucc: false,
+                        idx: 4,
                       },
                       {
                         title: "5",
                         ansucc: false,
+                        idx: 5,
                       },
                     ],
                   },
@@ -427,26 +480,32 @@ const AdminChangeItem = ({
                       {
                         title: "0",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "1",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "2",
                         ansucc: false,
+                        idx: 2,
                       },
                       {
                         title: "3",
                         ansucc: false,
+                        idx: 3,
                       },
                       {
                         title: "4",
                         ansucc: false,
+                        idx: 4,
                       },
                       {
                         title: "5",
                         ansucc: false,
+                        idx: 5,
                       },
                     ],
                   },
@@ -457,26 +516,32 @@ const AdminChangeItem = ({
                       {
                         title: "0",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "1",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "2",
                         ansucc: false,
+                        idx: 2,
                       },
                       {
                         title: "3",
                         ansucc: false,
+                        idx: 3,
                       },
                       {
                         title: "4",
                         ansucc: false,
+                        idx: 4,
                       },
                       {
                         title: "5",
                         ansucc: false,
+                        idx: 5,
                       },
                     ],
                   },
@@ -493,14 +558,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -511,14 +579,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -529,14 +600,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -547,14 +621,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -565,14 +642,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },
@@ -583,14 +663,17 @@ const AdminChangeItem = ({
                       {
                         title: "Ответ1",
                         ansucc: false,
+                        idx: 0,
                       },
                       {
                         title: "Ответ2",
                         ansucc: false,
+                        idx: 1,
                       },
                       {
                         title: "Ответ3",
                         ansucc: false,
+                        idx: 2,
                       },
                     ],
                   },

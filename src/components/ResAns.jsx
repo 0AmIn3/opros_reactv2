@@ -15,7 +15,7 @@ const ResAns = ({ qus, all, index , idkey }) => {
 
             <div className="quest_box">
                 {
-                    qus.answers.map((it, ind) => (<ResAnsChild anses={it} idkey ={idkey} id={index} all={all} key={ind} peoples={peoples} />))
+                    qus.answers.map((it, ind) => (<ResAnsChild idx={ind} anses={it} idkey ={idkey} id={index} all={all} key={ind} peoples={peoples} />))
                 }
             </div>
         </div>

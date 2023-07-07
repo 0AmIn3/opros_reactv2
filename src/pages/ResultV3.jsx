@@ -252,7 +252,7 @@ const ResultV3 = () => {
   }
   useEffect(() => {
     Load && LoadQ ? inds(users) : null;
-  });
+  },[]);
   return (
     <>
       <div className="answers  relative bg-white">

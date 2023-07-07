@@ -33,6 +33,8 @@ const AnswersPage = () => {
       return <AnswersV2 />;
     } else if (typ === "type3") {
       return <AnswersV3 />;
+    }else if (typ === "type4") {
+      return <AnswersV3 />;
     }
   
   }

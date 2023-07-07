@@ -72,20 +72,23 @@ const AdminModal = ({
       ? setCop([
           ...cop,
           {
-            title: "Вопрос" + cop.length,
+            title: "Вопрос" + (cop.length + 1),
             succ: false,
             answers: [
               {
                 title: "ответ1",
                 ansucc: false,
+                idx: 0,
               },
               {
                 title: "ответ2",
                 ansucc: false,
+                idx: 1,
               },
               {
                 title: "ответ3",
                 ansucc: false,
+                idx: 2,
               },
             ],
           },
@@ -93,32 +96,38 @@ const AdminModal = ({
       : setCop([
           ...cop,
           {
-            title: "Вопрос" + cop.length,
+            title: "Вопрос" + (cop.length + 1),
             succ: false,
             answers: [
               {
                 title: "0",
                 ansucc: false,
+                idx: 0,
               },
               {
                 title: "1",
                 ansucc: false,
+                idx: 1,
               },
               {
                 title: "2",
                 ansucc: false,
+                idx: 2,
               },
               {
                 title: "3",
                 ansucc: false,
+                idx: 3,
               },
               {
                 title: "4",
                 ansucc: false,
+                idx: 4,
               },
               {
                 title: "5",
                 ansucc: false,
+                idx: 5,
               },
             ],
           },
@@ -232,7 +241,6 @@ const AdminModal = ({
             };
             copQuests.splice(QuestIdx, 1, newObj);
 
-
             if (CompanyId === "sample") {
               dispatch(
                 pathSampleAPI({
@@ -252,7 +260,7 @@ const AdminModal = ({
                 })
               );
             }
-       
+
             if (logAll === "fulfilled" || logsample === "fulfilled") {
               navigate("/nedminRegister/panel");
               // setTimeout(()=>{
