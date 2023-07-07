@@ -223,6 +223,9 @@ const AdminModal = ({
             } else if (changeType == "type3" && cop.length <= 5) {
               AddQuestions();
               setErr(true);
+            }else if (changeType == "type4" && cop.length <= 20) {
+              AddQuestions();
+              setErr(true);
             } else {
               setErr(false);
             }
