@@ -24,7 +24,6 @@ const AnswersV3 = () => {
   const [Load, setLoad] = useState(false);
   const [LoadQ, setLoadQ] = useState(false);
   const id = useParams();
-console.log(id.copid);
   const [passed, setPassed] = useState(false);
 
   useEffect(()=>{

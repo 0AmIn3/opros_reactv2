@@ -38,7 +38,6 @@ const Home = () => {
       navigator.clipboard.writeText(textToCopy);
     }
   };
-
   if (IsUser == "true" ) {
     return (
       <>

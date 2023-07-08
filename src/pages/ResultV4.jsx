@@ -61,12 +61,11 @@ const ResultV4 = () => {
 
   useEffect(() => {
     // Load && LoadQ ? inds(users) : null;
-    console.log(peoples);
   }, []);
   return (
     <>
       <div className="answers  relative bg-white">
-        <h1>Доминирующие цвета</h1>
+        <h1>Процент реализации потребностей в разрезе уровней по пирамиде Маслоу</h1>
         <div className=" mt-3">
           {Load && LoadQ
             ? colors.map((item, idx) => (

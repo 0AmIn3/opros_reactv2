@@ -35,8 +35,8 @@ let dead = Howlengh()
           <div className="ans_sel" style={{ width: `${Math.round(dead / peoples.length * 100)}%` }}></div>
         </div>
         <div className="ans_info">
-          <p> {Math.round(dead / peoples.length * 100)} %</p>
-          <span> {Howlengh()} отв.</span>
+          <p className=" whitespace-nowrap"> {Math.round(dead / peoples.length * 100)} %</p>
+          <span className=" whitespace-nowrap"> {Howlengh()} отв.</span>
         </div>
       </div>
     </div>

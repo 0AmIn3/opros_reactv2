@@ -402,7 +402,9 @@ label {
   // margin-top: 0px;
   // left: calc(50% - (800px / 2));
 }
-
+.se{
+  transition: 0.5s ease;
+}
 .home_ans {
   // position: absolute;
   // left: calc(50% - (453px / 2));
@@ -531,7 +533,12 @@ label {
   -webkit-transform: scale(1);
   transform: scale(1);
 }
+@media (max-width: 898px) {
+  .ans_full {
+    width: 85%;
 
+  }
+}
 @media (max-width: 735px) {
   .reg_box {
     width: 90%;

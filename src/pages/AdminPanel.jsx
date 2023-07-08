@@ -57,7 +57,6 @@ const AdminPanel = () => {
     }
   
   });
-  console.log(sample);
   return (
     // <div>
     //   <HedAdmin />

@@ -37,10 +37,8 @@ const Register = () => {
     if (!sample.length) {
       dispatch(getSampleAPI());
     }
-    // console.log(...sample);
     setDefQues(...sample);
   }, [sample]);
-  console.log(DefQues);
   const {
     register,
     handleSubmit,
@@ -51,7 +49,6 @@ const Register = () => {
     if (isPolic) {
       let cop = [...all];
       let aa = cop.filter((item) => item.name === data.name);
-      console.log(cop);
 
       if (aa.length > 0) {
         Cookies.set("IsCompany", `true`, {
@@ -885,7 +882,6 @@ const Register = () => {
               <span
                 onClick={() => {
                   !isPolic ? setPolicModal(true) : null;
-                  console.log();
                 }}
                 className={
                   isColor

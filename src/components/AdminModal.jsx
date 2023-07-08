@@ -46,7 +46,6 @@ const AdminModal = ({
     };
     NewArr.splice(idx, 1, obj);
     setCop([...NewArr]);
-    console.log(NewArr);
   }
 
   function ChangeAnswers(value, idx, i) {
@@ -148,7 +147,6 @@ const AdminModal = ({
   useEffect(() => {
     setMainArr([...cop]);
   }, [cop]);
-  console.log(getKey());
   return (
     <>
       <div className="modalAdmin">

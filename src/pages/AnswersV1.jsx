@@ -40,7 +40,6 @@ const AnswersV1 = () => {
   const [quest, setQuest] = useState(d);
 
 
-// console.log('dwadawd');
   
   function loadal() {
     if (logAll == "fulfilled") {

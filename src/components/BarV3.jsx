@@ -4,7 +4,26 @@ import { useParams } from "react-router-dom";
 
 const BarV3 = ({ color, idx, peoples }) => {
   const id = useParams();
-
+  const [Text, setText] = useState("");
+  const [Line, setLine] = useState(0);
+  useEffect(() => {
+    if (idx === 0) {
+      setText("Потребности в самоактуализации");
+    } else if (idx === 1) {
+      setText("Эстетические потребности");
+    } else if (idx === 2) {
+      setText("Познавательные потребности");
+    } else if (idx === 3) {
+      setText("Потребности в уважении и признании");
+    } else if (idx === 4) {
+      setText("Потребности в любви и принадлежности");
+    } else if (idx === 5) {
+      setText("Потребности в безопасности");
+    } else if (idx === 6) {
+      setText("Физиологические потребности");
+    }
+    // setLinee();
+  }, []);
   function setLinee() {
     let one = [];
     let two = [];
@@ -88,24 +107,34 @@ const BarV3 = ({ color, idx, peoples }) => {
       }
       return total / arr.length;
     }
-
-
-    return Math.round((changeTotal(one) + changeTotal(two) + changeTotal(three)) / 3 *100);
+    // setLine(
+    //   Math.round(
+    //     ((changeTotal(one) + changeTotal(two) + changeTotal(three)) / 3) * 100
+    //   )
+    // );
+    return Math.round(
+      ((changeTotal(one) + changeTotal(two) + changeTotal(three)) / 3) * 100
+    );
   }
 
   return (
-    <div className="h-[24px] flex w-full">
-      <>
-        <div
-          style={{
-            width: `${setLinee() === 0 ? setLinee() + 1 : setLinee()}%`,
-            backgroundColor: `${color}`,
-          }}
-          className="flex w-full h-full"
-        ></div>
-        <p>{setLinee()}%</p>
-      </>
-    </div>
+    <>
+      <p className=" mt-4">{Text}:</p>
+      <div className="h-[24px] flex   w-full">
+        <>
+          <div
+            style={{
+              width: `${setLinee() === 0 ? setLinee() + 1 : setLinee() }%`,
+              backgroundColor: `${color}`,
+              // width: `${Line === 0 ? Line + 1 : Line}%`,
+            }}
+            className="flex se w-full h-full"
+          ></div>
+          <p>{setLinee()}%</p>
+          {/* <p>{Line}%</p> */}
+        </>
+      </div>
+    </>
   );
 };
 
