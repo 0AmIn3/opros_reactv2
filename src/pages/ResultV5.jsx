@@ -28,13 +28,6 @@ const ResultV5 = () => {
   const [quest, setQuest] = useState(questDef);
   const [BarTotal, setBarTotal] = useState([]);
   const FillUsers = peoples.filter((item) => item.companyid === id.copid);
-  // const [WhiteSide, setWhiteSide] = useState(0);
-  // const [WhiteSideLabel, setWhiteSideLabel] = useState([]);
-  // const [DarkSide, setDarkSide] = useState(0);
-  // const [DarkSideLabel, setDarkSideLabel] = useState([]);
-  const [BarResults, setBarResults] = useState([]);
-  const [BarLabels, setBarLabels] = useState([]);
-  const [Colors, setColors] = useState([]);
   const [PersonalResults, setPersonalResults] = useState("none");
   function getAnincArr() {
     const auth_status = Cookies.get("userid");
@@ -66,99 +59,98 @@ const ResultV5 = () => {
       setLoadQ(true);
     }
   }
-  const calculatePercentage = (numbers, side) => {
-    const sum = numbers.reduce((total, num) => total + num, 0);
-    const percentages = numbers.map(
-      (num) => `${((num / sum) * 100).toFixed(2)}% ${side}`
-    );
-    return percentages;
-  };
-  function inds(arr) {
-    let white = [];
-    let dark = [];
-    const uniqueColors = (data) => {
-      const colors = data.map((item) => item.color);
-      const uniqueColors = Array.from(new Set(colors));
+  // const calculatePercentage = (numbers, side) => {
+  //   const sum = numbers.reduce((total, num) => total + num, 0);
+  //   const percentages = numbers.map(
+  //     (num) => `${((num / sum) * 100).toFixed(2)}% ${side}`
+  //   );
+  //   return percentages;
+  // };
+  // function inds(arr) {
+  //   let white = [];
+  //   let dark = [];
+  //   const uniqueColors = (data) => {
+  //     const colors = data.map((item) => item.color);
+  //     const uniqueColors = Array.from(new Set(colors));
 
-      return uniqueColors;
-    };
-    let colors = uniqueColors(arr[0][id.id.slice(1)]);
-    for (let i of arr) {
-      for (let ques of i[id.id.slice(1)]) {
-        if (ques.side) {
-          white.push(ques);
-        } else {
-          dark.push(ques);
-        }
-      }
-    }
+  //     return uniqueColors;
+  //   };
+  //   let colors = uniqueColors(arr[0][id.id.slice(1)]);
+  //   for (let i of arr) {
+  //     for (let ques of i[id.id.slice(1)]) {
+  //       if (ques.side) {
+  //         white.push(ques);
+  //       } else {
+  //         dark.push(ques);
+  //       }
+  //     }
+  //   }
 
-    function changeColor(colors, arr) {
-      // console.log(arr);
-      let obj = {};
-      let TotalArr = [];
-      for (let col of colors) {
-        obj[col] = [];
-        let total = 0;
-        for (let i of arr) {
-          if (i.color == col) {
-            obj[col].push(i);
-          }
-        }
-        for (let i of obj[col]) {
-          for (let ans of i.answers) {
-            if (ans.ansucc) {
-              if (ans.idx === 0) {
-                total += 1;
-              } else if (ans.idx === 1) {
-                total += 0.5;
-              } else if (ans.idx === 2) {
-                total += 0;
-              }
-            }
-          }
-        }
-        TotalArr.push(total);
-      }
+  //   function changeColor(colors, arr) {
+  //     // console.log(arr);
+  //     let obj = {};
+  //     let TotalArr = [];
+  //     for (let col of colors) {
+  //       obj[col] = [];
+  //       let total = 0;
+  //       for (let i of arr) {
+  //         if (i.color == col) {
+  //           obj[col].push(i);
+  //         }
+  //       }
+  //       for (let i of obj[col]) {
+  //         for (let ans of i.answers) {
+  //           if (ans.ansucc) {
+  //             if (ans.idx === 0) {
+  //               total += 1;
+  //             } else if (ans.idx === 1) {
+  //               total += 0.5;
+  //             } else if (ans.idx === 2) {
+  //               total += 0;
+  //             }
+  //           }
+  //         }
+  //       }
+  //       TotalArr.push(total);
+  //     }
 
-      return TotalArr;
-    }
+  //     return TotalArr;
+  //   }
 
-    function changeTotal(arr) {
-      let total = 0;
-      for (let i of arr) {
-        for (let ans of i.answers) {
-          if (ans.ansucc) {
-            if (ans.idx === 0) {
-              total += 1;
-            } else if (ans.idx === 1) {
-              total += 0.5;
-            } else if (ans.idx === 2) {
-              total += 0;
-            }
-          }
-        }
-      }
-      return (total / arr.length) * 100;
-    }
+  //   function changeTotal(arr) {
+  //     let total = 0;
+  //     for (let i of arr) {
+  //       for (let ans of i.answers) {
+  //         if (ans.ansucc) {
+  //           if (ans.idx === 0) {
+  //             total += 1;
+  //           } else if (ans.idx === 1) {
+  //             total += 0.5;
+  //           } else if (ans.idx === 2) {
+  //             total += 0;
+  //           }
+  //         }
+  //       }
+  //     }
+  //     return (total / arr.length) * 100;
+  //   }
 
-    // setWhiteSide(changeColor(colors, white));
-    // setDarkSide(changeColor(colors, dark));
-    setBarResults([
-      ...changeColor(colors, white),
-      ...changeColor(colors, dark),
-    ]);
-    let w = calculatePercentage(changeColor(colors, white), "Светлая сторона");
-    let d = calculatePercentage(changeColor(colors, dark), "Темная сторона");
-    setBarLabels([...w, ...d]);
+  //   // setWhiteSide(changeColor(colors, white));
+  //   // setDarkSide(changeColor(colors, dark));
+  //   setBarResults([
+  //     ...changeColor(colors, white),
+  //     ...changeColor(colors, dark),
+  //   ]);
+  //   let w = calculatePercentage(changeColor(colors, white), "Светлая сторона");
+  //   let d = calculatePercentage(changeColor(colors, dark), "Темная сторона");
+  //   setBarLabels([...w, ...d]);
 
+  //   setColors(colors);
+  // }
 
-    setColors(colors);
-  }
-
-  useEffect(() => {
-    Load && LoadQ ? inds(FillUsers) : null;
-  }, []);
+  // useEffect(() => {
+  //   Load && LoadQ ? inds(FillUsers) : null;
+  // }, []);
   return (
     <>
       <div className="answers  relative bg-white">
@@ -168,17 +160,7 @@ const ResultV5 = () => {
         <div className=" mt-3 mx-auto  w-fit flex ">
           {Load && LoadQ ? (
             <>
-              <Chart
-                // sideW={WhiteSide}
-                // sideD={DarkSide}
-                Colors={Colors}
-                // CopSideW={WhiteSideLabel}
-                // CopSideD={DarkSideLabel}
-                // whatside={"Светлая сторона"}
-                // bool={true}
-                BarResults={BarResults}
-                BarLabels={BarLabels}
-              />
+              <Chart FillUsers={FillUsers} />
             </>
           ) : (
             getAnincArr()
@@ -206,13 +188,12 @@ const ResultV5 = () => {
         )}
 
         {PersonalResults !== "none" ? (
-           <div className=" mt-3 mx-auto  w-fit flex ">
+          <div className=" mt-3 mx-auto  w-fit flex ">
             <Chart
-              Colors={Colors}  
-              BarResults={BarResults}
-              BarLabels={BarLabels}
+              FillUsers={FillUsers.filter((i) => i.id === PersonalResults)}
+              PersonalResults={PersonalResults}
             />
-           </div>
+          </div>
         ) : null}
         {Load && LoadQ
           ? quest.map((item, idx) => (
