@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import QuestMain from "../components/QuestMain";
 import Yarus from "../components/Yarus";
@@ -25,16 +25,20 @@ const AnswersV3 = () => {
   const [LoadQ, setLoadQ] = useState(false);
   const id = useParams();
   const [passed, setPassed] = useState(false);
-
-  useEffect(()=>{
-   
-    if(localStorage.getItem(`${id.copid}/${id.id}1`) === 'passed' && localStorage.getItem(`${id.copid}/${id.id}/userID`) !== null){
-      setPassed(true)
-    }else{
-      setPassed(false)
-  
+  const [UserName, setUserName] = useState("");
+  const [ChangeName, setChangeName] = useState(false);
+  const RefFam = useRef(null);
+  const RefName = useRef(null);
+  useEffect(() => {
+    if (
+      localStorage.getItem(`${id.copid}/${id.id}1`) === "passed" &&
+      localStorage.getItem(`${id.copid}/${id.id}/userID`) !== null
+    ) {
+      setPassed(true);
+    } else {
+      setPassed(false);
     }
-  })
+  });
   const [d, setd] = useState([]);
   const logAll = useSelector((state) => state.all.status);
   const companyQw = users
@@ -59,82 +63,131 @@ const AnswersV3 = () => {
   return (
     <>
       {passed ? (
-             <div className="answers relative pt-[100px] flex gap-6   flex-col items-center justify-center bg-white">
-             <h1 className=" text-4xl">Опрос пройден.</h1>
-             {/* <button onClick={()=>{
+        <div className="answers relative pt-[100px] flex gap-6   flex-col items-center justify-center bg-white">
+          <h1 className=" text-4xl">Опрос пройден.</h1>
+          {/* <button onClick={()=>{
                localStorage.setItem(`${id.copid}/${id.id}1` , 'repeat')
                window.location.reload(false);
              }} className="p-3 bg-[#77dddf] rounded-md font-medium outline-none">Повторно пройти опрос</button> */}
-          
-           </div>  
-      ) : (
-        <div className="answers relative pt-[100px] bg-white">
-          {Load ? (
-          <Yarus_v2
-          quest={quest}
-          nowq={nowq}
-          setQuest={setQuest}
-          key={nowq}
-        />
-          ) : (
-            loadal()
-          )}
+        </div>
+      ) : ChangeName ? (
+        <>
+          <div className="answers relative pt-[100px] bg-white">
+            {Load ? (
+              <Yarus_v2
+                quest={quest}
+                nowq={nowq}
+                setQuest={setQuest}
+                key={nowq}
+              />
+            ) : (
+              loadal()
+            )}
 
-          <button
-            className="next_btn flex items-center"
-            type="submit"
-            onClick={() => {
-              const er_btn = document.querySelector(".er_q");
-              if (
-                quest[nowq].answers.filter((item) => item?.ansucc === true)
-                  .length > 0
-              ) {
-                er_btn.style.display = "none";
+            <button
+              className="next_btn flex items-center"
+              type="submit"
+              onClick={() => {
+                const er_btn = document.querySelector(".er_q");
+                if (
+                  quest[nowq].answers.filter((item) => item?.ansucc === true)
+                    .length > 0
+                ) {
+                  er_btn.style.display = "none";
 
-                if (nowq <= quest.length - 1) {
-                  if (nowq < quest.length - 1) {
-                    setNowq(nowq + 1);
-                  } else if (nowq === quest.length - 1) {
-                    let ob = {};
-                    ob[`${id.id}`] = quest;
-                    if(!localStorage.getItem(`${id.copid}/${id.id}/userID`)){
-                      let usersObj ={
-                        companyid: id.copid,
-                        id: uuidv4(),
-                        ...ob,
+                  if (nowq <= quest.length - 1) {
+                    if (nowq < quest.length - 1) {
+                      setNowq(nowq + 1);
+                    } else if (nowq === quest.length - 1) {
+                      let ob = {};
+                      ob[`${id.id}`] = quest;
+                      if (
+                        !localStorage.getItem(`${id.copid}/${id.id}/userID`)
+                      ) {
+                        let usersObj = {
+                          companyid: id.copid,
+                          id: uuidv4(),
+                          name: UserName,
+                          ...ob,
+                        };
+                        dispatch(postUserAPI(usersObj));
+                        localStorage.setItem(`${id.copid}/${id.id}1`, "passed");
+                        localStorage.setItem(
+                          `${id.copid}/${id.id}/userID`,
+                          usersObj.id
+                        );
+                        setPassed(true);
+                      } else {
+                        let idx = ChangedUsers.indexOf(
+                          ChangedUsers.filter(
+                            (item) =>
+                              item.id ==
+                              localStorage.getItem(
+                                `${id.copid}/${id.id}/userID`
+                              )
+                          )[0]
+                        );
+                        let key = Object.keys(ChangedUserskeys)[idx];
+                        dispatch(
+                          pathUserAPI({
+                            key: key,
+                            obj: {
+                              ...ob,
+                            },
+                          })
+                        );
+                        if (ChangedUsersStatus === "fulfilled") {
+                          setNowq(0);
+                          localStorage.setItem(
+                            `${id.copid}/${id.id}1`,
+                            "passed"
+                          );
+                        }
+                        setPassed(true);
                       }
-                      dispatch(
-                        postUserAPI(usersObj)
-                      );
-                      localStorage.setItem(`${id.copid}/${id.id}1`, "passed");
-                      localStorage.setItem(`${id.copid}/${id.id}/userID`, usersObj.id);
-                      setPassed(true)
-                    }else{
-                      let idx = ChangedUsers.indexOf(ChangedUsers.filter(item => item.id == localStorage.getItem(`${id.copid}/${id.id}/userID`))[0])
-                      let key  = Object.keys(ChangedUserskeys)[idx]
-                      dispatch(
-                        pathUserAPI({
-                          key: key,
-                          obj: {
-                            ...ob
-                          },
-                        })
-                      )
-                      if(ChangedUsersStatus === 'fulfilled'){
-                        setNowq(0)
-                      localStorage.setItem(`${id.copid}/${id.id}1`, "passed");
-
-                      }
-                      setPassed(true)
                     }
                   }
+                } else {
+                  er_btn.style.display = "block";
                 }
-              } else {
-                er_btn.style.display = "block";
-              }
+              }}
+            >
+              <p>Следующий вопрос</p>
+              <SlArrowRight />
+            </button>
+          </div>
+        </>
+      ) : (
+        <div className="answers relative pt-[100px] bg-white">
+          <h1 className=" text-xl font-semibold">Введите фамилию и имя </h1>
+          <div className=" flex gap-6 mt-5">
+            <input
+              ref={RefFam}
+              className=" bg-[#d2d2d2] outline-none p-5 rounded-2xl text-black inp"
+              placeholder="Фамилия"
+              maxLength={20}
+
+              type="text"
+              required
+            />
+            <input
+              ref={RefName}
+              className=" bg-[#d2d2d2] outline-none p-5 rounded-2xl text-black inp"
+              placeholder="Имя"
+              maxLength={20}
+              type="text"
+              required
+            />
+          </div>
+          <button
+            className="next_btn flex items-center gap-5"
+            type="submit"
+            onClick={() => {
+              setUserName(`${RefFam.current.value} ${RefName.current.value}`)
+              setChangeName(true)
             }}
           >
-            <p>Следующий вопрос</p>
+            <p>Начать опрос</p>
             <SlArrowRight />
           </button>
         </div>

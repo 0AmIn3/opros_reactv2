@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { getUserAPI } from "../features/thunk";
 import NotFound from "../components/NotFound";
 import ResultV4 from "./ResultV4";
+import ResultV5 from "./ResultV5";
 
 const ResultPage = () => {
   const [type, settype] = useState("");
@@ -43,6 +44,8 @@ const ResultPage = () => {
         return <ResultV3 />;
       }else if (typ === "type4") {
         return <ResultV4 />;
+      }else if (typ === "type5") {
+        return <ResultV5 />;
       }
     }else{
       return (

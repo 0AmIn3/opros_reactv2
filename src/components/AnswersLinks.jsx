@@ -8,7 +8,7 @@ const AnswersLinks = ({ idx, item, setHref, setModal }) => {
   return (
     <div className="borders">
       <button
-        className="w-[210px] p-3 bg-[#77dddf] rounded-md font-medium outline-none   button"
+        className="w-[100%] max-w-[300px] p-3 bg-[#77dddf] rounded-md font-medium outline-none   button"
         data-btn={idx}
         onClick={() => {
           setModal(true);

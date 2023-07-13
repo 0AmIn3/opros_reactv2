@@ -6,6 +6,8 @@ export const SendEmail = ({ arr, item }) => {
   const href = window.location.href;
   const { copid } = useParams();
   const form = useRef();
+
+
   const handleSubmit = () => {
     event.preventDefault();
     const data = {
@@ -58,9 +60,9 @@ export const SendEmail = ({ arr, item }) => {
         type="text"
         name="link1"
         id="link1"
-        defaultValue={`Ссылки №1 : Ссылка на опрос ${
+        defaultValue={`Ссылки №1 : Ссылка на опрос ${href.split("/")[0]}//${
           href.split("/")[2]
-        }/${copid}/poll/${arr[0].id} , Ссылка на результаты опросса ${
+        }/${copid}/poll/${arr[0].id} , Ссылка на результаты опросса ${href.split("/")[0]}//${
           href.split("/")[2]
         }/${copid}/result/p${arr[0].id}`}
       />
@@ -68,9 +70,9 @@ export const SendEmail = ({ arr, item }) => {
         type="text"
         name="link2"
         id="link2"
-        defaultValue={`Ссылки №2 : Ссылка на опрос ${
+        defaultValue={`Ссылки №2 : Ссылка на опрос ${href.split("/")[0]}//${
           href.split("/")[2]
-        }/${copid}/poll/${arr[1].id} , Ссылка на результаты опросса ${
+        }/${copid}/poll/${arr[1].id} , Ссылка на результаты опросса ${href.split("/")[0]}//${
           href.split("/")[2]
         }/${copid}/result/p${arr[1].id}`}
       />
@@ -78,9 +80,9 @@ export const SendEmail = ({ arr, item }) => {
         type="text"
         name="link3"
         id="link3"
-        defaultValue={`Ссылки №3 : Ссылка на опрос ${
+        defaultValue={`Ссылки №3 : Ссылка на опрос ${href.split("/")[0]}//${
           href.split("/")[2]
-        }/${copid}/poll/${arr[2].id} , Ссылка на результаты опросса ${
+        }/${copid}/poll/${arr[2].id} , Ссылка на результаты опросса ${href.split("/")[0]}//${
           href.split("/")[2]
         }/${copid}/result/p${arr[2].id}`}
       />

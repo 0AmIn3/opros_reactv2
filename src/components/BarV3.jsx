@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 
 const BarV3 = ({ color, idx, peoples }) => {
   const id = useParams();
+  const Users = peoples.filter(item=> item.companyid === id.copid)
+  // console.log(Users);
   const [Text, setText] = useState("");
   const [Line, setLine] = useState(0);
   useEffect(() => {
@@ -28,7 +30,7 @@ const BarV3 = ({ color, idx, peoples }) => {
     let one = [];
     let two = [];
     let three = [];
-    for (let user of peoples) {
+    for (let user of Users) {
       let ques = user[`${id.id.slice(1)}`];
       for (let quest of ques) {
         if (idx === 0) {

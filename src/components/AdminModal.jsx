@@ -151,7 +151,7 @@ const AdminModal = ({
     <>
       <div className="modalAdmin">
         <div className="flex flex-col gap-3">
-          <button
+          {/* <button
             onClick={() => {
               setCop([]);
               setErr(true);
@@ -159,7 +159,7 @@ const AdminModal = ({
             className="p-3 bg-[#f8ffac] cursor-pointer   rounded-md font-medium outline-none   button"
           >
             Очистить
-          </button>
+          </button> */}
           {MainArr.map((item, idx) => (
             <div className="w-full" key={idx}>
               <div className="w-[80%] AdminQues  flex gap-2 p-5 bg-[#81dd9084] rounded-md">
@@ -209,7 +209,7 @@ const AdminModal = ({
         </div>
         <br />
         <hr />
-        <button
+        {/* <button
           className="p-3 bg-[#acffc8] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
           onClick={() => {
             if (changeType == "type1" && cop.length <= 11) {
@@ -230,7 +230,7 @@ const AdminModal = ({
           }}
         >
           {err ? <p>Добавить Вопрос</p> : <p>Превышен лимит вопросов</p>}
-        </button>
+        </button> */}
         <br />
         <button
           className="p-3 bg-[#acfff3] w-full cursor-pointer mt-9  rounded-md font-medium outline-none   button"
