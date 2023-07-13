@@ -856,11 +856,13 @@ const Register = () => {
             <input
               placeholder="Компания"
               {...register("name", { required: true })}
+              required
             />
             <input
               type="email"
               placeholder="Электронная почта"
               {...register("email")}
+              required
             />
 
             <div className="checkbox cursor-pointer">

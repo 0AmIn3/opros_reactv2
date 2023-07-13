@@ -17,7 +17,15 @@ const ResultV4 = () => {
   const [newObjTot, setObjTot] = useState([]);
   const [newOb, setOb] = useState([]);
   const users = useSelector((state) => state.users.data);
-  const [colors, setColors] = useState(["#747BC0", "#FF00BB", "#FF6600", "#FFA600" , "#FFCF00" , "#57CF00" , "#00CCFF"]);
+  const [colors, setColors] = useState([
+    "#747BC0",
+    "#FF00BB",
+    "#FF6600",
+    "#FFA600",
+    "#FFCF00",
+    "#57CF00",
+    "#00CCFF",
+  ]);
   const questDef = [];
   const [Load, setLoad] = useState(false);
   const [LoadQ, setLoadQ] = useState(false);
@@ -27,7 +35,9 @@ const ResultV4 = () => {
   const logAll = useSelector((state) => state.all.status);
   const [quest, setQuest] = useState(questDef);
   const [BarTotal, setBarTotal] = useState([]);
+  const [PersonalResults, setPersonalResults] = useState("none");
 
+  const FillUsers = peoples.filter((item) => item.companyid === id.copid);
   function getAnincArr() {
     const auth_status = Cookies.get("userid");
     if (logAll === "fulfilled" && log === "fulfilled") {
@@ -58,14 +68,16 @@ const ResultV4 = () => {
       setLoadQ(true);
     }
   }
-
+  console.log(FillUsers);
   useEffect(() => {
     // Load && LoadQ ? inds(users) : null;
   }, []);
   return (
     <>
       <div className="answers  relative bg-white">
-        <h1>Процент реализации потребностей в разрезе уровней по пирамиде Маслоу</h1>
+        <h1>
+          Процент реализации потребностей в разрезе уровней по пирамиде Маслоу
+        </h1>
         <div className=" mt-3">
           {Load && LoadQ
             ? colors.map((item, idx) => (
@@ -81,6 +93,38 @@ const ResultV4 = () => {
             : getAnincArr()}
         </div>
 
+        {Load && LoadQ ? (
+          <select
+            defaultValue={null}
+            className=" bg-[#EDEDED]  outline-none cursor-pointer w-full h-[50px] mt-6 rounded-xl"
+            onChange={(e) => {
+              setPersonalResults(e.target.value)
+            }}
+          >
+            <option className=" cursor-pointer" value={"none"} id={0}>
+              Выберите пользователя
+            </option>
+            {FillUsers.map((item, idx) => (
+              <option className=" cursor-pointer" value={item.id} key={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        ) : (
+          getAnincArr()
+        )}
+        {PersonalResults !== "none"
+          ? colors.map((item, idx) => (
+              <BarV3
+                item={item}
+                peoples={peoples.filter(item=> item.id === PersonalResults)}
+                newOb={newOb}
+                key={idx}
+                idx={idx}
+                color={colors[idx]}
+              />
+            ))
+          : null}
         {Load && LoadQ
           ? quest.map((item, idx) => (
               <ResAns

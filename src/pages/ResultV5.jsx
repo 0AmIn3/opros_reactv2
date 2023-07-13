@@ -35,6 +35,7 @@ const ResultV5 = () => {
   const [BarResults, setBarResults] = useState([]);
   const [BarLabels, setBarLabels] = useState([]);
   const [Colors, setColors] = useState([]);
+  const [PersonalResults, setPersonalResults] = useState("none");
   function getAnincArr() {
     const auth_status = Cookies.get("userid");
     if (logAll === "fulfilled" && log === "fulfilled") {
@@ -65,7 +66,7 @@ const ResultV5 = () => {
       setLoadQ(true);
     }
   }
-  const calculatePercentage = (numbers , side) => {
+  const calculatePercentage = (numbers, side) => {
     const sum = numbers.reduce((total, num) => total + num, 0);
     const percentages = numbers.map(
       (num) => `${((num / sum) * 100).toFixed(2)}% ${side}`
@@ -143,15 +144,15 @@ const ResultV5 = () => {
 
     // setWhiteSide(changeColor(colors, white));
     // setDarkSide(changeColor(colors, dark));
-    setBarResults([...changeColor(colors, white), ...changeColor(colors, dark)]);
-    let w = calculatePercentage(changeColor(colors, white) ,  "Светлая сторона")
-    let d = calculatePercentage(changeColor(colors, dark) ,  "Темная сторона")
-    setBarLabels(
-      [...w , ...d]
-    );
+    setBarResults([
+      ...changeColor(colors, white),
+      ...changeColor(colors, dark),
+    ]);
+    let w = calculatePercentage(changeColor(colors, white), "Светлая сторона");
+    let d = calculatePercentage(changeColor(colors, dark), "Темная сторона");
+    setBarLabels([...w, ...d]);
 
-    // setWhiteSideLabel(calculatePercentage(changeColor(colors, white)));
-    // setDarkSideLabel(calculatePercentage(changeColor(colors, dark)));
+
     setColors(colors);
   }
 
@@ -183,7 +184,36 @@ const ResultV5 = () => {
             getAnincArr()
           )}
         </div>
+        {Load && LoadQ ? (
+          <select
+            defaultValue={null}
+            className=" bg-[#EDEDED]  outline-none cursor-pointer w-full h-[50px] mt-6 rounded-xl"
+            onChange={(e) => {
+              setPersonalResults(e.target.value);
+            }}
+          >
+            <option className=" cursor-pointer" value={"none"} id={0}>
+              Выберите пользователя
+            </option>
+            {FillUsers.map((item, idx) => (
+              <option className=" cursor-pointer" value={item.id} key={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        ) : (
+          getAnincArr()
+        )}
 
+        {PersonalResults !== "none" ? (
+           <div className=" mt-3 mx-auto  w-fit flex ">
+            <Chart
+              Colors={Colors}  
+              BarResults={BarResults}
+              BarLabels={BarLabels}
+            />
+           </div>
+        ) : null}
         {Load && LoadQ
           ? quest.map((item, idx) => (
               <ResAns
